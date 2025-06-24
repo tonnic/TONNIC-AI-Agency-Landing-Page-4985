@@ -57,10 +57,17 @@ const Footer = () => {
               className="flex items-center mb-6 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded"
               aria-label="Go to top of page"
             >
+              {/* Light mode logo - normal logo with dark text */}
+              <img
+                src="https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750776734784-tonnic%20ai%20agency.png"
+                alt="TONNIC AI Agency"
+                className="h-12 w-auto hover:opacity-80 transition-opacity duration-200 dark:hidden"
+              />
+              {/* Dark mode logo - light logo */}
               <img
                 src="https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750770446524-TONNICLogo%20-%20Light.png"
                 alt="TONNIC AI Agency"
-                className="h-12 w-auto hover:opacity-80 transition-opacity duration-200"
+                className="h-12 w-auto hover:opacity-80 transition-opacity duration-200 hidden dark:block"
               />
             </button>
             <p className="text-slate-300 mb-6 max-w-md leading-relaxed">

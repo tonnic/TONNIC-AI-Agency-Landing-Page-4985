@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
@@ -19,6 +19,31 @@ const Contact = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState(null);
 
+  // Listen for global ESC key events
+  useEffect(() => {
+    const handleGlobalEscape = (event) => {
+      if (showCalModal) {
+        console.log('Contact: Received globalEscape event, closing cal modal');
+        setShowCalModal(false);
+        event.preventDefault();
+        event.stopPropagation();
+      }
+    };
+
+    document.addEventListener('globalEscape', handleGlobalEscape);
+    return () => document.removeEventListener('globalEscape', handleGlobalEscape);
+  }, [showCalModal]);
+
+  // Listen for global calendar modal events
+  useEffect(() => {
+    const handleOpenCalModal = () => {
+      setShowCalModal(true);
+    };
+
+    window.addEventListener('openCalModal', handleOpenCalModal);
+    return () => window.removeEventListener('openCalModal', handleOpenCalModal);
+  }, []);
+
   const openCalModal = () => {
     setShowCalModal(true);
   };
@@ -29,10 +54,7 @@ const Contact = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
@@ -42,7 +64,6 @@ const Contact = () => {
 
     try {
       const webhookUrl = 'https://api1.tonnic.ai/webhook/6af91990-0957-4380-a771-3609fe8cb4d6';
-      
       const payload = {
         name: formData.name,
         email: formData.email,
@@ -71,7 +92,7 @@ const Contact = () => {
 
       // Success
       setIsSubmitted(true);
-      
+
       // Reset form after 5 seconds
       setTimeout(() => {
         setIsSubmitted(false);
@@ -84,7 +105,7 @@ const Contact = () => {
           message: ''
         });
       }, 5000);
-      
+
     } catch (error) {
       console.error('Error submitting form:', error);
       setSubmitError('There was an error sending your message. Please try again or call us directly at 1-888-292-5513.');
@@ -136,7 +157,7 @@ const Contact = () => {
               <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 transition-colors duration-200">
                 Send us a message
               </h3>
-              
+
               {isSubmitted ? (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
@@ -182,7 +203,6 @@ const Contact = () => {
                           />
                         </div>
                       </div>
-                      
                       <div>
                         <label htmlFor="email" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-200">
                           Email Address *
@@ -218,7 +238,6 @@ const Contact = () => {
                           placeholder="Your Company"
                         />
                       </div>
-                      
                       <div>
                         <label htmlFor="phone" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-200">
                           Phone Number
@@ -294,10 +313,7 @@ const Contact = () => {
               <div className="mt-6 p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-xl transition-colors duration-200">
                 <p className="text-sm text-slate-600 dark:text-slate-300 transition-colors duration-200">
                   <strong>Note:</strong> For immediate assistance, call our AI Voice Agent at{' '}
-                  <a 
-                    href="tel:+18882925513" 
-                    className="text-yellow-600 dark:text-yellow-400 hover:text-yellow-700 dark:hover:text-yellow-300 underline focus:ring-2 focus:ring-yellow-500 focus:ring-offset-1 dark:focus:ring-offset-slate-800 rounded transition-colors duration-200"
-                  >
+                  <a href="tel:+18882925513" className="text-yellow-600 dark:text-yellow-400 hover:text-yellow-700 dark:hover:text-yellow-300 underline focus:ring-2 focus:ring-yellow-500 focus:ring-offset-1 dark:focus:ring-offset-slate-800 rounded transition-colors duration-200">
                     1-888-292-5513
                   </a>
                   {' '}who can answer questions and connect you with our team.
@@ -349,11 +365,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <div className="text-white font-medium mb-1">AI Voice Agent</div>
-                    <a 
-                      href="tel:+18882925513" 
-                      className="text-slate-300 hover:text-yellow-400 focus:text-yellow-400 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-950 rounded transition-colors duration-200 text-lg font-semibold"
-                      aria-label="Call our AI Voice Agent at 1-888-292-5513"
-                    >
+                    <a href="tel:+18882925513" className="text-slate-300 hover:text-yellow-400 focus:text-yellow-400 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-950 rounded transition-colors duration-200 text-lg font-semibold" aria-label="Call our AI Voice Agent at 1-888-292-5513">
                       1-888-292-5513
                     </a>
                     <p className="text-slate-400 text-sm mt-1">
@@ -414,12 +426,7 @@ const Contact = () => {
 
       {/* Cal.com Modal */}
       {showCalModal && (
-        <div 
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="cal-modal-title"
-        >
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" role="dialog" aria-modal="true" aria-labelledby="cal-modal-title">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -433,12 +440,10 @@ const Contact = () => {
             >
               <SafeIcon icon={FiX} className="w-6 h-6 text-slate-600 dark:text-slate-300" aria-hidden="true" />
             </button>
-
             <div className="p-6 border-b border-slate-200 dark:border-slate-700 transition-colors duration-200">
               <h3 id="cal-modal-title" className="text-2xl font-bold text-slate-800 dark:text-white transition-colors duration-200">Book a Meeting</h3>
               <p className="text-slate-600 dark:text-slate-300 mt-2 transition-colors duration-200">Schedule a 30-minute consultation with our AI experts</p>
             </div>
-
             <div className="h-[600px]">
               <iframe
                 src="https://cal.com/tonnic/30min"

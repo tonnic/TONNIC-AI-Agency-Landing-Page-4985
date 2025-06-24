@@ -1,11 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 
-const { FiArrowRight, FiZap } = FiIcons;
+const { FiCalendar, FiMail, FiZap, FiTrendingUp, FiUsers, FiDollarSign, FiX } = FiIcons;
 
 const Hero = () => {
+  const [showCalModal, setShowCalModal] = useState(false);
+
+  // Listen for global ESC key events
+  useEffect(() => {
+    const handleGlobalEscape = (event) => {
+      if (showCalModal) {
+        console.log('Hero: Received globalEscape event, closing cal modal');
+        setShowCalModal(false);
+        event.preventDefault();
+        event.stopPropagation();
+      }
+    };
+
+    document.addEventListener('globalEscape', handleGlobalEscape);
+    return () => document.removeEventListener('globalEscape', handleGlobalEscape);
+  }, [showCalModal]);
+
   const scrollToContact = () => {
     const element = document.getElementById('contact');
     if (element) {
@@ -13,74 +30,175 @@ const Hero = () => {
     }
   };
 
+  const openCalModal = () => {
+    setShowCalModal(true);
+  };
+
+  const closeCalModal = () => {
+    setShowCalModal(false);
+  };
+
   return (
-    <section className="pt-24 pb-16 bg-gradient-to-br from-slate-50 to-yellow-50 dark:from-slate-900 dark:to-slate-800 transition-colors duration-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
+    <>
+      <section className="pt-24 pb-16 bg-gradient-to-br from-slate-50 to-yellow-50 dark:from-slate-900 dark:to-slate-800 transition-colors duration-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* ICP Section */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="mb-8"
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
           >
-            <div className="inline-flex items-center bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 px-4 py-2 rounded-full text-sm font-medium mb-6 transition-colors duration-200">
-              <SafeIcon icon={FiZap} className="w-4 h-4 mr-2" />
-              <span className="force-ai-text">AI</span>-Powered Business Solutions
+            <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-700 max-w-4xl mx-auto transition-colors duration-200">
+              <h2 className="text-xl font-bold text-slate-800 dark:text-white mb-4 transition-colors duration-200">
+                Perfect for Forward-Thinking Businesses
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="flex items-center justify-center space-x-3">
+                  <div className="bg-yellow-100 dark:bg-yellow-900/30 p-2 rounded-lg transition-colors duration-200">
+                    <SafeIcon icon={FiTrendingUp} className="w-5 h-5 text-yellow-600 dark:text-yellow-400" />
+                  </div>
+                  <div className="text-left">
+                    <div className="font-semibold text-slate-700 dark:text-slate-300 text-sm transition-colors duration-200">
+                      Growing Companies
+                    </div>
+                    <div className="text-xs text-slate-500 dark:text-slate-400 transition-colors duration-200">
+                      Scale without hiring
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-center justify-center space-x-3">
+                  <div className="bg-yellow-100 dark:bg-yellow-900/30 p-2 rounded-lg transition-colors duration-200">
+                    <SafeIcon icon={FiDollarSign} className="w-5 h-5 text-yellow-600 dark:text-yellow-400" />
+                  </div>
+                  <div className="text-left">
+                    <div className="font-semibold text-slate-700 dark:text-slate-300 text-sm transition-colors duration-200">
+                      Cost-Conscious
+                    </div>
+                    <div className="text-xs text-slate-500 dark:text-slate-400 transition-colors duration-200">
+                      Reduce overhead 40-70%
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-center justify-center space-x-3">
+                  <div className="bg-yellow-100 dark:bg-yellow-900/30 p-2 rounded-lg transition-colors duration-200">
+                    <SafeIcon icon={FiUsers} className="w-5 h-5 text-yellow-600 dark:text-yellow-400" />
+                  </div>
+                  <div className="text-left">
+                    <div className="font-semibold text-slate-700 dark:text-slate-300 text-sm transition-colors duration-200">
+                      Customer-Focused
+                    </div>
+                    <div className="text-xs text-slate-500 dark:text-slate-400 transition-colors duration-200">
+                      Never miss opportunities
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold text-slate-800 dark:text-white mb-6 leading-tight transition-colors duration-200">
-              <span className="force-ai-text">AI</span> Solutions That Make <span className="text-yellow-500 block">Your Business Buzz</span>
-            </h1>
-            <p className="text-xl text-slate-600 dark:text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed transition-colors duration-200">
-              TONNIC provides cutting-edge <span className="force-ai-text">AI</span> voice agents, intelligent chatbots, and automation services designed to streamline your business operations and boost productivity across all departments.
-            </p>
           </motion.div>
 
+          <div className="text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="mb-8"
+            >
+              <div className="inline-flex items-center bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 px-4 py-2 rounded-full text-sm font-medium mb-6 transition-colors duration-200">
+                <SafeIcon icon={FiZap} className="w-4 h-4 mr-2" />
+                <span className="force-ai-text">AI</span>-Powered Business Solutions
+              </div>
+              <h1 className="text-4xl md:text-6xl font-bold text-slate-800 dark:text-white mb-6 leading-tight transition-colors duration-200">
+                <span className="force-ai-text">AI</span> Solutions That Make
+                <span className="text-yellow-500 block">Your Business Buzz</span>
+              </h1>
+              <p className="text-xl text-slate-600 dark:text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed transition-colors duration-200">
+                TONNIC provides cutting-edge <span className="force-ai-text">AI</span> voice agents, intelligent chatbots, and automation services designed to streamline your business operations and boost productivity across all departments.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            >
+              <button
+                onClick={openCalModal}
+                className="bg-yellow-500 text-slate-800 px-8 py-4 rounded-full font-semibold text-lg hover:bg-yellow-400 focus:bg-yellow-400 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800 transition-all duration-200 flex items-center shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+              >
+                <SafeIcon icon={FiCalendar} className="w-5 h-5 mr-2" />
+                Book an Appointment Now
+              </button>
+              <button
+                onClick={scrollToContact}
+                className="border-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 px-8 py-4 rounded-full font-semibold text-lg hover:border-yellow-500 hover:text-yellow-600 dark:hover:border-yellow-400 dark:hover:text-yellow-400 focus:border-yellow-500 focus:text-yellow-600 dark:focus:border-yellow-400 dark:focus:text-yellow-400 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800 transition-all duration-200 flex items-center"
+              >
+                <SafeIcon icon={FiMail} className="w-5 h-5 mr-2" />
+                Contact Us
+              </button>
+            </motion.div>
+          </div>
+
+          {/* Hero Stats */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 text-center"
           >
-            <button
-              onClick={scrollToContact}
-              className="bg-yellow-500 text-slate-800 px-8 py-4 rounded-full font-semibold text-lg hover:bg-yellow-400 transition-all duration-200 flex items-center shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-            >
-              Get Started Today
-              <SafeIcon icon={FiArrowRight} className="w-5 h-5 ml-2" />
-            </button>
-            <button
-              onClick={() => document.getElementById('services').scrollIntoView({ behavior: 'smooth' })}
-              className="border-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 px-8 py-4 rounded-full font-semibold text-lg hover:border-yellow-500 hover:text-yellow-600 dark:hover:border-yellow-400 dark:hover:text-yellow-400 transition-all duration-200"
-            >
-              Explore Services
-            </button>
+            <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm dark:shadow-slate-700/10 border border-transparent dark:border-slate-700 transition-colors duration-200">
+              <div className="text-3xl font-bold text-yellow-500 mb-2">24/7</div>
+              <div className="text-slate-600 dark:text-slate-300 transition-colors duration-200">
+                <span className="force-ai-text">AI</span> Support Available
+              </div>
+            </div>
+            <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm dark:shadow-slate-700/10 border border-transparent dark:border-slate-700 transition-colors duration-200">
+              <div className="text-3xl font-bold text-yellow-500 mb-2">70%</div>
+              <div className="text-slate-600 dark:text-slate-300 transition-colors duration-200">Faster Response Times</div>
+            </div>
+            <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm dark:shadow-slate-700/10 border border-transparent dark:border-slate-700 transition-colors duration-200">
+              <div className="text-3xl font-bold text-yellow-500 mb-2">∞</div>
+              <div className="text-slate-600 dark:text-slate-300 transition-colors duration-200">Scalable Solutions</div>
+            </div>
           </motion.div>
         </div>
+      </section>
 
-        {/* Hero Stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 text-center"
-        >
-          <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm dark:shadow-slate-700/10 border border-transparent dark:border-slate-700 transition-colors duration-200">
-            <div className="text-3xl font-bold text-yellow-500 mb-2">24/7</div>
-            <div className="text-slate-600 dark:text-slate-300 transition-colors duration-200">
-              <span className="force-ai-text">AI</span> Support Available
+      {/* Cal.com Modal */}
+      {showCalModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" role="dialog" aria-modal="true" aria-labelledby="cal-modal-title">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            className="bg-white dark:bg-slate-800 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden relative transition-colors duration-200"
+          >
+            <button
+              onClick={closeCalModal}
+              className="absolute top-4 right-4 z-10 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 focus:bg-slate-200 dark:focus:bg-slate-600 focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800 p-2 rounded-full transition-colors duration-200"
+              aria-label="Close booking modal"
+            >
+              <SafeIcon icon={FiX} className="w-6 h-6 text-slate-600 dark:text-slate-300" aria-hidden="true" />
+            </button>
+            <div className="p-6 border-b border-slate-200 dark:border-slate-700 transition-colors duration-200">
+              <h3 id="cal-modal-title" className="text-2xl font-bold text-slate-800 dark:text-white transition-colors duration-200">Book Your AI Consultation</h3>
+              <p className="text-slate-600 dark:text-slate-300 mt-2 transition-colors duration-200">Schedule a 30-minute consultation with our AI experts to discuss your business needs</p>
             </div>
-          </div>
-          <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm dark:shadow-slate-700/10 border border-transparent dark:border-slate-700 transition-colors duration-200">
-            <div className="text-3xl font-bold text-yellow-500 mb-2">70%</div>
-            <div className="text-slate-600 dark:text-slate-300 transition-colors duration-200">Faster Response Times</div>
-          </div>
-          <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm dark:shadow-slate-700/10 border border-transparent dark:border-slate-700 transition-colors duration-200">
-            <div className="text-3xl font-bold text-yellow-500 mb-2">∞</div>
-            <div className="text-slate-600 dark:text-slate-300 transition-colors duration-200">Scalable Solutions</div>
-          </div>
-        </motion.div>
-      </div>
-    </section>
+            <div className="h-[600px]">
+              <iframe
+                src="https://cal.com/tonnic/30min"
+                width="100%"
+                height="100%"
+                frameBorder="0"
+                title="Book an AI consultation with TONNIC"
+                className="rounded-b-2xl"
+              ></iframe>
+            </div>
+          </motion.div>
+        </div>
+      )}
+    </>
   );
 };
 

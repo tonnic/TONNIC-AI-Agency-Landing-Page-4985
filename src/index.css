@@ -48,96 +48,138 @@ h6:contains("AI") {
   letter-spacing: 0.1em !important;
 }
 
-/* HIGH CONTRAST MODE - ENHANCED AND WORKING */
-.high-contrast {
-  filter: contrast(200%) brightness(110%) !important;
-}
-
-.high-contrast *,
-.high-contrast *:before,
-.high-contrast *:after {
-  transition: none !important;
-}
-
-/* Text colors in high contrast */
-.high-contrast .text-slate-600,
-.high-contrast .text-slate-500,
-.high-contrast .text-slate-400,
-.high-contrast .text-slate-700 {
-  color: #000000 !important;
-}
-
-.high-contrast .text-slate-300,
-.high-contrast .text-slate-200,
-.high-contrast .text-slate-100,
-.high-contrast .text-white {
-  color: #ffffff !important;
-}
-
-/* Background colors in high contrast */
-.high-contrast .bg-slate-50,
-.high-contrast .bg-slate-100,
-.high-contrast .bg-white {
+/* HIGH CONTRAST MODE - COMPLETELY REWRITTEN AND WORKING */
+/* Base high contrast styles */
+html.high-contrast,
+html.high-contrast *,
+html[data-high-contrast="true"],
+html[data-high-contrast="true"] *,
+.high-contrast,
+.high-contrast * {
   background-color: #ffffff !important;
   color: #000000 !important;
+  border-color: #000000 !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  background-image: none !important;
 }
 
-.high-contrast .bg-slate-800,
-.high-contrast .bg-slate-900,
-.high-contrast .bg-slate-700,
-.high-contrast .bg-slate-950 {
+/* Dark sections in high contrast */
+html.high-contrast .bg-slate-800,
+html.high-contrast .bg-slate-900,
+html.high-contrast .bg-slate-700,
+html.high-contrast .bg-slate-950,
+html[data-high-contrast="true"] .bg-slate-800,
+html[data-high-contrast="true"] .bg-slate-900,
+html[data-high-contrast="true"] .bg-slate-700,
+html[data-high-contrast="true"] .bg-slate-950,
+html.high-contrast .dark\:bg-slate-800,
+html.high-contrast .dark\:bg-slate-900,
+html.high-contrast .dark\:bg-slate-700,
+html[data-high-contrast="true"] .dark\:bg-slate-800,
+html[data-high-contrast="true"] .dark\:bg-slate-900,
+html[data-high-contrast="true"] .dark\:bg-slate-700 {
   background-color: #000000 !important;
   color: #ffffff !important;
-}
-
-.high-contrast .bg-yellow-50,
-.high-contrast .bg-yellow-100 {
-  background-color: #ffff00 !important;
-  color: #000000 !important;
-}
-
-.high-contrast .bg-yellow-500,
-.high-contrast .bg-yellow-400 {
-  background-color: #ffff00 !important;
-  color: #000000 !important;
-}
-
-/* Border colors in high contrast */
-.high-contrast .border-slate-200,
-.high-contrast .border-slate-300,
-.high-contrast .border-gray-200 {
-  border-color: #000000 !important;
-}
-
-.high-contrast .border-slate-600,
-.high-contrast .border-slate-700 {
   border-color: #ffffff !important;
 }
 
-/* Dark mode high contrast adjustments */
-.dark.high-contrast .text-slate-300,
-.dark.high-contrast .text-slate-200,
-.dark.high-contrast .text-slate-100 {
+/* Yellow/accent elements in high contrast */
+html.high-contrast .bg-yellow-500,
+html.high-contrast .bg-yellow-400,
+html.high-contrast .bg-yellow-50,
+html.high-contrast .bg-yellow-100,
+html[data-high-contrast="true"] .bg-yellow-500,
+html[data-high-contrast="true"] .bg-yellow-400,
+html[data-high-contrast="true"] .bg-yellow-50,
+html[data-high-contrast="true"] .bg-yellow-100 {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 3px solid #ffffff !important;
+}
+
+/* Text colors in high contrast */
+html.high-contrast .text-white,
+html[data-high-contrast="true"] .text-white {
   color: #ffffff !important;
 }
 
-.dark.high-contrast .text-slate-600,
-.dark.high-contrast .text-slate-500,
-.dark.high-contrast .text-slate-400 {
-  color: #ffffff !important;
+html.high-contrast .text-slate-600,
+html.high-contrast .text-slate-500,
+html.high-contrast .text-slate-400,
+html.high-contrast .text-slate-700,
+html.high-contrast .text-slate-800,
+html.high-contrast .text-slate-300,
+html.high-contrast .text-slate-200,
+html[data-high-contrast="true"] .text-slate-600,
+html[data-high-contrast="true"] .text-slate-500,
+html[data-high-contrast="true"] .text-slate-400,
+html[data-high-contrast="true"] .text-slate-700,
+html[data-high-contrast="true"] .text-slate-800,
+html[data-high-contrast="true"] .text-slate-300,
+html[data-high-contrast="true"] .text-slate-200 {
+  color: inherit !important;
 }
 
-.dark.high-contrast .bg-slate-700,
-.dark.high-contrast .bg-slate-800,
-.dark.high-contrast .bg-slate-900 {
+/* Buttons in high contrast */
+html.high-contrast button,
+html[data-high-contrast="true"] button {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 3px solid #000000 !important;
+  box-shadow: none !important;
+}
+
+html.high-contrast button:hover,
+html.high-contrast button:focus,
+html[data-high-contrast="true"] button:hover,
+html[data-high-contrast="true"] button:focus {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 3px solid #ffffff !important;
+}
+
+/* Links in high contrast */
+html.high-contrast a,
+html[data-high-contrast="true"] a {
+  color: #0000ff !important;
+  text-decoration: underline !important;
+  background-color: transparent !important;
+}
+
+html.high-contrast a:visited,
+html[data-high-contrast="true"] a:visited {
+  color: #800080 !important;
+}
+
+html.high-contrast a:hover,
+html.high-contrast a:focus,
+html[data-high-contrast="true"] a:hover,
+html[data-high-contrast="true"] a:focus {
   background-color: #000000 !important;
   color: #ffffff !important;
 }
 
-.dark.high-contrast .bg-slate-50,
-.dark.high-contrast .bg-slate-100 {
-  background-color: #ffffff !important;
-  color: #000000 !important;
+/* Remove gradients and complex styling in high contrast */
+html.high-contrast *,
+html.high-contrast *:before,
+html.high-contrast *:after,
+html[data-high-contrast="true"] *,
+html[data-high-contrast="true"] *:before,
+html[data-high-contrast="true"] *:after {
+  transition: none !important;
+  animation: none !important;
+  background-image: none !important;
+  background-gradient: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+/* Ensure icons are visible in high contrast */
+html.high-contrast svg,
+html[data-high-contrast="true"] svg {
+  fill: currentColor !important;
+  stroke: currentColor !important;
 }
 
 /* REDUCED MOTION MODE - ENHANCED AND WORKING */
@@ -191,6 +233,17 @@ h6:contains("AI") {
 *:focus-visible {
   outline: 3px solid #eab308 !important;
   outline-offset: 2px !important;
+}
+
+/* High contrast focus indicators */
+html.high-contrast *:focus,
+html.high-contrast *:focus-visible,
+html[data-high-contrast="true"] *:focus,
+html[data-high-contrast="true"] *:focus-visible {
+  outline: 3px solid #000000 !important;
+  outline-offset: 2px !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
 }
 
 /* Skip link for screen readers */
@@ -301,12 +354,12 @@ body:not(.reduce-motion) button {
   .no-print {
     display: none !important;
   }
-
+  
   body {
     color: black !important;
     background: white !important;
   }
-
+  
   a {
     color: black !important;
     text-decoration: underline !important;
@@ -364,13 +417,42 @@ html[style*="font-size"] * {
 }
 
 /* Force inheritance of font size changes */
-.text-xs { font-size: 0.75em !important; }
-.text-sm { font-size: 0.875em !important; }
-.text-base { font-size: 1em !important; }
-.text-lg { font-size: 1.125em !important; }
-.text-xl { font-size: 1.25em !important; }
-.text-2xl { font-size: 1.5em !important; }
-.text-3xl { font-size: 1.875em !important; }
-.text-4xl { font-size: 2.25em !important; }
-.text-5xl { font-size: 3em !important; }
-.text-6xl { font-size: 3.75em !important; }
+.text-xs {
+  font-size: 0.75em !important;
+}
+
+.text-sm {
+  font-size: 0.875em !important;
+}
+
+.text-base {
+  font-size: 1em !important;
+}
+
+.text-lg {
+  font-size: 1.125em !important;
+}
+
+.text-xl {
+  font-size: 1.25em !important;
+}
+
+.text-2xl {
+  font-size: 1.5em !important;
+}
+
+.text-3xl {
+  font-size: 1.875em !important;
+}
+
+.text-4xl {
+  font-size: 2.25em !important;
+}
+
+.text-5xl {
+  font-size: 3em !important;
+}
+
+.text-6xl {
+  font-size: 3.75em !important;
+}

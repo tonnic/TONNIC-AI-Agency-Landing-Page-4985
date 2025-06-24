@@ -19,15 +19,30 @@ const AccessibilityPanel = () => {
     if (manager) {
       // Get initial state
       setSettings(manager.getState());
-      
+
       // Subscribe to changes
       const unsubscribe = manager.subscribe((newSettings) => {
         setSettings(newSettings);
       });
-      
+
       return unsubscribe;
     }
   }, []);
+
+  // Listen for global ESC key events
+  useEffect(() => {
+    const handleGlobalEscape = (event) => {
+      if (isOpen) {
+        console.log('AccessibilityPanel: Received globalEscape event, closing panel');
+        setIsOpen(false);
+        event.preventDefault();
+        event.stopPropagation();
+      }
+    };
+
+    document.addEventListener('globalEscape', handleGlobalEscape);
+    return () => document.removeEventListener('globalEscape', handleGlobalEscape);
+  }, [isOpen]);
 
   const adjustFontSize = (increment) => {
     const manager = window.accessibilityManager;
@@ -60,17 +75,18 @@ const AccessibilityPanel = () => {
 
   return (
     <>
-      {/* Accessibility Button - moved to left side */}
+      {/* Accessibility Button */}
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 left-6 bg-yellow-500 hover:bg-yellow-400 text-slate-800 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 z-40 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2"
+        className="fixed bottom-6 left-6 bg-yellow-500 hover:bg-yellow-400 text-slate-800 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 z-40 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 border-2 border-white dark:border-slate-800"
         aria-label="Open accessibility settings"
         title="Accessibility Settings"
+        style={{ boxShadow: '0 4px 12px rgba(0,0,0,0.15), 0 0 0 2px rgba(255,255,255,0.8)' }}
       >
         <SafeIcon icon={FiSettings} className="w-6 h-6" />
       </button>
 
-      {/* Accessibility Panel - slides from left */}
+      {/* Accessibility Panel */}
       <AnimatePresence>
         {isOpen && (
           <>
@@ -83,17 +99,20 @@ const AccessibilityPanel = () => {
               onClick={() => setIsOpen(false)}
             />
 
-            {/* Panel - slides from left instead of right */}
+            {/* Panel */}
             <motion.div
               initial={{ opacity: 0, x: -300 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -300 }}
               className="fixed top-0 left-0 h-full w-80 bg-white dark:bg-slate-800 shadow-xl z-50 overflow-y-auto"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="accessibility-panel-title"
             >
               <div className="p-6">
                 {/* Header */}
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-xl font-bold text-slate-800 dark:text-white">
+                  <h2 id="accessibility-panel-title" className="text-xl font-bold text-slate-800 dark:text-white">
                     Accessibility Settings
                   </h2>
                   <button
@@ -190,20 +209,6 @@ const AccessibilityPanel = () => {
                   Reset to Default
                 </button>
 
-                {/* Test Section */}
-                <div className="mt-6 p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg">
-                  <h4 className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
-                    Test <span className="force-ai-text">AI</span> Text Rendering
-                  </h4>
-                  <div className="text-xs text-slate-600 dark:text-slate-400 space-y-1">
-                    <div>Regular: AI Technology</div>
-                    <div className="force-ai-text">Monospace: AI Technology</div>
-                    <div>Status: {settings.highContrast ? 'High Contrast' : 'Normal'}</div>
-                    <div>Motion: {settings.reducedMotion ? 'Reduced' : 'Normal'}</div>
-                    <div>Font Size: {settings.fontSize}%</div>
-                  </div>
-                </div>
-
                 {/* Keyboard Shortcuts Info */}
                 <div className="mt-6 p-4 bg-slate-50 dark:bg-slate-700 rounded-lg">
                   <h4 className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
@@ -218,15 +223,17 @@ const AccessibilityPanel = () => {
                   </div>
                 </div>
 
-                {/* Real-time Debug Info */}
-                <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-                  <h4 className="text-sm font-semibold text-blue-700 dark:text-blue-300 mb-2">
-                    Debug Info
+                {/* Test Section */}
+                <div className="mt-6 p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg">
+                  <h4 className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
+                    Test <span className="force-ai-text">AI</span> Text Rendering
                   </h4>
-                  <div className="text-xs text-blue-600 dark:text-blue-400 space-y-1">
-                    <div>HTML Classes: {document.documentElement.className}</div>
-                    <div>Body Classes: {document.body.className}</div>
-                    <div>Font Size: {document.documentElement.style.fontSize}</div>
+                  <div className="text-xs text-slate-600 dark:text-slate-400 space-y-1">
+                    <div>Regular: AI Technology</div>
+                    <div className="force-ai-text">Monospace: AI Technology</div>
+                    <div>Status: {settings.highContrast ? 'High Contrast' : 'Normal'}</div>
+                    <div>Motion: {settings.reducedMotion ? 'Reduced' : 'Normal'}</div>
+                    <div>Font Size: {settings.fontSize}%</div>
                   </div>
                 </div>
               </div>

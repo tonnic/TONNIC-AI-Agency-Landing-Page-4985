@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
@@ -8,6 +8,38 @@ const { FiMic, FiMessageSquare, FiGlobe, FiShare2, FiLink, FiZap, FiX, FiCalenda
 const Services = () => {
   const [selectedService, setSelectedService] = useState(null);
   const [showCalModal, setShowCalModal] = useState(false);
+
+  // Listen for global calendar modal events
+  useEffect(() => {
+    const handleOpenCalModal = () => {
+      setShowCalModal(true);
+    };
+
+    window.addEventListener('openCalModal', handleOpenCalModal);
+    return () => {
+      window.removeEventListener('openCalModal', handleOpenCalModal);
+    };
+  }, []);
+
+  // Listen for global ESC key events
+  useEffect(() => {
+    const handleGlobalEscape = (event) => {
+      if (selectedService) {
+        console.log('Services: Received globalEscape event, closing service modal');
+        setSelectedService(null);
+        event.preventDefault();
+        event.stopPropagation();
+      } else if (showCalModal) {
+        console.log('Services: Received globalEscape event, closing cal modal');
+        setShowCalModal(false);
+        event.preventDefault();
+        event.stopPropagation();
+      }
+    };
+
+    document.addEventListener('globalEscape', handleGlobalEscape);
+    return () => document.removeEventListener('globalEscape', handleGlobalEscape);
+  }, [selectedService, showCalModal]);
 
   const services = [
     {
@@ -344,38 +376,12 @@ const Services = () => {
                   <div className="bg-yellow-500 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                     <SafeIcon icon={service.icon} className="w-8 h-8 text-slate-800" />
                   </div>
-
-                  {/* Add Thoughtly Premier Partner badge for AI Voice Agents */}
-                  {service.title === "AI Voice Agents" && (
-                    <div className="flex items-center mb-4">
-                      <img
-                        src="https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750734772981-partner-badge.png"
-                        alt="Thoughtly Premier Partner"
-                        className="h-8 w-auto mr-3"
-                      />
-                      <span className="text-sm font-semibold text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-600 px-3 py-1 rounded-full transition-colors duration-200">
-                        Premier Partner
-                      </span>
-                    </div>
-                  )}
-
-                  {/* Add n8n Preferred badge for API Integrations and Business Automation */}
-                  {(service.title === "API Integrations" || service.title === "Business Automation") && (
-                    <div className="flex items-center mb-4">
-                      <span className="text-sm font-semibold text-slate-600 dark:text-slate-300 bg-blue-100 dark:bg-blue-900/30 px-3 py-1 rounded-full transition-colors duration-200">
-                        n8n Preferred
-                      </span>
-                    </div>
-                  )}
-
                   <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-4 group-hover:text-yellow-600 dark:group-hover:text-yellow-400 transition-colors duration-300">
                     {service.title}
                   </h3>
-
                   <p className="text-slate-600 dark:text-slate-300 mb-6 leading-relaxed flex-1 text-sm transition-colors duration-200">
                     {service.description}
                   </p>
-
                   <div className="mb-6">
                     <ul className="space-y-2">
                       {service.features.map((feature, featureIndex) => (
@@ -387,11 +393,10 @@ const Services = () => {
                     </ul>
                   </div>
                 </div>
-
                 <div className="p-8 pt-0">
                   <button
                     onClick={() => openServiceModal(service)}
-                    className="w-full bg-slate-800 dark:bg-slate-700 text-white px-6 py-3 rounded-xl font-semibold hover:bg-slate-700 dark:hover:bg-slate-600 group-hover:bg-yellow-500 group-hover:text-slate-800 transition-all duration-300 flex items-center justify-center transform group-hover:-translate-y-1"
+                    className="w-full bg-slate-800 dark:bg-slate-700 text-white px-6 py-3 rounded-xl font-semibold hover:bg-yellow-500 hover:text-slate-800 dark:hover:bg-yellow-500 dark:hover:text-slate-800 focus:bg-yellow-500 focus:text-slate-800 transition-all duration-300 flex items-center justify-center transform hover:-translate-y-1"
                   >
                     Learn More
                     <SafeIcon icon={FiArrowRight} className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
@@ -427,8 +432,9 @@ const Services = () => {
         </div>
       </section>
 
+      {/* Service Modal */}
       {selectedService && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" role="dialog" aria-modal="true" aria-labelledby="service-modal-title">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -438,6 +444,7 @@ const Services = () => {
             <button
               onClick={closeServiceModal}
               className="absolute top-4 right-4 z-10 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 p-2 rounded-full transition-colors duration-200"
+              aria-label="Close service details"
             >
               <SafeIcon icon={FiX} className="w-6 h-6 text-slate-600 dark:text-slate-300" />
             </button>
@@ -449,14 +456,14 @@ const Services = () => {
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center mb-2">
-                    <h2 className="text-3xl font-bold text-slate-800 dark:text-white mr-4 transition-colors duration-200">
+                    <h2 id="service-modal-title" className="text-3xl font-bold text-slate-800 dark:text-white mr-4 transition-colors duration-200">
                       {selectedService.detailedContent.title}
                     </h2>
                     {selectedService.detailedContent.partnerBadge && (
                       <img
                         src={selectedService.detailedContent.partnerBadge}
                         alt="Thoughtly Premier Partner"
-                        className="h-10 w-auto"
+                        className="h-12 w-auto"
                       />
                     )}
                   </div>
@@ -475,17 +482,12 @@ const Services = () => {
                   </h4>
                   <div className="flex flex-wrap gap-3">
                     {selectedService.detailedContent.techStack.map((tech, index) => (
-                      <span
-                        key={index}
-                        className="bg-white dark:bg-slate-600 px-4 py-2 rounded-lg font-medium text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-500 transition-colors duration-200 flex items-center"
-                      >
+                      <span key={index} className="bg-white dark:bg-slate-600 px-4 py-2 rounded-lg font-medium text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-500 transition-colors duration-200 flex items-center">
                         <img
                           src={tech.favicon}
                           alt={`${tech.name} logo`}
                           className="w-4 h-4 mr-2 flex-shrink-0"
-                          onError={(e) => {
-                            e.target.style.display = 'none';
-                          }}
+                          onError={(e) => { e.target.style.display = 'none'; }}
                         />
                         {tech.name}
                       </span>
@@ -503,18 +505,13 @@ const Services = () => {
                   </h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                     {selectedService.detailedContent.chatbotPlatforms.map((platform, index) => (
-                      <div
-                        key={index}
-                        className="bg-white dark:bg-slate-600 px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-500 transition-colors duration-200"
-                      >
+                      <div key={index} className="bg-white dark:bg-slate-600 px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-500 transition-colors duration-200">
                         <div className="flex items-center mb-2">
                           <img
                             src={platform.favicon}
                             alt={`${platform.name} logo`}
                             className="w-5 h-5 mr-2 flex-shrink-0"
-                            onError={(e) => {
-                              e.target.style.display = 'none';
-                            }}
+                            onError={(e) => { e.target.style.display = 'none'; }}
                           />
                           <span className="font-medium text-slate-700 dark:text-slate-200 transition-colors duration-200">
                             {platform.name}
@@ -538,18 +535,13 @@ const Services = () => {
                   </h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                     {selectedService.detailedContent.socialPlatforms.map((platform, index) => (
-                      <div
-                        key={index}
-                        className="bg-white dark:bg-slate-600 px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-500 transition-colors duration-200"
-                      >
+                      <div key={index} className="bg-white dark:bg-slate-600 px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-500 transition-colors duration-200">
                         <div className="flex items-center mb-2">
                           <img
                             src={platform.favicon}
                             alt={`${platform.name} logo`}
                             className="w-5 h-5 mr-2 flex-shrink-0"
-                            onError={(e) => {
-                              e.target.style.display = 'none';
-                            }}
+                            onError={(e) => { e.target.style.display = 'none'; }}
                           />
                           <span className="font-medium text-slate-700 dark:text-slate-200 transition-colors duration-200">
                             {platform.name}
@@ -573,25 +565,18 @@ const Services = () => {
                   </h4>
                   <div className="flex flex-wrap gap-3">
                     {selectedService.detailedContent.automationPlatforms.map((platform, index) => (
-                      <span
-                        key={index}
-                        className={`px-4 py-2 rounded-lg font-medium border transition-colors duration-200 flex items-center ${
-                          platform.name === selectedService.detailedContent.preferredPlatform
-                            ? 'bg-blue-500 text-white border-blue-500'
-                            : 'bg-white dark:bg-slate-600 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-500'
-                        }`}
-                      >
+                      <span key={index} className={`px-4 py-2 rounded-lg font-medium border transition-colors duration-200 flex items-center ${
+                        platform.name === selectedService.detailedContent.preferredPlatform
+                          ? 'bg-blue-500 text-white border-blue-500'
+                          : 'bg-white dark:bg-slate-600 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-500'
+                      }`}>
                         <img
                           src={platform.favicon}
                           alt={`${platform.name} logo`}
                           className="w-4 h-4 mr-2 flex-shrink-0"
-                          onError={(e) => {
-                            e.target.style.display = 'none';
-                          }}
+                          onError={(e) => { e.target.style.display = 'none'; }}
                         />
-                        {platform.name === selectedService.detailedContent.preferredPlatform
-                          ? `${platform.name} (Preferred)`
-                          : platform.name}
+                        {platform.name === selectedService.detailedContent.preferredPlatform ? `${platform.name} (Preferred)` : platform.name}
                       </span>
                     ))}
                   </div>
@@ -673,8 +658,9 @@ const Services = () => {
         </div>
       )}
 
+      {/* Cal.com Modal */}
       {showCalModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" role="dialog" aria-modal="true" aria-labelledby="cal-modal-title">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -684,11 +670,12 @@ const Services = () => {
             <button
               onClick={closeCalModal}
               className="absolute top-4 right-4 z-10 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 p-2 rounded-full transition-colors duration-200"
+              aria-label="Close booking modal"
             >
               <SafeIcon icon={FiX} className="w-6 h-6 text-slate-600 dark:text-slate-300" />
             </button>
             <div className="p-6 border-b border-slate-200 dark:border-slate-700 transition-colors duration-200">
-              <h3 className="text-2xl font-bold text-slate-800 dark:text-white transition-colors duration-200">
+              <h3 id="cal-modal-title" className="text-2xl font-bold text-slate-800 dark:text-white transition-colors duration-200">
                 Book a Meeting
               </h3>
               <p className="text-slate-600 dark:text-slate-300 mt-2 transition-colors duration-200">

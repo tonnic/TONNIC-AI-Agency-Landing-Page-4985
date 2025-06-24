@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
 import * as FiIcons from 'react-icons/fi';
@@ -6,13 +6,28 @@ import SafeIcon from '../common/SafeIcon';
 import DarkModeToggle from './DarkModeToggle';
 import useDarkMode from '../hooks/useDarkMode';
 
-const { FiMenu, FiX } = FiIcons;
+const { FiMenu, FiX, FiCalendar } = FiIcons;
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDarkMode, toggleDarkMode] = useDarkMode();
   const navigate = useNavigate();
   const location = useLocation();
+
+  // Listen for global ESC key events
+  useEffect(() => {
+    const handleGlobalEscape = (event) => {
+      if (isMenuOpen) {
+        console.log('Header: Received globalEscape event, closing mobile menu');
+        setIsMenuOpen(false);
+        event.preventDefault();
+        event.stopPropagation();
+      }
+    };
+
+    document.addEventListener('globalEscape', handleGlobalEscape);
+    return () => document.removeEventListener('globalEscape', handleGlobalEscape);
+  }, [isMenuOpen]);
 
   const scrollToSection = (sectionId) => {
     // Check if we're on the home page
@@ -44,6 +59,13 @@ const Header = () => {
       // Navigate to home page
       navigate('/');
     }
+    setIsMenuOpen(false);
+  };
+
+  const openCalModal = () => {
+    // Create and dispatch a custom event to open the calendar modal
+    const event = new CustomEvent('openCalModal');
+    window.dispatchEvent(event);
     setIsMenuOpen(false);
   };
 
@@ -96,10 +118,11 @@ const Header = () => {
             <DarkModeToggle isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
 
             <button
-              onClick={() => scrollToSection('contact')}
-              className="bg-yellow-500 text-slate-800 px-6 py-2 rounded-full font-medium hover:bg-yellow-400 focus:bg-yellow-400 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 transition-colors duration-200"
+              onClick={openCalModal}
+              className="bg-yellow-500 text-slate-800 px-6 py-2 rounded-full font-medium hover:bg-yellow-400 focus:bg-yellow-400 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 transition-colors duration-200 flex items-center"
             >
-              Get Started
+              <SafeIcon icon={FiCalendar} className="w-4 h-4 mr-2" />
+              Book Free Consultation
             </button>
           </nav>
 
@@ -149,10 +172,11 @@ const Header = () => {
                 About
               </button>
               <button
-                onClick={() => scrollToSection('contact')}
-                className="text-left bg-yellow-500 text-slate-800 px-6 py-2 rounded-full font-medium hover:bg-yellow-400 focus:bg-yellow-400 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 transition-colors duration-200 w-fit"
+                onClick={openCalModal}
+                className="text-left bg-yellow-500 text-slate-800 px-6 py-2 rounded-full font-medium hover:bg-yellow-400 focus:bg-yellow-400 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 transition-colors duration-200 w-fit flex items-center"
               >
-                Get Started
+                <SafeIcon icon={FiCalendar} className="w-4 h-4 mr-2" />
+                Book Free Consultation
               </button>
             </div>
           </motion.div>
