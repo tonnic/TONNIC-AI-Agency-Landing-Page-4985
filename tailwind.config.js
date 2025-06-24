@@ -35,7 +35,29 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+        sans: [
+          'Inter',
+          'SF Pro Display',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          'Segoe UI',
+          'Roboto',
+          'Helvetica Neue',
+          'Arial',
+          'sans-serif'
+        ],
+        mono: [
+          'Fira Mono',
+          'Source Code Pro',
+          'Consolas',
+          'Monaco',
+          'SF Mono',
+          'Inconsolata',
+          'Roboto Mono',
+          'Courier New',
+          'Verdana',
+          'monospace'
+        ],
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',

@@ -57,9 +57,9 @@ const Header = () => {
             className="flex items-center focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 rounded transition-colors duration-200"
             aria-label="TONNIC AI Agency - Go to home"
           >
-            {/* Light mode logo */}
+            {/* Light mode logo - new transparent version */}
             <img
-              src="https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750721335201-tonnic%20ai%20agency%20-%20white%20bg.png"
+              src="https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750776734784-tonnic%20ai%20agency.png"
               alt="TONNIC AI Agency"
               className="h-12 w-auto hover:opacity-80 transition-opacity duration-200 dark:hidden"
             />

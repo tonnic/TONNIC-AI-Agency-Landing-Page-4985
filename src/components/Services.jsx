@@ -19,7 +19,12 @@ const Services = () => {
         title: "AI Voice Agents",
         subtitle: "Thoughtly Premier Partner - Advanced Voice AI Solutions",
         description: "Transform your phone communications with advanced AI voice agents powered by industry-leading platforms including Thoughtly, Retell, Vapi, and ElevenLabs. As a Thoughtly Premier Partner, we deliver enterprise-grade voice solutions with natural, human-like conversations tailored to your specific industry and requirements.",
-        techStack: ["Thoughtly", "Retell", "Vapi", "ElevenLabs"],
+        techStack: [
+          { name: "Thoughtly", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779526113-thoughtlyfavicon.png" },
+          { name: "Retell", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779529709-retellfavicon.png" },
+          { name: "Vapi", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779532754-vapifavicon.png" },
+          { name: "ElevenLabs", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779535711-elevenlabsfavicon.png" }
+        ],
         partnerBadge: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750734772981-partner-badge.png",
         benefits: [
           "24/7 Availability - Never miss a call or opportunity",
@@ -40,7 +45,7 @@ const Services = () => {
           "Provides detailed call reports and analytics through partner dashboards"
         ],
         useCases: [
-          "Recruitment & HR - Candidate screening and initial interviews",
+          "Recruitment & HR - Candidate screening & Exit Interviews",
           "Speed-to-Lead - Instant response to sales inquiries and lead qualification",
           "Customer Service - Handle common inquiries, troubleshooting, and support",
           "Appointment Booking - Schedule meetings, consultations, and service calls",
@@ -59,14 +64,21 @@ const Services = () => {
       detailedContent: {
         title: "AI Chatbots",
         subtitle: "Intelligent Conversations Across Every Platform",
-        description: "Deploy sophisticated AI chatbots that engage customers across websites, SMS, social media, and messaging platforms with contextual, personalized conversations that drive results.",
+        description: "Deploy sophisticated AI chatbots that engage customers across websites, Facebook, WhatsApp, Pinterest, Instagram, and more with contextual, personalized conversations that drive results. Integrated with n8n automation for seamless workflow connections.",
+        chatbotPlatforms: [
+          { name: "Facebook", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780429350-facebookfavicon.png", capabilities: "Messenger Integration" },
+          { name: "WhatsApp", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780449215-whatsappfavicon.png", capabilities: "Business API" },
+          { name: "Pinterest", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780457500-pinterestfavicon.png", capabilities: "Pin Interactions" },
+          { name: "Instagram", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780487572-instagramfavicon.png", capabilities: "DM Automation" },
+          { name: "Website", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750776734784-tonnic%20ai%20agency.png", capabilities: "Live Chat Widget" }
+        ],
         benefits: [
-          "Multi-Platform Reach - Deploy on websites, SMS, Facebook, Instagram, WhatsApp",
+          "Multi-Platform Reach - Deploy on websites, Facebook, WhatsApp, Pinterest, Instagram",
           "Instant Engagement - Connect with visitors the moment they arrive",
           "Lead Qualification - Identify and nurture high-quality prospects",
           "24/7 Availability - Never miss a customer inquiry or opportunity",
           "Personalized Experience - Tailored conversations based on user behavior",
-          "Seamless Handoffs - Smooth transitions to human agents when needed",
+          "n8n Integration - Advanced automation workflows and system connections",
           "Cost Reduction - Reduce support costs by up to 70%",
           "Analytics & Insights - Detailed conversation analytics and performance metrics"
         ],
@@ -75,8 +87,8 @@ const Services = () => {
           "Initiates contextual conversations based on user intent",
           "Provides personalized responses and recommendations",
           "Qualifies leads and captures relevant information",
-          "Integrates with your CRM and business systems",
-          "Escalates complex issues to human agents",
+          "Integrates with your CRM and business systems via n8n automation",
+          "Triggers automated workflows based on conversation outcomes",
           "Continuously learns and improves from interactions"
         ],
         useCases: [
@@ -98,15 +110,15 @@ const Services = () => {
       features: ["Fast Launch", "Mobile Responsive", "Business Integrations"],
       detailedContent: {
         title: "AI-Assisted Website Design",
-        subtitle: "Modern Websites Built for Growth",
-        description: "Create stunning, high-performance websites with AI-assisted design and development. From concept to launch, we build modern, responsive websites tailored to your business needs with integrated tools and scalable hosting.",
+        subtitle: "Modern Business Websites Built for Growth",
+        description: "Create stunning, high-performance business websites with AI-assisted design and development. From concept to launch, we build modern, responsive websites tailored to your business needs with integrated tools and scalable hosting.",
         benefits: [
           "Fast Launch - Get your website live in days, not months",
           "Modern Design - Contemporary, professional designs that convert visitors",
           "Mobile Responsive - Perfect performance across all devices and screen sizes",
           "Business Tool Integrations - Seamless connection with CRM, analytics, and marketing tools",
           "Flexible Database Options - Custom data management solutions for your specific needs",
-          "Secure Payment Solutions - Integrated e-commerce and payment processing",
+          "Secure Payment Solutions - Integrated payment processing for services",
           "Scalable Hosting - Reliable, high-performance hosting that grows with your business",
           "SEO Optimized - Built-in search engine optimization for better visibility"
         ],
@@ -121,44 +133,64 @@ const Services = () => {
         ],
         useCases: [
           "Business Websites - Professional corporate sites with lead generation capabilities",
-          "E-commerce Stores - Full-featured online stores with payment processing",
           "Portfolio Sites - Creative showcases for agencies, artists, and professionals",
-          "SaaS Platforms - Custom web applications with user management and billing",
-          "Real Estate Sites - Property listings with search and contact features",
-          "Healthcare Portals - Patient portals with appointment booking and secure messaging",
-          "Educational Platforms - Learning management systems and course delivery",
-          "Restaurant & Hospitality - Online ordering, reservations, and menu management"
+          "Service Companies - Professional service websites with booking and contact features",
+          "Consulting Firms - Authority-building websites with case studies and testimonials",
+          "Marketing Agencies - Showcase portfolios and client success stories",
+          "Professional Practices - Medical, legal, and financial service websites",
+          "Non-Profit Organizations - Mission-driven websites with donation capabilities",
+          "Small Business Sites - Local business websites with location and contact information"
         ]
       }
     },
     {
       icon: FiShare2,
       title: "Social Media AI",
-      description: "AI-powered content creation and scheduling for your social media presence, boosting engagement automatically and maximizing your digital marketing impact.",
-      features: ["Content Generation", "Auto Scheduling", "Performance Analytics"],
+      description: "AI-powered content creation and automated posting across Facebook, Instagram, LinkedIn, X (Twitter), Pinterest, TikTok, and Google Business to maximize your social media presence and engagement.",
+      features: ["Multi-Platform Posting", "AI Content Generation", "Automated Scheduling"],
       detailedContent: {
         title: "Social Media AI",
-        subtitle: "Automate Your Social Media Success",
-        description: "Create engaging content, schedule posts, and analyze performance with our AI-powered social media management platform.",
+        subtitle: "Automate Your Social Media Success Across All Platforms",
+        description: "Transform your social media presence with AI-powered content creation and automated posting across Facebook, Instagram (posts & stories), LinkedIn (personal & company pages), X (Twitter), Pinterest, TikTok, and Google Business Profile. Create engaging, platform-optimized content that resonates with your audience and drives results.",
+        socialPlatforms: [
+          { name: "Facebook", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780429350-facebookfavicon.png", capabilities: "Posts, Images, Videos" },
+          { name: "Instagram", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780487572-instagramfavicon.png", capabilities: "Posts & Stories" },
+          { name: "LinkedIn", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780083679-linkedinfavicon.png", capabilities: "Personal & Company Pages" },
+          { name: "X (Twitter)", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780080709-xfavicon.png", capabilities: "Tweets, Threads" },
+          { name: "Pinterest", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780457500-pinterestfavicon.png", capabilities: "Pins & Boards" },
+          { name: "TikTok", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780086756-tiktokfavicon.png", capabilities: "Short-form Videos" },
+          { name: "Google Business", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750781038097-googlebusinessfavicon.png", capabilities: "Business Updates & Posts" }
+        ],
         benefits: [
-          "Consistent Posting - Never miss a scheduled post",
-          "Engaging Content - AI-generated posts that resonate with your audience",
-          "Time Efficiency - Save 10+ hours per week on social media",
-          "Performance Optimization - AI learns what works best for your brand",
-          "Multi-Platform Management - Manage all social accounts from one place"
+          "Multi-Platform Reach - Automatically post to Facebook, Instagram, LinkedIn, X, Pinterest, TikTok, and Google Business",
+          "Platform Optimization - Content tailored for each platform's unique audience and format",
+          "Instagram Versatility - Post to both Instagram feed and Instagram Stories",
+          "LinkedIn Flexibility - Manage both personal profiles and company pages",
+          "Pinterest Strategy - Pin optimization for discovery and traffic generation",
+          "Google Business Presence - Keep your business profile active with regular updates",
+          "Consistent Posting - Never miss a scheduled post across any platform",
+          "AI Content Creation - Generate engaging, platform-specific content automatically",
+          "Time Efficiency - Save 20+ hours per week on social media management",
+          "Performance Analytics - Track engagement and optimize content across all platforms"
         ],
         howItWorks: [
-          "AI analyzes your brand voice and audience preferences",
-          "Generates relevant, engaging content for each platform",
-          "Optimizes posting times for maximum engagement",
-          "Monitors performance and adjusts strategy",
-          "Provides detailed analytics and insights"
+          "AI analyzes your brand voice, industry, and target audience across platforms",
+          "Generates platform-optimized content for all 7 major social platforms",
+          "Customizes content format for each platform (Instagram Stories, Pinterest pins, etc.)",
+          "Schedules posts at optimal times for maximum engagement on each platform",
+          "Monitors performance metrics and adjusts content strategy automatically",
+          "Provides detailed cross-platform analytics and insights",
+          "Continuously learns from engagement data to improve content quality"
         ],
         useCases: [
-          "Small businesses looking to scale social media presence",
-          "Marketing agencies managing multiple clients",
-          "E-commerce brands driving sales through social media",
-          "Personal brands building thought leadership"
+          "Personal Branding - Build thought leadership across LinkedIn personal profiles and other platforms",
+          "Company Marketing - Manage corporate presence on LinkedIn company pages, Facebook, and Instagram",
+          "E-commerce Brands - Showcase products on Instagram posts/stories, Pinterest, and Facebook",
+          "Content Creators - Maximize reach across all platforms with optimized posting strategies",
+          "Professional Services - Build authority on LinkedIn while engaging audiences on other platforms",
+          "Restaurants & Retail - Visual marketing on Instagram, Pinterest, and Google Business with local engagement",
+          "Real Estate Agents - Property showcases across Instagram Stories, Facebook, Pinterest, and Google Business",
+          "Marketing Agencies - Manage multiple client accounts across all major social platforms"
         ]
       }
     },
@@ -171,7 +203,12 @@ const Services = () => {
         title: "API Integrations",
         subtitle: "n8n Preferred - Connect Your Business Ecosystem",
         description: "Integrate all your business tools and systems with our robust API solutions for seamless data flow and workflow automation. We specialize in n8n as our preferred automation platform, while also supporting Zapier, Make, and Pabbly to meet your specific integration needs.",
-        automationPlatforms: ["n8n", "Zapier", "Make", "Pabbly"],
+        automationPlatforms: [
+          { name: "n8n", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779813044-n8nfavicon.png" },
+          { name: "Zapier", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779820203-zapierfavicon.png" },
+          { name: "Make", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779815427-makefavicon.jpg" },
+          { name: "Pabbly", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779817990-pablyfavicon.png" }
+        ],
         preferredPlatform: "n8n",
         benefits: [
           "n8n Expertise - Advanced workflows with our preferred open-source platform",
@@ -213,7 +250,12 @@ const Services = () => {
         title: "Business Automation",
         subtitle: "n8n Powered - Transform Your Business Operations",
         description: "Automate complex business processes including HR workflows, operations, and administrative tasks to increase efficiency, reduce costs, and improve accuracy across your organization. We leverage n8n as our preferred automation platform, complemented by Zapier, Make, and Pabbly for comprehensive automation solutions.",
-        automationPlatforms: ["n8n", "Zapier", "Make", "Pabbly"],
+        automationPlatforms: [
+          { name: "n8n", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779813044-n8nfavicon.png" },
+          { name: "Zapier", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779820203-zapierfavicon.png" },
+          { name: "Make", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779815427-makefavicon.jpg" },
+          { name: "Pabbly", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779817990-pablyfavicon.png" }
+        ],
         preferredPlatform: "n8n",
         benefits: [
           "n8n Specialization - Advanced automation with our preferred open-source platform",
@@ -329,9 +371,11 @@ const Services = () => {
                   <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-4 group-hover:text-yellow-600 dark:group-hover:text-yellow-400 transition-colors duration-300">
                     {service.title}
                   </h3>
+
                   <p className="text-slate-600 dark:text-slate-300 mb-6 leading-relaxed flex-1 text-sm transition-colors duration-200">
                     {service.description}
                   </p>
+
                   <div className="mb-6">
                     <ul className="space-y-2">
                       {service.features.map((feature, featureIndex) => (
@@ -343,6 +387,7 @@ const Services = () => {
                     </ul>
                   </div>
                 </div>
+
                 <div className="p-8 pt-0">
                   <button
                     onClick={() => openServiceModal(service)}
@@ -404,7 +449,9 @@ const Services = () => {
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center mb-2">
-                    <h2 className="text-3xl font-bold text-slate-800 dark:text-white mr-4 transition-colors duration-200">{selectedService.detailedContent.title}</h2>
+                    <h2 className="text-3xl font-bold text-slate-800 dark:text-white mr-4 transition-colors duration-200">
+                      {selectedService.detailedContent.title}
+                    </h2>
                     {selectedService.detailedContent.partnerBadge && (
                       <img
                         src={selectedService.detailedContent.partnerBadge}
@@ -413,11 +460,13 @@ const Services = () => {
                       />
                     )}
                   </div>
-                  <p className="text-xl text-yellow-600 dark:text-yellow-400 font-semibold transition-colors duration-200">{selectedService.detailedContent.subtitle}</p>
+                  <p className="text-xl text-yellow-600 dark:text-yellow-400 font-semibold transition-colors duration-200">
+                    {selectedService.detailedContent.subtitle}
+                  </p>
                 </div>
               </div>
 
-              {/* Tech Stack for AI Voice Agents */}
+              {/* Tech Stack for AI Voice Agents with favicons */}
               {selectedService.detailedContent.techStack && (
                 <div className="mb-6 p-4 bg-slate-50 dark:bg-slate-700 rounded-xl transition-colors duration-200">
                   <h4 className="text-lg font-semibold text-slate-800 dark:text-white mb-3 flex items-center transition-colors duration-200">
@@ -426,15 +475,96 @@ const Services = () => {
                   </h4>
                   <div className="flex flex-wrap gap-3">
                     {selectedService.detailedContent.techStack.map((tech, index) => (
-                      <span key={index} className="bg-white dark:bg-slate-600 px-4 py-2 rounded-lg font-medium text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-500 transition-colors duration-200">
-                        {tech}
+                      <span
+                        key={index}
+                        className="bg-white dark:bg-slate-600 px-4 py-2 rounded-lg font-medium text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-500 transition-colors duration-200 flex items-center"
+                      >
+                        <img
+                          src={tech.favicon}
+                          alt={`${tech.name} logo`}
+                          className="w-4 h-4 mr-2 flex-shrink-0"
+                          onError={(e) => {
+                            e.target.style.display = 'none';
+                          }}
+                        />
+                        {tech.name}
                       </span>
                     ))}
                   </div>
                 </div>
               )}
 
-              {/* Automation Platforms for API Integrations and Business Automation */}
+              {/* Chatbot Platforms for AI Chatbots with favicons */}
+              {selectedService.detailedContent.chatbotPlatforms && (
+                <div className="mb-6 p-4 bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-xl transition-colors duration-200">
+                  <h4 className="text-lg font-semibold text-slate-800 dark:text-white mb-3 flex items-center transition-colors duration-200">
+                    <SafeIcon icon={FiMessageSquare} className="w-5 h-5 mr-2 text-green-500" />
+                    Supported Chatbot Platforms
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                    {selectedService.detailedContent.chatbotPlatforms.map((platform, index) => (
+                      <div
+                        key={index}
+                        className="bg-white dark:bg-slate-600 px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-500 transition-colors duration-200"
+                      >
+                        <div className="flex items-center mb-2">
+                          <img
+                            src={platform.favicon}
+                            alt={`${platform.name} logo`}
+                            className="w-5 h-5 mr-2 flex-shrink-0"
+                            onError={(e) => {
+                              e.target.style.display = 'none';
+                            }}
+                          />
+                          <span className="font-medium text-slate-700 dark:text-slate-200 transition-colors duration-200">
+                            {platform.name}
+                          </span>
+                        </div>
+                        <span className="text-sm text-slate-500 dark:text-slate-400 transition-colors duration-200">
+                          {platform.capabilities}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Social Media Platforms for Social Media AI with favicons */}
+              {selectedService.detailedContent.socialPlatforms && (
+                <div className="mb-6 p-4 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl transition-colors duration-200">
+                  <h4 className="text-lg font-semibold text-slate-800 dark:text-white mb-3 flex items-center transition-colors duration-200">
+                    <SafeIcon icon={FiShare2} className="w-5 h-5 mr-2 text-purple-500" />
+                    Supported Social Media Platforms
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                    {selectedService.detailedContent.socialPlatforms.map((platform, index) => (
+                      <div
+                        key={index}
+                        className="bg-white dark:bg-slate-600 px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-500 transition-colors duration-200"
+                      >
+                        <div className="flex items-center mb-2">
+                          <img
+                            src={platform.favicon}
+                            alt={`${platform.name} logo`}
+                            className="w-5 h-5 mr-2 flex-shrink-0"
+                            onError={(e) => {
+                              e.target.style.display = 'none';
+                            }}
+                          />
+                          <span className="font-medium text-slate-700 dark:text-slate-200 transition-colors duration-200">
+                            {platform.name}
+                          </span>
+                        </div>
+                        <span className="text-sm text-slate-500 dark:text-slate-400 transition-colors duration-200">
+                          {platform.capabilities}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Automation Platforms for API Integrations and Business Automation with favicons */}
               {selectedService.detailedContent.automationPlatforms && (
                 <div className="mb-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl transition-colors duration-200">
                   <h4 className="text-lg font-semibold text-slate-800 dark:text-white mb-3 flex items-center transition-colors duration-200">
@@ -445,13 +575,23 @@ const Services = () => {
                     {selectedService.detailedContent.automationPlatforms.map((platform, index) => (
                       <span
                         key={index}
-                        className={`px-4 py-2 rounded-lg font-medium border transition-colors duration-200 ${
-                          platform === selectedService.detailedContent.preferredPlatform
+                        className={`px-4 py-2 rounded-lg font-medium border transition-colors duration-200 flex items-center ${
+                          platform.name === selectedService.detailedContent.preferredPlatform
                             ? 'bg-blue-500 text-white border-blue-500'
                             : 'bg-white dark:bg-slate-600 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-500'
                         }`}
                       >
-                        {platform === selectedService.detailedContent.preferredPlatform ? `${platform} (Preferred)` : platform}
+                        <img
+                          src={platform.favicon}
+                          alt={`${platform.name} logo`}
+                          className="w-4 h-4 mr-2 flex-shrink-0"
+                          onError={(e) => {
+                            e.target.style.display = 'none';
+                          }}
+                        />
+                        {platform.name === selectedService.detailedContent.preferredPlatform
+                          ? `${platform.name} (Preferred)`
+                          : platform.name}
                       </span>
                     ))}
                   </div>
@@ -464,25 +604,34 @@ const Services = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                 <div>
-                  <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-4 transition-colors duration-200">Key Benefits</h3>
+                  <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-4 transition-colors duration-200">
+                    Key Benefits
+                  </h3>
                   <ul className="space-y-3">
                     {selectedService.detailedContent.benefits.map((benefit, index) => (
                       <li key={index} className="flex items-start">
                         <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2"></div>
-                        <span className="text-slate-600 dark:text-slate-300 transition-colors duration-200">{benefit}</span>
+                        <span className="text-slate-600 dark:text-slate-300 transition-colors duration-200">
+                          {benefit}
+                        </span>
                       </li>
                     ))}
                   </ul>
                 </div>
+
                 <div>
-                  <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-4 transition-colors duration-200">How It Works</h3>
+                  <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-4 transition-colors duration-200">
+                    How It Works
+                  </h3>
                   <ol className="space-y-3">
                     {selectedService.detailedContent.howItWorks.map((step, index) => (
                       <li key={index} className="flex items-start">
                         <div className="bg-yellow-500 text-slate-800 w-6 h-6 rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-0.5">
                           {index + 1}
                         </div>
-                        <span className="text-slate-600 dark:text-slate-300 transition-colors duration-200">{step}</span>
+                        <span className="text-slate-600 dark:text-slate-300 transition-colors duration-200">
+                          {step}
+                        </span>
                       </li>
                     ))}
                   </ol>
@@ -490,11 +639,15 @@ const Services = () => {
               </div>
 
               <div className="mb-8">
-                <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-4 transition-colors duration-200">Perfect For</h3>
+                <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-4 transition-colors duration-200">
+                  Perfect For
+                </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {selectedService.detailedContent.useCases.map((useCase, index) => (
                     <div key={index} className="bg-slate-50 dark:bg-slate-700 p-4 rounded-lg transition-colors duration-200">
-                      <span className="text-slate-700 dark:text-slate-300 transition-colors duration-200">{useCase}</span>
+                      <span className="text-slate-700 dark:text-slate-300 transition-colors duration-200">
+                        {useCase}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -534,12 +687,14 @@ const Services = () => {
             >
               <SafeIcon icon={FiX} className="w-6 h-6 text-slate-600 dark:text-slate-300" />
             </button>
-
             <div className="p-6 border-b border-slate-200 dark:border-slate-700 transition-colors duration-200">
-              <h3 className="text-2xl font-bold text-slate-800 dark:text-white transition-colors duration-200">Book a Meeting</h3>
-              <p className="text-slate-600 dark:text-slate-300 mt-2 transition-colors duration-200">Schedule a 30-minute consultation with our AI experts</p>
+              <h3 className="text-2xl font-bold text-slate-800 dark:text-white transition-colors duration-200">
+                Book a Meeting
+              </h3>
+              <p className="text-slate-600 dark:text-slate-300 mt-2 transition-colors duration-200">
+                Schedule a 30-minute consultation with our AI experts
+              </p>
             </div>
-
             <div className="h-[600px]">
               <iframe
                 src="https://cal.com/tonnic/30min"
