@@ -7,25 +7,32 @@ const { FiCalendar, FiMail, FiZap, FiTrendingUp, FiUsers, FiDollarSign, FiX, FiT
 
 // Enhanced Honeycomb Background Component
 const HoneycombBackground = () => {
-  // Generate random positions for value words
+  // Generate truly random positions on each render
   const generateRandomPosition = () => ({
     top: `${Math.random() * 70 + 10}%`,
     left: `${Math.random() * 70 + 10}%`,
   });
 
-  // Expanded value proposition words with random positions
-  const valueWords = [
-    { text: "24/7 Automation", position: generateRandomPosition(), delay: Math.random() * 3 },
-    { text: "Cost Reduction", position: generateRandomPosition(), delay: Math.random() * 3 },
-    { text: "Smart Integration", position: generateRandomPosition(), delay: Math.random() * 3 },
-    { text: "Voice AI", position: generateRandomPosition(), delay: Math.random() * 3 },
-    { text: "Lead Generation", position: generateRandomPosition(), delay: Math.random() * 3 },
-    { text: "Workflow Optimization", position: generateRandomPosition(), delay: Math.random() * 3 },
-    { text: "Customer Support", position: generateRandomPosition(), delay: Math.random() * 3 },
-    { text: "Business Growth", position: generateRandomPosition(), delay: Math.random() * 3 },
-    { text: "AI Chatbots", position: generateRandomPosition(), delay: Math.random() * 3 },
-    { text: "Instant Response", position: generateRandomPosition(), delay: Math.random() * 3 }
+  // Value proposition words - positions will be generated fresh each time
+  const valueWordsText = [
+    "24/7 Automation",
+    "Cost Reduction", 
+    "Smart Integration",
+    "Voice AI",
+    "Lead Generation",
+    "Workflow Optimization",
+    "Customer Support",
+    "Business Growth",
+    "AI Chatbots",
+    "Instant Response"
   ];
+
+  // Generate fresh random positions and delays for each word on every render
+  const valueWords = valueWordsText.map(text => ({
+    text,
+    position: generateRandomPosition(), // Fresh random position each time
+    delay: Math.random() * 3 // Fresh random delay each time
+  }));
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -164,13 +171,13 @@ const HoneycombBackground = () => {
         })}
       </div>
 
-      {/* 10 Value proposition words with random positions and brighter opacity */}
+      {/* Value proposition words with TRULY RANDOM positions on each render */}
       <div className="absolute inset-0">
         {valueWords.map((word, i) => (
           <motion.div
-            key={`value-${i}`}
+            key={`value-${i}-${Date.now()}`} // Unique key to force re-render with new positions
             className="absolute font-semibold text-yellow-600/70 dark:text-yellow-400/60 text-sm whitespace-nowrap"
-            style={word.position}
+            style={word.position} // Fresh random position each time component renders
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ 
               opacity: [0, 0.7, 0.7, 0],
@@ -182,7 +189,7 @@ const HoneycombBackground = () => {
               repeat: Infinity,
               repeatDelay: 12,
               ease: "easeInOut",
-              delay: word.delay
+              delay: word.delay // Fresh random delay each time
             }}
           >
             <div className="bg-white/20 dark:bg-slate-800/20 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-yellow-400/20 shadow-sm">
