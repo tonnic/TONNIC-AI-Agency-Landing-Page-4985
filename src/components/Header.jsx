@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate, useLocation } from 'react-router-dom';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 import DarkModeToggle from './DarkModeToggle';
@@ -10,17 +11,39 @@ const { FiMenu, FiX } = FiIcons;
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDarkMode, toggleDarkMode] = useDarkMode();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    // Check if we're on the home page
+    if (location.pathname === '/') {
+      // We're on home page, just scroll
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // We're on a different page, navigate to home first
+      navigate('/');
+      // Wait for navigation to complete, then scroll
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
     }
     setIsMenuOpen(false);
   };
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (location.pathname === '/') {
+      // We're on home page, just scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      // Navigate to home page
+      navigate('/');
+    }
     setIsMenuOpen(false);
   };
 
@@ -32,7 +55,7 @@ const Header = () => {
           <button
             onClick={scrollToTop}
             className="flex items-center focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 rounded transition-colors duration-200"
-            aria-label="TONNIC AI Agency - Go to top"
+            aria-label="TONNIC AI Agency - Go to home"
           >
             {/* Light mode logo */}
             <img
@@ -68,10 +91,10 @@ const Header = () => {
             >
               About
             </button>
-            
+
             {/* Dark Mode Toggle */}
             <DarkModeToggle isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
-            
+
             <button
               onClick={() => scrollToSection('contact')}
               className="bg-yellow-500 text-slate-800 px-6 py-2 rounded-full font-medium hover:bg-yellow-400 focus:bg-yellow-400 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 transition-colors duration-200"
