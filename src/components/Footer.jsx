@@ -1,0 +1,174 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import * as FiIcons from 'react-icons/fi';
+import SafeIcon from '../common/SafeIcon';
+
+const { FiLinkedin, FiMail, FiMic } = FiIcons;
+
+const Footer = () => {
+  const navigate = useNavigate();
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const obfuscatedEmail = 'hello' + '@' + 'tonnic' + '.' + 'ai';
+
+  const handleEmailClick = () => {
+    window.location.href = `mailto:${obfuscatedEmail}`;
+  };
+
+  return (
+    <footer className="bg-slate-900 dark:bg-black text-white py-16 transition-colors duration-200" role="contentinfo">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Company Info */}
+          <div className="lg:col-span-2">
+            <button
+              onClick={scrollToTop}
+              className="flex items-center mb-6 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded"
+              aria-label="Go to top of page"
+            >
+              <img
+                src="https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750770446524-TONNICLogo%20-%20Light.png"
+                alt="TONNIC AI Agency"
+                className="h-12 w-auto hover:opacity-80 transition-opacity duration-200"
+              />
+            </button>
+            <p className="text-slate-300 mb-6 max-w-md leading-relaxed">
+              Transforming businesses with intelligent AI solutions. From voice agents to automation, we help companies work smarter, not harder.
+            </p>
+            <div className="flex space-x-4">
+              <a
+                href="https://linkedin.com/company/tonnicagency"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-slate-800 dark:bg-slate-900 p-3 rounded-xl hover:bg-yellow-500 hover:text-slate-800 focus:bg-yellow-500 focus:text-slate-800 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black transition-colors duration-200"
+                aria-label="Visit our LinkedIn company page"
+              >
+                <SafeIcon icon={FiLinkedin} className="w-5 h-5" aria-hidden="true" />
+              </a>
+              <button
+                onClick={handleEmailClick}
+                className="bg-slate-800 dark:bg-slate-900 p-3 rounded-xl hover:bg-yellow-500 hover:text-slate-800 focus:bg-yellow-500 focus:text-slate-800 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black transition-colors duration-200"
+                aria-label="Send us an email"
+              >
+                <SafeIcon icon={FiMail} className="w-5 h-5" aria-hidden="true" />
+              </button>
+            </div>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-lg font-semibold mb-6">Quick Links</h3>
+            <nav aria-label="Footer navigation">
+              <ul className="space-y-3">
+                <li>
+                  <button
+                    onClick={() => scrollToSection('services')}
+                    className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200"
+                  >
+                    Services
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => scrollToSection('how-it-works')}
+                    className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200"
+                  >
+                    How It Works
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => scrollToSection('about')}
+                    className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200"
+                  >
+                    About Us
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => scrollToSection('contact')}
+                    className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200"
+                  >
+                    Contact
+                  </button>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+          {/* Contact Info */}
+          <div>
+            <h3 className="text-lg font-semibold mb-6">Contact Info</h3>
+            <ul className="space-y-4">
+              <li className="flex items-start space-x-3">
+                <SafeIcon icon={FiMic} className="w-4 h-4 text-yellow-500 mt-1 flex-shrink-0" aria-hidden="true" />
+                <div>
+                  <div className="text-slate-200 font-medium text-sm">AI Voice Agent</div>
+                  <a
+                    href="tel:+18882925513"
+                    className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200"
+                    aria-label="Call our AI Voice Agent at 1-888-292-5513"
+                  >
+                    1-888-292-5513
+                  </a>
+                  <div className="text-slate-400 text-xs mt-1">Available 24/7</div>
+                </div>
+              </li>
+              <li className="flex items-center space-x-3">
+                <SafeIcon icon={FiMail} className="w-4 h-4 text-yellow-500" aria-hidden="true" />
+                <button
+                  onClick={handleEmailClick}
+                  className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200 text-left"
+                  aria-label="Send email to hello at tonnic dot ai"
+                >
+                  Contact via Email
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="border-t border-slate-800 dark:border-slate-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <div className="text-slate-400 text-sm mb-4 md:mb-0">
+            © 2024 TONNIC AI Agency. All rights reserved.
+          </div>
+          <nav aria-label="Legal links">
+            <div className="flex space-x-6 text-sm">
+              <button
+                onClick={() => navigate('/privacy')}
+                className="text-slate-400 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200"
+              >
+                Privacy Policy
+              </button>
+              <button
+                onClick={() => navigate('/terms')}
+                className="text-slate-400 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200"
+              >
+                Terms of Service
+              </button>
+              <button
+                onClick={() => navigate('/cookies')}
+                className="text-slate-400 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200"
+              >
+                Cookie Policy
+              </button>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
