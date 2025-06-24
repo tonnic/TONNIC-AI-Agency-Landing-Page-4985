@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 
-const { FiCalendar, FiMail, FiZap, FiTrendingUp, FiUsers, FiDollarSign, FiX } = FiIcons;
+const { FiCalendar, FiMail, FiZap, FiTrendingUp, FiUsers, FiDollarSign, FiX, FiTarget, FiBolt, FiArrowUp } = FiIcons;
 
 // Enhanced Honeycomb Background Component
 const HoneycombBackground = () => {
@@ -371,26 +371,50 @@ const Hero = () => {
             </motion.div>
           </div>
 
-          {/* Hero Stats */}
+          {/* Hero Stats - Updated with Customer Benefits */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 text-center"
           >
+            {/* Card 1 - Never Miss a Lead */}
             <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm p-6 rounded-2xl shadow-sm dark:shadow-slate-700/10 border border-transparent dark:border-slate-700 transition-colors duration-200">
-              <div className="text-3xl font-bold text-yellow-500 mb-2">24/7</div>
+              <div className="bg-yellow-500 w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <SafeIcon icon={FiTarget} className="w-6 h-6 text-slate-800" />
+              </div>
+              <div className="text-xl font-bold text-slate-800 dark:text-white mb-2 transition-colors duration-200">
+                Never Miss a Lead
+              </div>
               <div className="text-slate-600 dark:text-slate-300 transition-colors duration-200">
-                <span className="force-ai-text">AI</span> Support Available
+                Your <span className="force-ai-text">AI</span> assistant handles every inquiry, even after hours, so you capture more opportunities.
               </div>
             </div>
+
+            {/* Card 2 - Instant Replies */}
             <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm p-6 rounded-2xl shadow-sm dark:shadow-slate-700/10 border border-transparent dark:border-slate-700 transition-colors duration-200">
-              <div className="text-3xl font-bold text-yellow-500 mb-2">70%</div>
-              <div className="text-slate-600 dark:text-slate-300 transition-colors duration-200">Faster Response Times</div>
+              <div className="bg-yellow-500 w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <SafeIcon icon={FiBolt} className="w-6 h-6 text-slate-800" />
+              </div>
+              <div className="text-xl font-bold text-slate-800 dark:text-white mb-2 transition-colors duration-200">
+                Instant Replies
+              </div>
+              <div className="text-slate-600 dark:text-slate-300 transition-colors duration-200">
+                Impress your customers with real-time answers and convert interest into action around the clock.
+              </div>
             </div>
+
+            {/* Card 3 - Grows With You */}
             <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm p-6 rounded-2xl shadow-sm dark:shadow-slate-700/10 border border-transparent dark:border-slate-700 transition-colors duration-200">
-              <div className="text-3xl font-bold text-yellow-500 mb-2">∞</div>
-              <div className="text-slate-600 dark:text-slate-300 transition-colors duration-200">Scalable Solutions</div>
+              <div className="bg-yellow-500 w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <SafeIcon icon={FiArrowUp} className="w-6 h-6 text-slate-800" />
+              </div>
+              <div className="text-xl font-bold text-slate-800 dark:text-white mb-2 transition-colors duration-200">
+                Grows With You
+              </div>
+              <div className="text-slate-600 dark:text-slate-300 transition-colors duration-200">
+                Start small or scale up. TONNIC adapts to your business, no matter the stage.
+              </div>
             </div>
           </motion.div>
         </div>
