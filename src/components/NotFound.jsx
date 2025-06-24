@@ -1,15 +1,22 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import {motion} from 'framer-motion';
+import {useNavigate, useLocation} from 'react-router-dom';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 import Header from './Header';
 import Footer from './Footer';
 
-const { FiHome, FiArrowLeft, FiSearch, FiPhone, FiMail } = FiIcons;
+const {FiHome,FiArrowLeft,FiSearch,FiPhone,FiMail} = FiIcons;
 
 const NotFound = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Log the current path for debugging
+  React.useEffect(() => {
+    console.log('404 Component - Current hash location:', location.pathname);
+    console.log('404 Component - Full location:', window.location.href);
+  }, [location]);
 
   const scrollToSection = (sectionId) => {
     // Navigate to home first, then scroll
@@ -27,7 +34,6 @@ const NotFound = () => {
   return (
     <div className="min-h-screen bg-white dark:bg-slate-900">
       <Header />
-      
       <div className="pt-24 pb-16 bg-gradient-to-br from-slate-50 to-yellow-50 dark:from-slate-900 dark:to-slate-800 transition-colors duration-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -54,6 +60,17 @@ const NotFound = () => {
               Oops! The page you're looking for doesn't exist. It might have been moved, deleted, or you entered the wrong URL.
             </p>
 
+            {/* Debug info for development */}
+            {process.env.NODE_ENV === 'development' && (
+              <div className="mb-8 p-4 bg-red-50 dark:bg-red-900/20 rounded-xl border-l-4 border-red-500">
+                <p className="text-sm text-red-700 dark:text-red-300">
+                  <strong>Debug:</strong> Hash route: <code>{location.pathname}</code>
+                  <br />
+                  <strong>Full URL:</strong> <code>{window.location.href}</code>
+                </p>
+              </div>
+            )}
+
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
               <button
@@ -77,7 +94,6 @@ const NotFound = () => {
               <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 transition-colors duration-200">
                 Looking for something specific?
               </h3>
-              
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                 <div className="space-y-4">
                   <h4 className="text-lg font-semibold text-slate-700 dark:text-slate-300 transition-colors duration-200">
@@ -110,7 +126,6 @@ const NotFound = () => {
                     </button>
                   </div>
                 </div>
-
                 <div className="space-y-4">
                   <h4 className="text-lg font-semibold text-slate-700 dark:text-slate-300 transition-colors duration-200">
                     Quick Links
@@ -174,7 +189,6 @@ const NotFound = () => {
           </motion.div>
         </div>
       </div>
-
       <Footer />
     </div>
   );

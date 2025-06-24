@@ -1,15 +1,10 @@
-# Handle React Router routes
-/*    /index.html   200
-
-# Specific redirects for common patterns
-/privacy-policy    /#/privacy    301
-/privacy-policy/   /#/privacy    301
-/terms-of-service  /#/terms      301
-/terms-of-service/ /#/terms      301
-/cookie-policy     /#/cookies    301
-/cookie-policy/    /#/cookies    301
-
-# Fallback for any other routes
-/privacy*          /#/privacy    301
-/terms*            /#/terms      301
-/cookie*           /#/cookies    301
+# Netlify SPA routing - redirect all requests to index.html EXCEPT the homepage
+# The homepage (/) should load normally, everything else goes to index.html for SPA routing
+/privacy-policy    /index.html   200
+/terms-of-service  /index.html   200  
+/cookie-policy     /index.html   200
+/privacy           /index.html   200
+/terms             /index.html   200
+/cookies           /index.html   200
+# Catch all other routes (but NOT the homepage)
+/*    /404.html   404

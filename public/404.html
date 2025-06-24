@@ -78,60 +78,56 @@
 
     <script>
         (function() {
-            // Get the current path
+            // This 404.html is served by Netlify for unmatched routes
+            // We need to redirect to the main app with proper hash routing
+            
             var path = window.location.pathname.toLowerCase();
             var fullUrl = window.location.href;
+            var baseUrl = window.location.origin;
             
-            console.log('404 Page - Current path:', path);
-            console.log('404 Page - Full URL:', fullUrl);
+            console.log('Netlify 404 - Current path:', path);
+            console.log('Netlify 404 - Full URL:', fullUrl);
+            console.log('Netlify 404 - Base URL:', baseUrl);
+            
+            // Remove trailing slashes for comparison
+            var cleanPath = path.replace(/\/$/, '');
+            
+            // If someone somehow lands on 404.html for the homepage, redirect to home
+            if (cleanPath === '' || cleanPath === '/') {
+                window.location.replace(baseUrl + '/');
+                return;
+            }
             
             // Determine redirect URL based on path
-            var redirectUrl = '/';
+            var redirectUrl = baseUrl + '/#/';
             
-            if (path.includes('privacy')) {
-                redirectUrl = '/#/privacy';
+            if (cleanPath.includes('privacy') || cleanPath === '/privacy-policy') {
+                redirectUrl = baseUrl + '/#/privacy';
                 console.log('Privacy page detected, redirecting to:', redirectUrl);
-            } else if (path.includes('terms')) {
-                redirectUrl = '/#/terms';
+            } else if (cleanPath.includes('terms') || cleanPath === '/terms-of-service') {
+                redirectUrl = baseUrl + '/#/terms';
                 console.log('Terms page detected, redirecting to:', redirectUrl);
-            } else if (path.includes('cookie')) {
-                redirectUrl = '/#/cookies';
+            } else if (cleanPath.includes('cookie') || cleanPath === '/cookie-policy') {
+                redirectUrl = baseUrl + '/#/cookies';
                 console.log('Cookies page detected, redirecting to:', redirectUrl);
             } else {
-                console.log('No specific page detected, redirecting to home');
+                // For any other unknown route, go to 404 page
+                redirectUrl = baseUrl + '/#/404';
+                console.log('Unknown page, redirecting to 404:', redirectUrl);
             }
             
             // Perform the redirect immediately
             console.log('Redirecting to:', redirectUrl);
             
-            // Use setTimeout to ensure the page loads first
-            setTimeout(function() {
-                window.location.href = redirectUrl;
-            }, 100);
+            // Use replace to avoid adding to browser history
+            window.location.replace(redirectUrl);
             
-            // Fallback redirect after 1 second
-            setTimeout(function() {
-                console.log('Fallback redirect triggered');
-                window.location.replace(redirectUrl);
-            }, 1000);
-            
-            // Show fallback button after 3 seconds
+            // Fallback button setup
             setTimeout(function() {
                 document.getElementById('message').textContent = 'If you are not redirected automatically, click the button below:';
                 document.getElementById('fallback-btn').style.display = 'inline-block';
                 document.getElementById('fallback-btn').href = redirectUrl;
-            }, 3000);
-            
-            // Final fallback after 5 seconds
-            setTimeout(function() {
-                console.log('Final fallback redirect triggered');
-                try {
-                    window.location.replace(redirectUrl);
-                } catch (e) {
-                    console.error('Redirect failed:', e);
-                    window.location.href = redirectUrl;
-                }
-            }, 5000);
+            }, 2000);
         })();
     </script>
 </body>
