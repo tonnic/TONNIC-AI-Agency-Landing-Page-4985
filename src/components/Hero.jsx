@@ -5,362 +5,224 @@ import SafeIcon from '../common/SafeIcon';
 
 const { FiCalendar, FiMail, FiZap, FiTrendingUp, FiUsers, FiDollarSign, FiX } = FiIcons;
 
-// Honeycomb & Bee-Themed Background Component
+// Enhanced Honeycomb Background Component
 const HoneycombBackground = () => {
-  // Value proposition words that appear and disappear
+  // Generate random positions for value words
+  const generateRandomPosition = () => ({
+    top: `${Math.random() * 70 + 10}%`,
+    left: `${Math.random() * 70 + 10}%`,
+  });
+
+  // Expanded value proposition words with random positions
   const valueWords = [
-    { text: "Streamlined Workflows", position: { top: "15%", left: "10%" }, delay: 0 },
-    { text: "Productivity Boost", position: { top: "25%", right: "15%" }, delay: 1.5 },
-    { text: "24/7 Automation", position: { bottom: "30%", left: "20%" }, delay: 3 },
-    { text: "Cost Reduction", position: { top: "40%", right: "25%" }, delay: 4.5 },
-    { text: "Instant Response", position: { bottom: "20%", right: "10%" }, delay: 6 },
-    { text: "Smart Integration", position: { top: "60%", left: "15%" }, delay: 7.5 },
-    { text: "Scalable Solutions", position: { bottom: "45%", right: "30%" }, delay: 9 },
-    { text: "Buzz-worthy Results", position: { top: "30%", left: "25%" }, delay: 10.5 }
+    { text: "24/7 Automation", position: generateRandomPosition(), delay: Math.random() * 3 },
+    { text: "Cost Reduction", position: generateRandomPosition(), delay: Math.random() * 3 },
+    { text: "Smart Integration", position: generateRandomPosition(), delay: Math.random() * 3 },
+    { text: "Voice AI", position: generateRandomPosition(), delay: Math.random() * 3 },
+    { text: "Lead Generation", position: generateRandomPosition(), delay: Math.random() * 3 },
+    { text: "Workflow Optimization", position: generateRandomPosition(), delay: Math.random() * 3 },
+    { text: "Customer Support", position: generateRandomPosition(), delay: Math.random() * 3 },
+    { text: "Business Growth", position: generateRandomPosition(), delay: Math.random() * 3 },
+    { text: "AI Chatbots", position: generateRandomPosition(), delay: Math.random() * 3 },
+    { text: "Instant Response", position: generateRandomPosition(), delay: Math.random() * 3 }
   ];
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {/* Honeycomb Pattern Background */}
-      <div className="absolute inset-0 opacity-8 dark:opacity-4">
+      {/* Enhanced Honeycomb Pattern */}
+      <div className="absolute inset-0 opacity-4 dark:opacity-2">
         <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            {/* Honeycomb Pattern */}
-            <pattern id="honeycomb" x="0" y="0" width="60" height="52" patternUnits="userSpaceOnUse">
+            {/* Enhanced honeycomb pattern */}
+            <pattern id="honeycomb-enhanced" x="0" y="0" width="120" height="140" patternUnits="userSpaceOnUse">
+              {/* Multiple hexagons with stroke width 1 */}
               <polygon 
-                points="30,2 45,10 45,26 30,34 15,26 15,10" 
-                fill="none" 
-                stroke="#eab308" 
-                strokeWidth="1" 
-                opacity="0.2"
-              />
-              <polygon 
-                points="0,18 15,26 15,42 0,50 -15,42 -15,26" 
+                points="60,20 85,35 85,65 60,80 35,65 35,35" 
                 fill="none" 
                 stroke="#eab308" 
                 strokeWidth="1" 
                 opacity="0.15"
               />
               <polygon 
-                points="60,18 75,26 75,42 60,50 45,42 45,26" 
+                points="25,85 50,100 50,130 25,145 0,130 0,100" 
                 fill="none" 
                 stroke="#eab308" 
                 strokeWidth="1" 
-                opacity="0.15"
+                opacity="0.1"
+              />
+              <polygon 
+                points="95,85 120,100 120,130 95,145 70,130 70,100" 
+                fill="none" 
+                stroke="#eab308" 
+                strokeWidth="1" 
+                opacity="0.1"
               />
             </pattern>
             
-            {/* Animated Honeycomb Gradient */}
-            <radialGradient id="honeycombGlow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#eab308" stopOpacity="0.3"/>
-              <stop offset="50%" stopColor="#f59e0b" stopOpacity="0.1"/>
-              <stop offset="100%" stopColor="#eab308" stopOpacity="0.05"/>
+            {/* Subtle gradient */}
+            <radialGradient id="honeycombGlow" cx="50%" cy="40%" r="60%">
+              <stop offset="0%" stopColor="#eab308" stopOpacity="0.05"/>
+              <stop offset="100%" stopColor="#eab308" stopOpacity="0"/>
             </radialGradient>
           </defs>
           
-          {/* Honeycomb Pattern */}
-          <rect width="100%" height="100%" fill="url(#honeycomb)" />
+          {/* Apply the enhanced pattern */}
+          <rect width="100%" height="100%" fill="url(#honeycomb-enhanced)" />
           
-          {/* Animated Glow Effect */}
+          {/* Subtle glow */}
           <motion.circle
             cx="50%" cy="40%"
-            r="200"
+            r="300"
             fill="url(#honeycombGlow)"
             animate={{
-              r: [150, 250, 150],
-              opacity: [0.3, 0.6, 0.3]
+              r: [250, 350, 250],
+              opacity: [0.3, 0.5, 0.3]
             }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
           />
         </svg>
       </div>
 
-      {/* Floating Hexagonal Cells */}
+      {/* Single floating hexagon cluster */}
       <div className="absolute inset-0">
-        {[...Array(12)].map((_, i) => (
-          <motion.div
-            key={`hex-${i}`}
-            className="absolute"
-            style={{
-              left: `${10 + (i * 8) % 80}%`,
-              top: `${15 + (i * 12) % 70}%`,
-            }}
-            animate={{
-              y: [0, -20, 0],
-              rotate: [0, 360],
-              opacity: [0.1, 0.4, 0.1],
-              scale: [0.8, 1.2, 0.8]
-            }}
-            transition={{
-              duration: 6 + i * 0.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 0.3
-            }}
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24">
-              <polygon 
-                points="12,2 18,6 18,14 12,18 6,14 6,6" 
-                fill="none" 
-                stroke="#eab308" 
-                strokeWidth="1.5"
-                opacity="0.6"
-              />
-            </svg>
-          </motion.div>
-        ))}
-      </div>
-
-      {/* Animated Bees */}
-      <div className="absolute inset-0">
-        {/* Bee 1 - Flying across */}
         <motion.div
-          className="absolute top-1/4"
+          className="absolute top-20 right-20"
           animate={{
-            x: ['-100px', 'calc(100vw + 100px)'],
-            y: [0, -30, 10, -20, 0]
+            rotate: [0, 360],
+            scale: [0.8, 1, 0.8]
           }}
           transition={{
-            duration: 15,
+            duration: 30,
             repeat: Infinity,
-            ease: "linear",
-            delay: 2
+            ease: "easeInOut"
           }}
         >
-          <div className="flex items-center">
-            <motion.div
-              animate={{ rotate: [0, 10, -10, 0] }}
-              transition={{ duration: 0.3, repeat: Infinity }}
-              className="text-yellow-500 text-lg"
-            >
-              🐝
-            </motion.div>
-            <motion.div
-              className="ml-2 text-xs text-yellow-600 font-mono opacity-60"
-              animate={{ opacity: [0.4, 0.8, 0.4] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              buzzing...
-            </motion.div>
-          </div>
-        </motion.div>
-
-        {/* Bee 2 - Different path */}
-        <motion.div
-          className="absolute top-3/4"
-          animate={{
-            x: ['calc(100vw + 100px)', '-100px'],
-            y: [0, 20, -15, 25, 0]
-          }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: "linear",
-            delay: 8
-          }}
-        >
-          <div className="flex items-center">
-            <motion.div
-              animate={{ rotate: [0, -10, 10, 0] }}
-              transition={{ duration: 0.4, repeat: Infinity }}
-              className="text-yellow-500 text-lg transform scale-x-[-1]"
-            >
-              🐝
-            </motion.div>
-            <motion.div
-              className="mr-2 text-xs text-yellow-600 font-mono opacity-60 order-first"
-              animate={{ opacity: [0.3, 0.7, 0.3] }}
-              transition={{ duration: 1.8, repeat: Infinity }}
-            >
-              working...
-            </motion.div>
-          </div>
-        </motion.div>
-
-        {/* Bee 3 - Circular pattern */}
-        <motion.div
-          className="absolute top-1/2 left-1/2"
-          animate={{
-            rotate: [0, 360]
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-          style={{ transformOrigin: '0 0' }}
-        >
-          <motion.div
-            className="relative"
-            style={{ transform: 'translate(150px, -75px)' }}
-            animate={{
-              rotate: [0, -360]
-            }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-          >
-            <div className="text-yellow-500 text-sm">🐝</div>
-          </motion.div>
+          <svg width="60" height="60" viewBox="0 0 60 60" className="opacity-8 dark:opacity-4">
+            <polygon 
+              points="30,10 42,17 42,33 30,40 18,33 18,17" 
+              fill="none" 
+              stroke="#eab308" 
+              strokeWidth="1" 
+              opacity="0.3"
+            />
+          </svg>
         </motion.div>
       </div>
 
-      {/* Value Proposition Words */}
+      {/* 5 Bees flying across the screen with curved paths */}
+      <div className="absolute inset-0">
+        {[...Array(5)].map((_, index) => {
+          // Generate random curve parameters for each bee
+          const startY = Math.random() * 60 + 10; // Random start Y position
+          const amplitude = (Math.random() * 40 + 20) * (Math.random() > 0.5 ? 1 : -1); // Random curve amplitude
+          const frequency = Math.random() * 2 + 1; // Random curve frequency
+          
+          return (
+            <motion.div
+              key={`bee-${index}`}
+              className="absolute"
+              style={{ top: `${startY}%` }}
+              animate={{
+                x: ['-100px', 'calc(100vw + 100px)'],
+                y: [
+                  0, 
+                  amplitude * Math.sin(Math.PI * 0.25 * frequency),
+                  amplitude * Math.sin(Math.PI * 0.5 * frequency),
+                  amplitude * Math.sin(Math.PI * 0.75 * frequency),
+                  amplitude * Math.sin(Math.PI * frequency),
+                  amplitude * Math.sin(Math.PI * 1.25 * frequency),
+                  amplitude * Math.sin(Math.PI * 1.5 * frequency),
+                  amplitude * Math.sin(Math.PI * 1.75 * frequency),
+                  0
+                ]
+              }}
+              transition={{
+                duration: 20 + index * 4,
+                repeat: Infinity,
+                ease: "linear",
+                delay: index * 5
+              }}
+            >
+              <div className="flex items-center">
+                <motion.div
+                  animate={{ 
+                    rotate: [0, 10, -10, 0],
+                    scale: [1, 1.1, 0.9, 1]
+                  }}
+                  transition={{ 
+                    duration: 0.8 + index * 0.1, 
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                  className="text-yellow-500 text-lg opacity-60"
+                >
+                  🐝
+                </motion.div>
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
+
+      {/* 10 Value proposition words with random positions and brighter opacity */}
       <div className="absolute inset-0">
         {valueWords.map((word, i) => (
           <motion.div
             key={`value-${i}`}
-            className="absolute font-semibold text-yellow-600/80 dark:text-yellow-400/80 text-sm md:text-base whitespace-nowrap"
+            className="absolute font-semibold text-yellow-600/70 dark:text-yellow-400/60 text-sm whitespace-nowrap"
             style={word.position}
-            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            initial={{ opacity: 0, scale: 0.8 }}
             animate={{ 
               opacity: [0, 0.7, 0.7, 0],
-              scale: [0.8, 1, 1, 0.8],
-              y: [20, 0, 0, -20]
+              scale: [0.8, 1.1, 1.1, 0.8],
+              rotate: [0, 2, -2, 0]
             }}
             transition={{
-              duration: 4,
+              duration: 5,
               repeat: Infinity,
-              repeatDelay: 8,
+              repeatDelay: 12,
               ease: "easeInOut",
               delay: word.delay
             }}
           >
-            <div className="bg-white/20 dark:bg-slate-800/20 backdrop-blur-sm px-3 py-1 rounded-full border border-yellow-400/30">
+            <div className="bg-white/20 dark:bg-slate-800/20 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-yellow-400/20 shadow-sm">
               {word.text}
             </div>
           </motion.div>
         ))}
       </div>
 
-      {/* Honeycomb Connection Lines */}
-      <svg className="absolute inset-0 w-full h-full opacity-15">
-        <defs>
-          <linearGradient id="connectionGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#eab308" stopOpacity="0.4"/>
-            <stop offset="50%" stopColor="#f59e0b" stopOpacity="0.8"/>
-            <stop offset="100%" stopColor="#eab308" stopOpacity="0.4"/>
-          </linearGradient>
-        </defs>
-        
-        {/* Connecting Lines that pulse */}
-        {[...Array(8)].map((_, i) => (
-          <motion.line
-            key={`line-${i}`}
-            x1={`${15 + i * 12}%`}
-            y1={`${20 + (i % 3) * 25}%`}
-            x2={`${25 + i * 10}%`}
-            y2={`${35 + (i % 4) * 20}%`}
-            stroke="url(#connectionGradient)"
-            strokeWidth="2"
-            strokeDasharray="4,4"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ 
-              pathLength: [0, 1, 0],
-              opacity: [0, 0.6, 0]
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 0.4
-            }}
-          />
-        ))}
-      </svg>
-
-      {/* Floating Pollen Particles */}
+      {/* 12 Floating particles with random movement */}
       <div className="absolute inset-0">
-        {[...Array(15)].map((_, i) => (
-          <motion.div
-            key={`pollen-${i}`}
-            className="absolute w-1 h-1 bg-yellow-400 rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, -40, 10, -30, 0],
-              x: [0, 15, -10, 20, 0],
-              opacity: [0, 0.8, 0.4, 0.9, 0],
-              scale: [0.5, 1.2, 0.8, 1.5, 0.5]
-            }}
-            transition={{
-              duration: 4 + Math.random() * 3,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: Math.random() * 5
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Hive Structure Elements */}
-      <div className="absolute inset-0 opacity-10 dark:opacity-5">
-        <svg className="absolute top-10 right-10 w-32 h-32" viewBox="0 0 100 100">
-          <motion.g
-            animate={{ rotate: [0, 360] }}
-            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-          >
-            {[...Array(6)].map((_, i) => (
-              <polygon
-                key={i}
-                points="50,15 65,25 65,40 50,50 35,40 35,25"
-                fill="none"
-                stroke="#eab308"
-                strokeWidth="1"
-                opacity="0.4"
-                transform={`rotate(${i * 60} 50 32.5) translate(0 ${i * 5})`}
-              />
-            ))}
-          </motion.g>
-        </svg>
-
-        <svg className="absolute bottom-20 left-10 w-24 h-24" viewBox="0 0 100 100">
-          <motion.g
-            animate={{ rotate: [0, -360] }}
-            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          >
-            {[...Array(4)].map((_, i) => (
-              <polygon
-                key={i}
-                points="50,20 60,27 60,38 50,45 40,38 40,27"
-                fill="none"
-                stroke="#eab308"
-                strokeWidth="1.5"
-                opacity="0.3"
-                transform={`rotate(${i * 90} 50 32.5) scale(${1 + i * 0.2})`}
-              />
-            ))}
-          </motion.g>
-        </svg>
-      </div>
-
-      {/* Buzzing Text Effect */}
-      <div className="absolute inset-0 font-mono text-xs opacity-8 dark:opacity-12">
-        <motion.div
-          className="absolute top-16 left-1/4 text-yellow-600"
-          animate={{ opacity: [0, 1, 0] }}
-          transition={{ duration: 3, repeat: Infinity, delay: 1 }}
-        >
-          buzz.efficiency++
-        </motion.div>
-        <motion.div
-          className="absolute bottom-24 right-1/3 text-yellow-600"
-          animate={{ opacity: [0, 1, 0] }}
-          transition={{ duration: 4, repeat: Infinity, delay: 2.5 }}
-        >
-          hive.productivity = MAX
-        </motion.div>
-        <motion.div
-          className="absolute top-1/2 left-1/6 text-yellow-600"
-          animate={{ opacity: [0, 1, 0] }}
-          transition={{ duration: 3.5, repeat: Infinity, delay: 4 }}
-        >
-          swarm.intelligence.active()
-        </motion.div>
+        {[...Array(12)].map((_, i) => {
+          const randomX = Math.random() * 80 + 10;
+          const randomY = Math.random() * 70 + 15;
+          const randomDelay = Math.random() * 5;
+          const randomDuration = 6 + Math.random() * 8;
+          
+          return (
+            <motion.div
+              key={`pollen-${i}`}
+              className="absolute w-1.5 h-1.5 bg-yellow-400 rounded-full opacity-30"
+              style={{
+                left: `${randomX}%`,
+                top: `${randomY}%`,
+              }}
+              animate={{
+                y: [0, -30, 10, -20, 0],
+                x: [0, 15, -10, 5, 0],
+                opacity: [0.2, 0.5, 0.3, 0.4, 0.2],
+                scale: [0.8, 1.2, 0.9, 1.1, 0.8]
+              }}
+              transition={{
+                duration: randomDuration,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: randomDelay
+              }}
+            />
+          );
+        })}
       </div>
     </div>
   );
@@ -402,7 +264,7 @@ const Hero = () => {
   return (
     <>
       <section className="pt-24 pb-16 bg-gradient-to-br from-slate-50 to-yellow-50 dark:from-slate-900 dark:to-slate-800 transition-colors duration-200 relative overflow-hidden">
-        {/* Honeycomb & Bee Background */}
+        {/* Enhanced Honeycomb Background */}
         <HoneycombBackground />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -449,7 +311,7 @@ const Hero = () => {
                     <SafeIcon icon={FiUsers} className="w-5 h-5 text-yellow-600 dark:text-yellow-400" />
                   </div>
                   <div className="text-left">
-                    <div className="font-semibold text-slate-700 dark:text-slate-slate-300 text-sm transition-colors duration-200">
+                    <div className="font-semibold text-slate-700 dark:text-slate-300 text-sm transition-colors duration-200">
                       Customer-Focused
                     </div>
                     <div className="text-xs text-slate-500 dark:text-slate-400 transition-colors duration-200">
@@ -473,7 +335,7 @@ const Hero = () => {
                 <span className="force-ai-text">AI</span>-Powered Business Solutions
               </div>
               
-              {/* Main heading with enhanced backdrop */}
+              {/* Main heading */}
               <div className="relative">
                 <h1 className="text-4xl md:text-6xl font-bold text-slate-800 dark:text-white mb-6 leading-tight transition-colors duration-200 relative z-10">
                   <span className="force-ai-text">AI</span> Solutions That Make
