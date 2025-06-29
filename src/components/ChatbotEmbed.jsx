@@ -13,7 +13,7 @@ const ChatbotEmbed = () => {
     script.src = 'https://chat.tonnic.agency/embed.min.js';
     script.charset = 'utf-8';
     script.defer = true;
-    
+
     // Add the script to the document head
     document.head.appendChild(script);
 
@@ -24,12 +24,12 @@ const ChatbotEmbed = () => {
       if (existingScript) {
         document.head.removeChild(existingScript);
       }
-      
+
       // Remove the chatbot configuration
       if (window.chatpilotConfig) {
         delete window.chatpilotConfig;
       }
-      
+
       // Remove any chatbot elements that might have been created
       const chatbotElements = document.querySelectorAll('[id*="chatpilot"], [class*="chatpilot"]');
       chatbotElements.forEach(element => {
@@ -40,7 +40,11 @@ const ChatbotEmbed = () => {
     };
   }, []);
 
-  return null; // This component doesn't render anything visible
+  return (
+    <div className="fixed bottom-6 right-6 z-40 no-print">
+      {/* This div will contain the chatbot when it loads */}
+    </div>
+  );
 };
 
 export default ChatbotEmbed;

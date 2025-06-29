@@ -50,12 +50,12 @@ const Services = () => {
       detailedContent: {
         title: "AI Voice Agents",
         subtitle: "Thoughtly Premier Partner - Advanced Voice AI Solutions",
-        description: "Transform your phone communications with advanced AI voice agents powered by industry-leading platforms including Thoughtly, Retell, Vapi, and ElevenLabs. As a Thoughtly Premier Partner, we deliver enterprise-grade voice solutions with natural, human-like conversations tailored to your specific industry and requirements.",
+        description: "Transform your phone communications with advanced AI voice agents powered by industry-leading platforms including Retell, Vapi, ElevenLabs, and Thoughtly. As a Thoughtly Premier Partner, we deliver enterprise-grade voice solutions with natural, human-like conversations tailored to your specific industry and requirements.",
         techStack: [
-          { name: "Thoughtly", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779526113-thoughtlyfavicon.png" },
           { name: "Retell", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779529709-retellfavicon.png" },
           { name: "Vapi", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779532754-vapifavicon.png" },
-          { name: "ElevenLabs", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779535711-elevenlabsfavicon.png" }
+          { name: "ElevenLabs", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779535711-elevenlabsfavicon.png" },
+          { name: "Thoughtly", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779526113-thoughtlyfavicon.png" }
         ],
         partnerBadge: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750734772981-partner-badge.png",
         benefits: [
@@ -473,16 +473,16 @@ const Services = () => {
                 </div>
               </div>
 
-              {/* Tech Stack for AI Voice Agents with favicons */}
+              {/* Tech Stack for AI Voice Agents with favicons - LIGHTER DARK THEME */}
               {selectedService.detailedContent.techStack && (
-                <div className="mb-6 p-4 bg-slate-50 dark:bg-slate-700 rounded-xl transition-colors duration-200">
-                  <h4 className="text-lg font-semibold text-slate-800 dark:text-white mb-3 flex items-center transition-colors duration-200">
+                <div className="mb-6 p-4 bg-yellow-50 dark:bg-yellow-100/10 rounded-xl transition-colors duration-200">
+                  <h4 className="text-lg font-semibold text-slate-800 dark:text-yellow-200 mb-3 flex items-center transition-colors duration-200">
                     <SafeIcon icon={FiAward} className="w-5 h-5 mr-2 text-yellow-500" />
                     Powered by Industry Leaders
                   </h4>
                   <div className="flex flex-wrap gap-3">
                     {selectedService.detailedContent.techStack.map((tech, index) => (
-                      <span key={index} className="bg-white dark:bg-slate-600 px-4 py-2 rounded-lg font-medium text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-500 transition-colors duration-200 flex items-center">
+                      <span key={index} className="bg-white dark:bg-yellow-200/20 px-4 py-2 rounded-lg font-medium text-slate-700 dark:text-yellow-100 border border-yellow-200 dark:border-yellow-300/30 transition-colors duration-200 flex items-center">
                         <img
                           src={tech.favicon}
                           alt={`${tech.name} logo`}
@@ -496,16 +496,16 @@ const Services = () => {
                 </div>
               )}
 
-              {/* Chatbot Platforms for AI Chatbots with favicons */}
+              {/* Chatbot Platforms for AI Chatbots with favicons - LIGHTER DARK THEME */}
               {selectedService.detailedContent.chatbotPlatforms && (
-                <div className="mb-6 p-4 bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-xl transition-colors duration-200">
-                  <h4 className="text-lg font-semibold text-slate-800 dark:text-white mb-3 flex items-center transition-colors duration-200">
-                    <SafeIcon icon={FiMessageSquare} className="w-5 h-5 mr-2 text-green-500" />
+                <div className="mb-6 p-4 bg-yellow-50 dark:bg-yellow-100/10 rounded-xl transition-colors duration-200">
+                  <h4 className="text-lg font-semibold text-slate-800 dark:text-yellow-200 mb-3 flex items-center transition-colors duration-200">
+                    <SafeIcon icon={FiMessageSquare} className="w-5 h-5 mr-2 text-yellow-500" />
                     Supported Chatbot Platforms
                   </h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                     {selectedService.detailedContent.chatbotPlatforms.map((platform, index) => (
-                      <div key={index} className="bg-white dark:bg-slate-600 px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-500 transition-colors duration-200">
+                      <div key={index} className="bg-white dark:bg-yellow-200/20 px-4 py-3 rounded-lg border border-yellow-200 dark:border-yellow-300/30 transition-colors duration-200">
                         <div className="flex items-center mb-2">
                           <img
                             src={platform.favicon}
@@ -513,11 +513,11 @@ const Services = () => {
                             className="w-5 h-5 mr-2 flex-shrink-0"
                             onError={(e) => { e.target.style.display = 'none'; }}
                           />
-                          <span className="font-medium text-slate-700 dark:text-slate-200 transition-colors duration-200">
+                          <span className="font-medium text-slate-700 dark:text-yellow-100 transition-colors duration-200">
                             {platform.name}
                           </span>
                         </div>
-                        <span className="text-sm text-slate-500 dark:text-slate-400 transition-colors duration-200">
+                        <span className="text-sm text-slate-500 dark:text-yellow-200/80 transition-colors duration-200">
                           {platform.capabilities}
                         </span>
                       </div>
@@ -526,16 +526,16 @@ const Services = () => {
                 </div>
               )}
 
-              {/* Social Media Platforms for Social Media AI with favicons */}
+              {/* Social Media Platforms for Social Media AI with favicons - LIGHTER DARK THEME */}
               {selectedService.detailedContent.socialPlatforms && (
-                <div className="mb-6 p-4 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl transition-colors duration-200">
-                  <h4 className="text-lg font-semibold text-slate-800 dark:text-white mb-3 flex items-center transition-colors duration-200">
-                    <SafeIcon icon={FiShare2} className="w-5 h-5 mr-2 text-purple-500" />
+                <div className="mb-6 p-4 bg-yellow-50 dark:bg-yellow-100/10 rounded-xl transition-colors duration-200">
+                  <h4 className="text-lg font-semibold text-slate-800 dark:text-yellow-200 mb-3 flex items-center transition-colors duration-200">
+                    <SafeIcon icon={FiShare2} className="w-5 h-5 mr-2 text-yellow-500" />
                     Supported Social Media Platforms
                   </h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                     {selectedService.detailedContent.socialPlatforms.map((platform, index) => (
-                      <div key={index} className="bg-white dark:bg-slate-600 px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-500 transition-colors duration-200">
+                      <div key={index} className="bg-white dark:bg-yellow-200/20 px-4 py-3 rounded-lg border border-yellow-200 dark:border-yellow-300/30 transition-colors duration-200">
                         <div className="flex items-center mb-2">
                           <img
                             src={platform.favicon}
@@ -543,11 +543,11 @@ const Services = () => {
                             className="w-5 h-5 mr-2 flex-shrink-0"
                             onError={(e) => { e.target.style.display = 'none'; }}
                           />
-                          <span className="font-medium text-slate-700 dark:text-slate-200 transition-colors duration-200">
+                          <span className="font-medium text-slate-700 dark:text-yellow-100 transition-colors duration-200">
                             {platform.name}
                           </span>
                         </div>
-                        <span className="text-sm text-slate-500 dark:text-slate-400 transition-colors duration-200">
+                        <span className="text-sm text-slate-500 dark:text-yellow-200/80 transition-colors duration-200">
                           {platform.capabilities}
                         </span>
                       </div>
@@ -556,19 +556,19 @@ const Services = () => {
                 </div>
               )}
 
-              {/* Automation Platforms for API Integrations and Business Automation with favicons */}
+              {/* Automation Platforms for API Integrations and Business Automation with favicons - LIGHTER DARK THEME */}
               {selectedService.detailedContent.automationPlatforms && (
-                <div className="mb-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl transition-colors duration-200">
-                  <h4 className="text-lg font-semibold text-slate-800 dark:text-white mb-3 flex items-center transition-colors duration-200">
-                    <SafeIcon icon={FiZap} className="w-5 h-5 mr-2 text-blue-500" />
+                <div className="mb-6 p-4 bg-yellow-50 dark:bg-yellow-100/10 rounded-xl transition-colors duration-200">
+                  <h4 className="text-lg font-semibold text-slate-800 dark:text-yellow-200 mb-3 flex items-center transition-colors duration-200">
+                    <SafeIcon icon={FiZap} className="w-5 h-5 mr-2 text-yellow-500" />
                     Automation Platforms
                   </h4>
                   <div className="flex flex-wrap gap-3">
                     {selectedService.detailedContent.automationPlatforms.map((platform, index) => (
                       <span key={index} className={`px-4 py-2 rounded-lg font-medium border transition-colors duration-200 flex items-center ${
                         platform.name === selectedService.detailedContent.preferredPlatform
-                          ? 'bg-blue-500 text-white border-blue-500'
-                          : 'bg-white dark:bg-slate-600 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-500'
+                          ? 'bg-yellow-500 text-slate-800 border-yellow-500'
+                          : 'bg-white dark:bg-yellow-200/20 text-slate-700 dark:text-yellow-100 border-yellow-200 dark:border-yellow-300/30'
                       }`}>
                         <img
                           src={platform.favicon}
@@ -603,7 +603,6 @@ const Services = () => {
                     ))}
                   </ul>
                 </div>
-
                 <div>
                   <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-4 transition-colors duration-200">
                     How It Works
@@ -629,8 +628,8 @@ const Services = () => {
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {selectedService.detailedContent.useCases.map((useCase, index) => (
-                    <div key={index} className="bg-slate-50 dark:bg-slate-700 p-4 rounded-lg transition-colors duration-200">
-                      <span className="text-slate-700 dark:text-slate-300 transition-colors duration-200">
+                    <div key={index} className="bg-yellow-50 dark:bg-yellow-100/10 p-4 rounded-lg transition-colors duration-200">
+                      <span className="text-slate-700 dark:text-yellow-100 transition-colors duration-200">
                         {useCase}
                       </span>
                     </div>
@@ -675,12 +674,8 @@ const Services = () => {
               <SafeIcon icon={FiX} className="w-6 h-6 text-slate-600 dark:text-slate-300" />
             </button>
             <div className="p-6 border-b border-slate-200 dark:border-slate-700 transition-colors duration-200">
-              <h3 id="cal-modal-title" className="text-2xl font-bold text-slate-800 dark:text-white transition-colors duration-200">
-                Book a Meeting
-              </h3>
-              <p className="text-slate-600 dark:text-slate-300 mt-2 transition-colors duration-200">
-                Schedule a 30-minute consultation with our AI experts
-              </p>
+              <h3 id="cal-modal-title" className="text-2xl font-bold text-slate-800 dark:text-white transition-colors duration-200">Book a Meeting</h3>
+              <p className="text-slate-600 dark:text-slate-300 mt-2 transition-colors duration-200">Schedule a 30-minute consultation with our AI experts</p>
             </div>
             <div className="h-[600px]">
               <iframe

@@ -43,49 +43,33 @@ const HoneycombBackground = () => {
             {/* Enhanced honeycomb pattern */}
             <pattern id="honeycomb-enhanced" x="0" y="0" width="120" height="140" patternUnits="userSpaceOnUse">
               {/* Multiple hexagons with stroke width 1 */}
-              <polygon 
-                points="60,20 85,35 85,65 60,80 35,65 35,35" 
-                fill="none" 
-                stroke="#eab308" 
-                strokeWidth="1" 
-                opacity="0.15"
-              />
-              <polygon 
-                points="25,85 50,100 50,130 25,145 0,130 0,100" 
-                fill="none" 
-                stroke="#eab308" 
-                strokeWidth="1" 
-                opacity="0.1"
-              />
-              <polygon 
-                points="95,85 120,100 120,130 95,145 70,130 70,100" 
-                fill="none" 
-                stroke="#eab308" 
-                strokeWidth="1" 
-                opacity="0.1"
-              />
+              <polygon points="60,20 85,35 85,65 60,80 35,65 35,35" fill="none" stroke="#eab308" strokeWidth="1" opacity="0.15" />
+              <polygon points="25,85 50,100 50,130 25,145 0,130 0,100" fill="none" stroke="#eab308" strokeWidth="1" opacity="0.1" />
+              <polygon points="95,85 120,100 120,130 95,145 70,130 70,100" fill="none" stroke="#eab308" strokeWidth="1" opacity="0.1" />
             </pattern>
-            
             {/* Subtle gradient */}
             <radialGradient id="honeycombGlow" cx="50%" cy="40%" r="60%">
               <stop offset="0%" stopColor="#eab308" stopOpacity="0.05"/>
               <stop offset="100%" stopColor="#eab308" stopOpacity="0"/>
             </radialGradient>
           </defs>
-          
           {/* Apply the enhanced pattern */}
           <rect width="100%" height="100%" fill="url(#honeycomb-enhanced)" />
-          
           {/* Subtle glow */}
           <motion.circle
-            cx="50%" cy="40%"
+            cx="50%"
+            cy="40%"
             r="300"
             fill="url(#honeycombGlow)"
             animate={{
               r: [250, 350, 250],
               opacity: [0.3, 0.5, 0.3]
             }}
-            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+            transition={{
+              duration: 12,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
           />
         </svg>
       </div>
@@ -105,68 +89,88 @@ const HoneycombBackground = () => {
           }}
         >
           <svg width="60" height="60" viewBox="0 0 60 60" className="opacity-8 dark:opacity-4">
-            <polygon 
-              points="30,10 42,17 42,33 30,40 18,33 18,17" 
-              fill="none" 
-              stroke="#eab308" 
-              strokeWidth="1" 
-              opacity="0.3"
-            />
+            <polygon points="30,10 42,17 42,33 30,40 18,33 18,17" fill="none" stroke="#eab308" strokeWidth="1" opacity="0.3" />
           </svg>
         </motion.div>
       </div>
 
-      {/* 5 Bees flying across the screen with curved paths */}
+      {/* 5 Bees flying LEFT TO RIGHT - CORRECTED DIRECTION */}
       <div className="absolute inset-0">
         {[...Array(5)].map((_, index) => {
           // Generate random curve parameters for each bee
           const startY = Math.random() * 60 + 10; // Random start Y position
           const amplitude = (Math.random() * 40 + 20) * (Math.random() > 0.5 ? 1 : -1); // Random curve amplitude
           const frequency = Math.random() * 2 + 1; // Random curve frequency
-          
+          const duration = 20 + index * 4; // Different speeds
+
           return (
-            <motion.div
-              key={`bee-${index}`}
-              className="absolute"
-              style={{ top: `${startY}%` }}
-              animate={{
-                x: ['-100px', 'calc(100vw + 100px)'],
-                y: [
-                  0, 
-                  amplitude * Math.sin(Math.PI * 0.25 * frequency),
-                  amplitude * Math.sin(Math.PI * 0.5 * frequency),
-                  amplitude * Math.sin(Math.PI * 0.75 * frequency),
-                  amplitude * Math.sin(Math.PI * frequency),
-                  amplitude * Math.sin(Math.PI * 1.25 * frequency),
-                  amplitude * Math.sin(Math.PI * 1.5 * frequency),
-                  amplitude * Math.sin(Math.PI * 1.75 * frequency),
-                  0
-                ]
-              }}
-              transition={{
-                duration: 20 + index * 4,
-                repeat: Infinity,
-                ease: "linear",
-                delay: index * 5
-              }}
-            >
-              <div className="flex items-center">
-                <motion.div
-                  animate={{ 
-                    rotate: [0, 10, -10, 0],
-                    scale: [1, 1.1, 0.9, 1]
-                  }}
-                  transition={{ 
-                    duration: 0.8 + index * 0.1, 
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                  className="text-yellow-500 text-lg opacity-60"
-                >
-                  🐝
-                </motion.div>
-              </div>
-            </motion.div>
+            <div key={`bee-${index}`} className="absolute" style={{ top: `${startY}%` }}>
+              <motion.div
+                className="relative"
+                animate={{
+                  // ALL BEES FLY LEFT TO RIGHT
+                  x: ['-200px', 'calc(100vw + 100px)'],
+                  y: [
+                    0,
+                    amplitude * Math.sin(Math.PI * 0.25 * frequency),
+                    amplitude * Math.sin(Math.PI * 0.5 * frequency),
+                    amplitude * Math.sin(Math.PI * 0.75 * frequency),
+                    amplitude * Math.sin(Math.PI * frequency),
+                    amplitude * Math.sin(Math.PI * 1.25 * frequency),
+                    amplitude * Math.sin(Math.PI * 1.5 * frequency),
+                    amplitude * Math.sin(Math.PI * 1.75 * frequency),
+                    0
+                  ]
+                }}
+                transition={{
+                  duration: duration,
+                  repeat: Infinity,
+                  ease: "linear",
+                  delay: index * 5
+                }}
+              >
+                {/* BEE LAYOUT - LEFT TO RIGHT */}
+                <div className="flex items-center">
+                  {/* Bee emoji FIRST (on the left) */}
+                  <motion.div
+                    className="text-lg"
+                    animate={{
+                      rotate: [0, 10, -10, 0],
+                      scale: [1, 1.1, 0.9, 1]
+                    }}
+                    transition={{
+                      duration: 0.8 + index * 0.1,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    <span className="text-yellow-500 opacity-60">🐝</span>
+                  </motion.div>
+
+                  {/* Trailing dots SECOND (on the right) - CORRECT TRAILING ANIMATION */}
+                  <div className="flex items-center space-x-1 ml-2">
+                    {[...Array(3)].map((_, dotIndex) => (
+                      <motion.div
+                        key={`dot-${dotIndex}`}
+                        className="text-yellow-400 text-xs"
+                        animate={{
+                          opacity: [0, 0.8, 0],
+                          scale: [0.5, 1, 0.5]
+                        }}
+                        transition={{
+                          duration: 1.5,
+                          repeat: Infinity,
+                          delay: dotIndex * 0.2, // NORMAL DELAY - dots appear from left to right (trailing)
+                          ease: "easeInOut"
+                        }}
+                      >
+                        •
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            </div>
           );
         })}
       </div>
@@ -179,7 +183,7 @@ const HoneycombBackground = () => {
             className="absolute font-semibold text-yellow-600/70 dark:text-yellow-400/60 text-sm whitespace-nowrap"
             style={word.position} // Fresh random position each time component renders
             initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ 
+            animate={{
               opacity: [0, 0.7, 0.7, 0],
               scale: [0.8, 1.1, 1.1, 0.8],
               rotate: [0, 2, -2, 0]
@@ -206,7 +210,7 @@ const HoneycombBackground = () => {
           const randomY = Math.random() * 70 + 15;
           const randomDelay = Math.random() * 5;
           const randomDuration = 6 + Math.random() * 8;
-          
+
           return (
             <motion.div
               key={`pollen-${i}`}
@@ -273,7 +277,7 @@ const Hero = () => {
       <section className="pt-24 pb-16 bg-gradient-to-br from-slate-50 to-yellow-50 dark:from-slate-900 dark:to-slate-800 transition-colors duration-200 relative overflow-hidden">
         {/* Enhanced Honeycomb Background */}
         <HoneycombBackground />
-        
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* ICP Section */}
           <motion.div
@@ -341,15 +345,14 @@ const Hero = () => {
                 <SafeIcon icon={FiZap} className="w-4 h-4 mr-2" />
                 <span className="force-ai-text">AI</span>-Powered Business Solutions
               </div>
-              
+
               {/* Main heading */}
               <div className="relative">
                 <h1 className="text-4xl md:text-6xl font-bold text-slate-800 dark:text-white mb-6 leading-tight transition-colors duration-200 relative z-10">
-                  <span className="force-ai-text">AI</span> Solutions That Make
-                  <span className="text-yellow-500 block">Your Business Buzz</span>
+                  <span className="force-ai-text">AI</span> Solutions That Make <span className="text-yellow-500 block">Your Business Buzz</span>
                 </h1>
               </div>
-              
+
               <p className="text-xl text-slate-600 dark:text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed transition-colors duration-200">
                 TONNIC provides cutting-edge <span className="force-ai-text">AI</span> voice agents, intelligent chatbots, and automation services designed to streamline your business operations and boost productivity across all departments.
               </p>

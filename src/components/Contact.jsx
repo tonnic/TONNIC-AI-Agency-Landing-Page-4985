@@ -114,11 +114,9 @@ const Contact = () => {
     }
   };
 
-  const obfuscatedEmail = 'hello' + '@' + 'tonnic' + '.' + 'ai';
-
   const services = [
     'AI Voice Agents',
-    'AI Chatbots',
+    'AI Chatbots', 
     'Website Design & Hosting',
     'Social Media AI',
     'API Integrations',
@@ -320,16 +318,8 @@ const Contact = () => {
                 </p>
               </div>
 
-              {/* Alternative Contact Methods */}
-              <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <button
-                  onClick={() => window.location.href = `mailto:${obfuscatedEmail}`}
-                  className="flex items-center justify-center space-x-2 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 focus:bg-slate-200 dark:focus:bg-slate-600 focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800 p-3 rounded-xl transition-colors duration-200"
-                  aria-label="Send direct email"
-                >
-                  <SafeIcon icon={FiMail} className="w-5 h-5 text-slate-600 dark:text-slate-300" aria-hidden="true" />
-                  <span className="text-slate-700 dark:text-slate-300 font-medium transition-colors duration-200">Direct Email</span>
-                </button>
+              {/* Alternative Contact Methods - Removed Direct Email */}
+              <div className="mt-6 grid grid-cols-1 gap-4">
                 <button
                   onClick={openCalModal}
                   className="flex items-center justify-center space-x-2 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 focus:bg-slate-200 dark:focus:bg-slate-600 focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800 p-3 rounded-xl transition-colors duration-200"
@@ -365,7 +355,11 @@ const Contact = () => {
                   </div>
                   <div>
                     <div className="text-white font-medium mb-1">AI Voice Agent</div>
-                    <a href="tel:+18882925513" className="text-slate-300 hover:text-yellow-400 focus:text-yellow-400 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-950 rounded transition-colors duration-200 text-lg font-semibold" aria-label="Call our AI Voice Agent at 1-888-292-5513">
+                    <a
+                      href="tel:+18882925513"
+                      className="text-slate-300 hover:text-yellow-400 focus:text-yellow-400 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-950 rounded transition-colors duration-200 text-lg font-semibold"
+                      aria-label="Call our AI Voice Agent at 1-888-292-5513"
+                    >
                       1-888-292-5513
                     </a>
                     <p className="text-slate-400 text-sm mt-1">
@@ -373,20 +367,15 @@ const Contact = () => {
                     </p>
                   </div>
                 </div>
-
                 <div className="flex items-center space-x-4">
                   <div className="bg-yellow-500 w-12 h-12 rounded-xl flex items-center justify-center">
                     <SafeIcon icon={FiMail} className="w-6 h-6 text-slate-800" aria-hidden="true" />
                   </div>
                   <div>
-                    <div className="text-white font-medium">Email</div>
-                    <button
-                      onClick={() => window.location.href = `mailto:${obfuscatedEmail}`}
-                      className="text-slate-300 hover:text-yellow-400 focus:text-yellow-400 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-950 rounded transition-colors duration-200 text-left"
-                      aria-label="Send email to hello at tonnic dot ai"
-                    >
-                      Contact via Email
-                    </button>
+                    <div className="text-white font-medium">Contact Form</div>
+                    <div className="text-slate-300">
+                      Use our contact form for detailed inquiries and project discussions
+                    </div>
                   </div>
                 </div>
               </div>

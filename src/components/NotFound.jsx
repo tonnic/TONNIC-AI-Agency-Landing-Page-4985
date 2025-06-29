@@ -1,12 +1,12 @@
 import React from 'react';
-import {motion} from 'framer-motion';
-import {useNavigate, useLocation} from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { useNavigate, useLocation } from 'react-router-dom';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 import Header from './Header';
 import Footer from './Footer';
 
-const {FiHome,FiArrowLeft,FiSearch,FiPhone,FiMail} = FiIcons;
+const { FiHome, FiArrowLeft, FiSearch, FiPhone, FiMail } = FiIcons;
 
 const NotFound = () => {
   const navigate = useNavigate();
@@ -29,7 +29,9 @@ const NotFound = () => {
     }, 100);
   };
 
-  const obfuscatedEmail = 'hello' + '@' + 'tonnic' + '.' + 'ai';
+  const scrollToContact = () => {
+    scrollToSection('contact');
+  };
 
   return (
     <div className="min-h-screen bg-white dark:bg-slate-900">
@@ -175,12 +177,12 @@ const NotFound = () => {
                     </span>
                   </a>
                   <button
-                    onClick={() => window.location.href = `mailto:${obfuscatedEmail}`}
+                    onClick={scrollToContact}
                     className="flex items-center justify-center space-x-2 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 focus:bg-slate-200 dark:focus:bg-slate-600 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800 p-3 rounded-xl transition-colors duration-200"
                   >
                     <SafeIcon icon={FiMail} className="w-5 h-5 text-slate-600 dark:text-slate-300" />
                     <span className="text-slate-700 dark:text-slate-300 font-medium transition-colors duration-200">
-                      Email Us
+                      Contact Form
                     </span>
                   </button>
                 </div>

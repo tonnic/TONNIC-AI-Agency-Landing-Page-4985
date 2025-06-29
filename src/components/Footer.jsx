@@ -40,10 +40,8 @@ const Footer = () => {
     }
   };
 
-  const obfuscatedEmail = 'hello' + '@' + 'tonnic' + '.' + 'ai';
-
-  const handleEmailClick = () => {
-    window.location.href = `mailto:${obfuscatedEmail}`;
+  const scrollToContact = () => {
+    scrollToSection('contact');
   };
 
   return (
@@ -84,9 +82,9 @@ const Footer = () => {
                 <SafeIcon icon={FiLinkedin} className="w-5 h-5" aria-hidden="true" />
               </a>
               <button
-                onClick={handleEmailClick}
+                onClick={scrollToContact}
                 className="bg-slate-800 dark:bg-slate-900 p-3 rounded-xl hover:bg-yellow-500 hover:text-slate-800 focus:bg-yellow-500 focus:text-slate-800 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black transition-colors duration-200"
-                aria-label="Send us an email"
+                aria-label="Go to contact form"
               >
                 <SafeIcon icon={FiMail} className="w-5 h-5" aria-hidden="true" />
               </button>
@@ -155,11 +153,11 @@ const Footer = () => {
               <li className="flex items-center space-x-3">
                 <SafeIcon icon={FiMail} className="w-4 h-4 text-yellow-500" aria-hidden="true" />
                 <button
-                  onClick={handleEmailClick}
+                  onClick={scrollToContact}
                   className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200 text-left"
-                  aria-label="Send email to hello at tonnic dot ai"
+                  aria-label="Go to contact form"
                 >
-                  Contact via Email
+                  Contact Form
                 </button>
               </li>
             </ul>

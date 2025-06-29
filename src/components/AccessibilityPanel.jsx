@@ -75,7 +75,7 @@ const AccessibilityPanel = () => {
 
   return (
     <>
-      {/* Accessibility Button */}
+      {/* Accessibility Button - SAME BOTTOM POSITION AS CHAT BUBBLE */}
       <button
         onClick={() => setIsOpen(true)}
         className="fixed bottom-6 left-6 bg-yellow-500 hover:bg-yellow-400 text-slate-800 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 z-40 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 border-2 border-white dark:border-slate-800"
