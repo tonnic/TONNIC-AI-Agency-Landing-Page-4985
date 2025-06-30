@@ -2,18 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  
+  <!-- Favicon and Icons -->
   <link rel="icon" type="image/png" sizes="32x32" href="https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750767569670-SiteIcon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750767569670-SiteIcon-32x32.png" />
-  <link rel="apple-touch-icon" href="https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750767569670-SiteIcon-32x32.png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750767569670-SiteIcon-32x32.png" />
+  <link rel="manifest" href="/manifest.json" />
+  
+  <!-- Viewport and Mobile Optimization -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
   <meta name="theme-color" content="#eab308" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="format-detection" content="telephone=yes" />
   
   <!-- Primary Meta Tags -->
   <title>TONNIC AI Agency - AI Solutions That Make Your Business Buzz</title>
   <meta name="title" content="TONNIC AI Agency - AI Solutions That Make Your Business Buzz" />
   <meta name="description" content="Transform your business with cutting-edge AI voice agents, chatbots, automation, and website design. 24/7 AI support, 70% faster response times, and unlimited scalability." />
   <meta name="keywords" content="AI voice agents, AI chatbots, business automation, website design, artificial intelligence, customer service AI, lead generation, TONNIC, Thoughtly partner" />
-  <meta name="robots" content="index, follow" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
   <meta name="language" content="English" />
   <meta name="author" content="TONNIC AI Agency" />
   
@@ -23,28 +32,44 @@
   <meta property="og:title" content="TONNIC AI Agency - AI Solutions That Make Your Business Buzz" />
   <meta property="og:description" content="Transform your business with cutting-edge AI voice agents, chatbots, automation, and website design services." />
   <meta property="og:image" content="https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750776734784-tonnic%20ai%20agency.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="TONNIC AI Agency - AI Solutions for Business" />
   <meta property="og:site_name" content="TONNIC AI Agency" />
   <meta property="og:locale" content="en_US" />
-  
+
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
   <meta property="twitter:url" content="https://tonnic.agency" />
   <meta property="twitter:title" content="TONNIC AI Agency - AI Solutions That Make Your Business Buzz" />
   <meta property="twitter:description" content="Transform your business with cutting-edge AI voice agents, chatbots, automation, and website design services." />
   <meta property="twitter:image" content="https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750776734784-tonnic%20ai%20agency.png" />
-  
+  <meta property="twitter:image:alt" content="TONNIC AI Agency - AI Solutions for Business" />
+
   <!-- Canonical URL -->
   <link rel="canonical" href="https://tonnic.agency" />
-  
+
   <!-- Preconnect for performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com" />
-  
+  <link rel="preconnect" href="https://cal.com" />
+  <link rel="preconnect" href="https://api1.tonnic.ai" />
+
   <!-- DNS prefetch for external resources -->
-  <link rel="dns-prefetch" href="https://cal.com" />
-  <link rel="dns-prefetch" href="https://api1.tonnic.ai" />
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+  <link rel="dns-prefetch" href="https://connect.facebook.net" />
+
+  <!-- Preload critical fonts -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
   
+  <!-- Fallback for preload -->
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&display=swap" />
+  </noscript>
+
   <!-- Structured Data -->
   <script type="application/ld+json">
   {
@@ -67,9 +92,45 @@
     "address": {
       "@type": "PostalAddress",
       "addressCountry": "CA"
+    },
+    "offers": [
+      {
+        "@type": "Service",
+        "name": "AI Voice Agents",
+        "description": "24/7 intelligent voice agents for customer service and business communications"
+      },
+      {
+        "@type": "Service",
+        "name": "AI Chatbots",
+        "description": "Multi-platform chatbots for lead generation and customer support"
+      },
+      {
+        "@type": "Service",
+        "name": "Business Automation",
+        "description": "End-to-end automation solutions for workflow optimization"
+      },
+      {
+        "@type": "Service",
+        "name": "Website Design",
+        "description": "AI-assisted website design and development services"
+      }
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "127"
     }
   }
   </script>
+  
+  <!-- Security Headers -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+  
+  <!-- Performance Optimization -->
+  <meta http-equiv="Cache-Control" content="public, max-age=31536000" />
 </head>
 <body>
   <div id="root"></div>

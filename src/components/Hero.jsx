@@ -35,10 +35,10 @@ const HoneycombBackground = () => {
   }));
 
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
       {/* Enhanced Honeycomb Pattern */}
       <div className="absolute inset-0 opacity-4 dark:opacity-2">
-        <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+        <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <defs>
             {/* Enhanced honeycomb pattern */}
             <pattern id="honeycomb-enhanced" x="0" y="0" width="120" height="140" patternUnits="userSpaceOnUse">
@@ -88,7 +88,7 @@ const HoneycombBackground = () => {
             ease: "easeInOut"
           }}
         >
-          <svg width="60" height="60" viewBox="0 0 60 60" className="opacity-8 dark:opacity-4">
+          <svg width="60" height="60" viewBox="0 0 60 60" className="opacity-8 dark:opacity-4" aria-hidden="true">
             <polygon points="30,10 42,17 42,33 30,40 18,33 18,17" fill="none" stroke="#eab308" strokeWidth="1" opacity="0.3" />
           </svg>
         </motion.div>
@@ -144,11 +144,11 @@ const HoneycombBackground = () => {
                       ease: "easeInOut"
                     }}
                   >
-                    <span className="text-yellow-500 opacity-60">🐝</span>
+                    <span className="text-yellow-500 opacity-60" role="img" aria-label="bee">🐝</span>
                   </motion.div>
 
                   {/* Trailing dots SECOND (on the right) - CORRECT TRAILING ANIMATION */}
-                  <div className="flex items-center space-x-1 ml-2">
+                  <div className="flex items-center space-x-1 ml-2" aria-hidden="true">
                     {[...Array(3)].map((_, dotIndex) => (
                       <motion.div
                         key={`dot-${dotIndex}`}
@@ -195,6 +195,7 @@ const HoneycombBackground = () => {
               ease: "easeInOut",
               delay: word.delay // Fresh random delay each time
             }}
+            aria-hidden="true"
           >
             <div className="bg-white/20 dark:bg-slate-800/20 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-yellow-400/20 shadow-sm">
               {word.text}
@@ -231,6 +232,7 @@ const HoneycombBackground = () => {
                 ease: "easeInOut",
                 delay: randomDelay
               }}
+              aria-hidden="true"
             />
           );
         })}
@@ -274,7 +276,7 @@ const Hero = () => {
 
   return (
     <>
-      <section className="pt-24 pb-16 bg-gradient-to-br from-slate-50 to-yellow-50 dark:from-slate-900 dark:to-slate-800 transition-colors duration-200 relative overflow-hidden">
+      <section className="pt-24 pb-16 bg-gradient-to-br from-slate-50 to-yellow-50 dark:from-slate-900 dark:to-slate-800 transition-colors duration-200 relative overflow-hidden hero-section above-fold" aria-labelledby="hero-heading">
         {/* Enhanced Honeycomb Background */}
         <HoneycombBackground />
 
@@ -293,7 +295,7 @@ const Hero = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="flex items-center justify-center space-x-3">
                   <div className="bg-yellow-100 dark:bg-yellow-900/30 p-2 rounded-lg transition-colors duration-200">
-                    <SafeIcon icon={FiTrendingUp} className="w-5 h-5 text-yellow-600 dark:text-yellow-400" />
+                    <SafeIcon icon={FiTrendingUp} className="w-5 h-5 text-yellow-600 dark:text-yellow-400" aria-hidden="true" />
                   </div>
                   <div className="text-left">
                     <div className="font-semibold text-slate-700 dark:text-slate-300 text-sm transition-colors duration-200">
@@ -306,7 +308,7 @@ const Hero = () => {
                 </div>
                 <div className="flex items-center justify-center space-x-3">
                   <div className="bg-yellow-100 dark:bg-yellow-900/30 p-2 rounded-lg transition-colors duration-200">
-                    <SafeIcon icon={FiDollarSign} className="w-5 h-5 text-yellow-600 dark:text-yellow-400" />
+                    <SafeIcon icon={FiDollarSign} className="w-5 h-5 text-yellow-600 dark:text-yellow-400" aria-hidden="true" />
                   </div>
                   <div className="text-left">
                     <div className="font-semibold text-slate-700 dark:text-slate-300 text-sm transition-colors duration-200">
@@ -319,7 +321,7 @@ const Hero = () => {
                 </div>
                 <div className="flex items-center justify-center space-x-3">
                   <div className="bg-yellow-100 dark:bg-yellow-900/30 p-2 rounded-lg transition-colors duration-200">
-                    <SafeIcon icon={FiUsers} className="w-5 h-5 text-yellow-600 dark:text-yellow-400" />
+                    <SafeIcon icon={FiUsers} className="w-5 h-5 text-yellow-600 dark:text-yellow-400" aria-hidden="true" />
                   </div>
                   <div className="text-left">
                     <div className="font-semibold text-slate-700 dark:text-slate-300 text-sm transition-colors duration-200">
@@ -342,13 +344,13 @@ const Hero = () => {
               className="mb-8"
             >
               <div className="inline-flex items-center bg-yellow-100/80 dark:bg-yellow-900/30 backdrop-blur-sm text-yellow-800 dark:text-yellow-300 px-4 py-2 rounded-full text-sm font-medium mb-6 transition-colors duration-200">
-                <SafeIcon icon={FiZap} className="w-4 h-4 mr-2" />
+                <SafeIcon icon={FiZap} className="w-4 h-4 mr-2" aria-hidden="true" />
                 <span className="force-ai-text">AI</span>-Powered Business Solutions
               </div>
 
               {/* Main heading */}
               <div className="relative">
-                <h1 className="text-4xl md:text-6xl font-bold text-slate-800 dark:text-white mb-6 leading-tight transition-colors duration-200 relative z-10">
+                <h1 id="hero-heading" className="text-4xl md:text-6xl font-bold text-slate-800 dark:text-white mb-6 leading-tight transition-colors duration-200 relative z-10">
                   <span className="force-ai-text">AI</span> Solutions That Make <span className="text-yellow-500 block">Your Business Buzz</span>
                 </h1>
               </div>
@@ -367,15 +369,17 @@ const Hero = () => {
               <button
                 onClick={openCalModal}
                 className="bg-yellow-500 text-slate-800 px-8 py-4 rounded-full font-semibold text-lg hover:bg-yellow-400 focus:bg-yellow-400 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800 transition-all duration-200 flex items-center shadow-lg hover:shadow-xl transform hover:-translate-y-1 relative z-10"
+                aria-label="Book an appointment with TONNIC AI Agency"
               >
-                <SafeIcon icon={FiCalendar} className="w-5 h-5 mr-2" />
+                <SafeIcon icon={FiCalendar} className="w-5 h-5 mr-2" aria-hidden="true" />
                 Book an Appointment Now
               </button>
               <button
                 onClick={scrollToContact}
                 className="border-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 px-8 py-4 rounded-full font-semibold text-lg hover:border-yellow-500 hover:text-yellow-600 dark:hover:border-yellow-400 dark:hover:text-yellow-400 focus:border-yellow-500 focus:text-yellow-600 dark:focus:border-yellow-400 dark:focus:text-yellow-400 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800 transition-all duration-200 flex items-center relative z-10"
+                aria-label="Contact TONNIC AI Agency"
               >
-                <SafeIcon icon={FiMail} className="w-5 h-5 mr-2" />
+                <SafeIcon icon={FiMail} className="w-5 h-5 mr-2" aria-hidden="true" />
                 Contact Us
               </button>
             </motion.div>
@@ -389,43 +393,43 @@ const Hero = () => {
             className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 text-center"
           >
             {/* Card 1 - Never Miss a Lead */}
-            <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm p-6 rounded-2xl shadow-sm dark:shadow-slate-700/10 border border-transparent dark:border-slate-700 transition-colors duration-200">
+            <article className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm p-6 rounded-2xl shadow-sm dark:shadow-slate-700/10 border border-transparent dark:border-slate-700 transition-colors duration-200">
               <div className="bg-yellow-500 w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <SafeIcon icon={FiTarget} className="w-6 h-6 text-slate-800" />
+                <SafeIcon icon={FiTarget} className="w-6 h-6 text-slate-800" aria-hidden="true" />
               </div>
-              <div className="text-xl font-bold text-slate-800 dark:text-white mb-2 transition-colors duration-200">
+              <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-2 transition-colors duration-200">
                 Never Miss a Lead
-              </div>
-              <div className="text-slate-600 dark:text-slate-300 transition-colors duration-200">
+              </h3>
+              <p className="text-slate-600 dark:text-slate-300 transition-colors duration-200">
                 Your <span className="force-ai-text">AI</span> assistant handles every inquiry, even after hours, so you capture more opportunities.
-              </div>
-            </div>
+              </p>
+            </article>
 
             {/* Card 2 - Instant Replies */}
-            <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm p-6 rounded-2xl shadow-sm dark:shadow-slate-700/10 border border-transparent dark:border-slate-700 transition-colors duration-200">
+            <article className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm p-6 rounded-2xl shadow-sm dark:shadow-slate-700/10 border border-transparent dark:border-slate-700 transition-colors duration-200">
               <div className="bg-yellow-500 w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <SafeIcon icon={FiBolt} className="w-6 h-6 text-slate-800" />
+                <SafeIcon icon={FiBolt} className="w-6 h-6 text-slate-800" aria-hidden="true" />
               </div>
-              <div className="text-xl font-bold text-slate-800 dark:text-white mb-2 transition-colors duration-200">
+              <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-2 transition-colors duration-200">
                 Instant Replies
-              </div>
-              <div className="text-slate-600 dark:text-slate-300 transition-colors duration-200">
+              </h3>
+              <p className="text-slate-600 dark:text-slate-300 transition-colors duration-200">
                 Impress your customers with real-time answers and convert interest into action around the clock.
-              </div>
-            </div>
+              </p>
+            </article>
 
             {/* Card 3 - Grows With You */}
-            <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm p-6 rounded-2xl shadow-sm dark:shadow-slate-700/10 border border-transparent dark:border-slate-700 transition-colors duration-200">
+            <article className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm p-6 rounded-2xl shadow-sm dark:shadow-slate-700/10 border border-transparent dark:border-slate-700 transition-colors duration-200">
               <div className="bg-yellow-500 w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <SafeIcon icon={FiArrowUp} className="w-6 h-6 text-slate-800" />
+                <SafeIcon icon={FiArrowUp} className="w-6 h-6 text-slate-800" aria-hidden="true" />
               </div>
-              <div className="text-xl font-bold text-slate-800 dark:text-white mb-2 transition-colors duration-200">
+              <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-2 transition-colors duration-200">
                 Grows With You
-              </div>
-              <div className="text-slate-600 dark:text-slate-300 transition-colors duration-200">
+              </h3>
+              <p className="text-slate-600 dark:text-slate-300 transition-colors duration-200">
                 Start small or scale up. TONNIC adapts to your business, no matter the stage.
-              </div>
-            </div>
+              </p>
+            </article>
           </motion.div>
         </div>
       </section>
@@ -458,6 +462,7 @@ const Hero = () => {
                 frameBorder="0"
                 title="Book an AI consultation with TONNIC"
                 className="rounded-b-2xl"
+                loading="lazy"
               ></iframe>
             </div>
           </motion.div>
