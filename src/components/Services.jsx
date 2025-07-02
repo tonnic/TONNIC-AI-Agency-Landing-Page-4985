@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 
-const { FiMic, FiMessageSquare, FiGlobe, FiShare2, FiLink, FiZap, FiX, FiCalendar, FiArrowRight, FiAward } = FiIcons;
+const { FiMic, FiMessageSquare, FiGlobe, FiShare2, FiLink, FiZap, FiX, FiCalendar, FiArrowRight, FiAward, FiExternalLink } = FiIcons;
 
 const Services = () => {
+  const navigate = useNavigate();
   const [selectedService, setSelectedService] = useState(null);
   const [showCalModal, setShowCalModal] = useState(false);
 
@@ -47,15 +49,32 @@ const Services = () => {
       title: "AI Voice Agents",
       description: "Intelligent voice agents that handle calls, appointments, lead qualification, customer service, and business communications with natural, human-like conversations.",
       features: ["24/7 Call Handling", "Natural Conversations", "Multi-Purpose Support"],
+      slug: "aivoiceagents",
       detailedContent: {
         title: "AI Voice Agents",
         subtitle: "Thoughtly Premier Partner - Advanced Voice AI Solutions",
         description: "Transform your phone communications with advanced AI voice agents powered by industry-leading platforms including Retell, Vapi, ElevenLabs, and Thoughtly. As a Thoughtly Premier Partner, we deliver enterprise-grade voice solutions with natural, human-like conversations tailored to your specific industry and requirements.",
         techStack: [
-          { name: "Retell", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779529709-retellfavicon.png" },
-          { name: "Vapi", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779532754-vapifavicon.png" },
-          { name: "ElevenLabs", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779535711-elevenlabsfavicon.png" },
-          { name: "Thoughtly", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779526113-thoughtlyfavicon.png" }
+          {
+            name: "Retell",
+            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779529709-retellfavicon.png",
+            url: "https://dashboard.retellai.com/?ref=tonnic"
+          },
+          {
+            name: "Vapi",
+            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779532754-vapifavicon.png",
+            url: "https://vapi.ai/?aff=tonnic"
+          },
+          {
+            name: "ElevenLabs",
+            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779535711-elevenlabsfavicon.png",
+            url: "https://try.elevenlabs.io/tonnic"
+          },
+          {
+            name: "Thoughtly",
+            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779526113-thoughtlyfavicon.png",
+            url: "https://thoughtly.com/?ref=tonnic"
+          }
         ],
         partnerBadge: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750734772981-partner-badge.png",
         benefits: [
@@ -93,16 +112,37 @@ const Services = () => {
       title: "AI Chatbots",
       description: "Intelligent chatbots that engage customers across multiple platforms, provide instant support, qualify leads, and deliver personalized experiences 24/7.",
       features: ["Multi-Platform Integration", "Smart Qualification", "Instant Response"],
+      slug: "aichatbots",
       detailedContent: {
         title: "AI Chatbots",
         subtitle: "Intelligent Conversations Across Every Platform",
         description: "Deploy sophisticated AI chatbots that engage customers across websites, Facebook, WhatsApp, Pinterest, Instagram, and more with contextual, personalized conversations that drive results. Integrated with n8n automation for seamless workflow connections.",
         chatbotPlatforms: [
-          { name: "Facebook", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780429350-facebookfavicon.png", capabilities: "Messenger Integration" },
-          { name: "WhatsApp", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780449215-whatsappfavicon.png", capabilities: "Business API" },
-          { name: "Pinterest", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780457500-pinterestfavicon.png", capabilities: "Pin Interactions" },
-          { name: "Instagram", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780487572-instagramfavicon.png", capabilities: "DM Automation" },
-          { name: "Website", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750776734784-tonnic%20ai%20agency.png", capabilities: "Live Chat Widget" }
+          {
+            name: "Facebook",
+            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780429350-facebookfavicon.png",
+            capabilities: "Messenger Integration"
+          },
+          {
+            name: "WhatsApp",
+            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780449215-whatsappfavicon.png",
+            capabilities: "Business API"
+          },
+          {
+            name: "Pinterest",
+            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780457500-pinterestfavicon.png",
+            capabilities: "Pin Interactions"
+          },
+          {
+            name: "Instagram",
+            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780487572-instagramfavicon.png",
+            capabilities: "DM Automation"
+          },
+          {
+            name: "Website",
+            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750776734784-tonnic%20ai%20agency.png",
+            capabilities: "Live Chat Widget"
+          }
         ],
         benefits: [
           "Multi-Platform Reach - Deploy on websites, Facebook, WhatsApp, Pinterest, Instagram",
@@ -140,6 +180,7 @@ const Services = () => {
       title: "Website Design & Hosting",
       description: "AI-assisted website design and development with modern, responsive designs, business integrations, and scalable hosting solutions tailored to your needs.",
       features: ["Fast Launch", "Mobile Responsive", "Business Integrations"],
+      slug: "websitedesign",
       detailedContent: {
         title: "AI-Assisted Website Design",
         subtitle: "Modern Business Websites Built for Growth",
@@ -180,18 +221,47 @@ const Services = () => {
       title: "Social Media AI",
       description: "AI-powered content creation and automated posting across Facebook, Instagram, LinkedIn, X (Twitter), Pinterest, TikTok, and Google Business to maximize your social media presence and engagement.",
       features: ["Multi-Platform Posting", "AI Content Generation", "Automated Scheduling"],
+      slug: "socialmediaai",
       detailedContent: {
         title: "Social Media AI",
         subtitle: "Automate Your Social Media Success Across All Platforms",
         description: "Transform your social media presence with AI-powered content creation and automated posting across Facebook, Instagram (posts & stories), LinkedIn (personal & company pages), X (Twitter), Pinterest, TikTok, and Google Business Profile. Create engaging, platform-optimized content that resonates with your audience and drives results.",
         socialPlatforms: [
-          { name: "Facebook", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780429350-facebookfavicon.png", capabilities: "Posts, Images, Videos" },
-          { name: "Instagram", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780487572-instagramfavicon.png", capabilities: "Posts & Stories" },
-          { name: "LinkedIn", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780083679-linkedinfavicon.png", capabilities: "Personal & Company Pages" },
-          { name: "X (Twitter)", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780080709-xfavicon.png", capabilities: "Tweets, Threads" },
-          { name: "Pinterest", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780457500-pinterestfavicon.png", capabilities: "Pins & Boards" },
-          { name: "TikTok", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780086756-tiktokfavicon.png", capabilities: "Short-form Videos" },
-          { name: "Google Business", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750781038097-googlebusinessfavicon.png", capabilities: "Business Updates & Posts" }
+          {
+            name: "Facebook",
+            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780429350-facebookfavicon.png",
+            capabilities: "Posts, Images, Videos"
+          },
+          {
+            name: "Instagram",
+            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780487572-instagramfavicon.png",
+            capabilities: "Posts & Stories"
+          },
+          {
+            name: "LinkedIn",
+            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780083679-linkedinfavicon.png",
+            capabilities: "Personal & Company Pages"
+          },
+          {
+            name: "X (Twitter)",
+            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780080709-xfavicon.png",
+            capabilities: "Tweets, Threads"
+          },
+          {
+            name: "Pinterest",
+            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780457500-pinterestfavicon.png",
+            capabilities: "Pins & Boards"
+          },
+          {
+            name: "TikTok",
+            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780086756-tiktokfavicon.png",
+            capabilities: "Short-form Videos"
+          },
+          {
+            name: "Google Business",
+            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750781038097-googlebusinessfavicon.png",
+            capabilities: "Business Updates & Posts"
+          }
         ],
         benefits: [
           "Multi-Platform Reach - Automatically post to Facebook, Instagram, LinkedIn, X, Pinterest, TikTok, and Google Business",
@@ -231,26 +301,47 @@ const Services = () => {
       title: "API Integrations",
       description: "Seamless integration with your existing systems and tools, ensuring smooth workflow and data synchronization across your entire business ecosystem.",
       features: ["Custom APIs", "System Integration", "Data Sync"],
+      slug: "apiintegrations",
       detailedContent: {
         title: "API Integrations",
         subtitle: "n8n Preferred - Connect Your Business Ecosystem",
-        description: "Integrate all your business tools and systems with our robust API solutions for seamless data flow and workflow automation. We specialize in n8n as our preferred automation platform, while also supporting Zapier, Make, and Pabbly to meet your specific integration needs.",
+        description: "Integrate all your business tools and systems with our robust API solutions for seamless data flow and workflow automation. We specialize in n8n as our preferred automation platform, while also supporting Zapier, Make, and Pabbly Connect to meet your specific integration needs.",
         automationPlatforms: [
-          { name: "n8n", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779813044-n8nfavicon.png" },
-          { name: "Zapier", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779820203-zapierfavicon.png" },
-          { name: "Make", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779815427-makefavicon.jpg" },
-          { name: "Pabbly", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779817990-pablyfavicon.png" }
+          {
+            name: "n8n",
+            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779813044-n8nfavicon.png",
+            url: "https://n8n.io/",
+            partnerStatus: "preferred"
+          },
+          {
+            name: "Zapier",
+            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779820203-zapierfavicon.png",
+            url: "https://zapier.com/",
+            partnerStatus: "solution_partner"
+          },
+          {
+            name: "Make",
+            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779815427-makefavicon.jpg",
+            url: "https://www.make.com/en/register?pc=tonnic",
+            partnerStatus: "standard"
+          },
+          {
+            name: "Pabbly Connect",
+            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779817990-pablyfavicon.png",
+            url: "https://www.pabbly.com/connect/",
+            partnerStatus: "standard"
+          }
         ],
         preferredPlatform: "n8n",
         benefits: [
           "n8n Expertise - Advanced workflows with our preferred open-source platform",
-          "Multi-Platform Support - Work with Zapier, Make, and Pabbly as needed",
+          "Zapier Solution Partner - Certified expertise for complex automation workflows",
+          "Multi-Platform Support - Work with n8n, Zapier, Make, and Pabbly Connect as needed",
           "Unified Data - Single source of truth across all systems",
           "Automated Workflows - Eliminate manual data entry and repetitive tasks",
           "Real-time Sync - Instant updates across all platforms and applications",
           "Scalable Architecture - Grows with your business needs and complexity",
-          "Secure Connections - Enterprise-grade security protocols and data protection",
-          "Cost-Effective Solutions - Optimize automation costs with open-source options"
+          "Secure Connections - Enterprise-grade security protocols and data protection"
         ],
         howItWorks: [
           "Analyze your current system architecture and integration requirements",
@@ -278,28 +369,47 @@ const Services = () => {
       title: "Business Automation",
       description: "End-to-end automation solutions including HR processes, workflow optimization, and business operations to increase productivity while reducing costs significantly.",
       features: ["Workflow Automation", "HR Process Integration", "ROI Tracking"],
+      slug: "businessautomation",
       detailedContent: {
         title: "Business Automation",
         subtitle: "n8n Powered - Transform Your Business Operations",
-        description: "Automate complex business processes including HR workflows, operations, and administrative tasks to increase efficiency, reduce costs, and improve accuracy across your organization. We leverage n8n as our preferred automation platform, complemented by Zapier, Make, and Pabbly for comprehensive automation solutions.",
+        description: "Automate complex business processes including HR workflows, operations, and administrative tasks to increase efficiency, reduce costs, and improve accuracy across your organization. We leverage n8n as our preferred automation platform, complemented by Zapier, Make, and Pabbly Connect for comprehensive automation solutions.",
         automationPlatforms: [
-          { name: "n8n", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779813044-n8nfavicon.png" },
-          { name: "Zapier", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779820203-zapierfavicon.png" },
-          { name: "Make", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779815427-makefavicon.jpg" },
-          { name: "Pabbly", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779817990-pablyfavicon.png" }
+          {
+            name: "n8n",
+            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779813044-n8nfavicon.png",
+            url: "https://n8n.io/",
+            partnerStatus: "preferred"
+          },
+          {
+            name: "Zapier",
+            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779820203-zapierfavicon.png",
+            url: "https://zapier.com/",
+            partnerStatus: "solution_partner"
+          },
+          {
+            name: "Make",
+            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779815427-makefavicon.jpg",
+            url: "https://www.make.com/en/register?pc=tonnic",
+            partnerStatus: "standard"
+          },
+          {
+            name: "Pabbly Connect",
+            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779817990-pablyfavicon.png",
+            url: "https://www.pabbly.com/connect/",
+            partnerStatus: "standard"
+          }
         ],
         preferredPlatform: "n8n",
         benefits: [
           "n8n Specialization - Advanced automation with our preferred open-source platform",
-          "Platform Flexibility - Choose from n8n, Zapier, Make, or Pabbly based on your needs",
+          "Zapier Solution Partner - Certified expertise for complex automation workflows",
+          "Platform Flexibility - Choose from n8n, Zapier, Make, or Pabbly Connect based on your needs",
           "Productivity Boost - Increase efficiency by up to 300% with intelligent automation",
           "Cost Reduction - Reduce operational costs by 40-60% through process optimization",
           "Error Elimination - Minimize human errors in critical business processes",
           "Scalability - Easily handle increased workload without additional hiring",
-          "ROI Tracking - Measure and optimize automation impact with detailed analytics",
-          "HR Streamlining - Automate employee onboarding, scheduling, and management workflows",
-          "Compliance Management - Automated tracking and reporting for regulatory requirements",
-          "Employee Satisfaction - Faster response times and self-service automation options"
+          "ROI Tracking - Measure and optimize automation impact with detailed analytics"
         ],
         howItWorks: [
           "Comprehensive process mapping and workflow analysis across all departments",
@@ -343,6 +453,31 @@ const Services = () => {
     setShowCalModal(false);
   };
 
+  // Function to get partner status display text
+  const getPartnerStatusText = (platform) => {
+    switch (platform.partnerStatus) {
+      case 'preferred':
+        return `${platform.name} (Preferred)`;
+      case 'solution_partner':
+        return `${platform.name} (Solution Partner)`;
+      default:
+        return platform.name;
+    }
+  };
+
+  // Function to get partner status styling
+  const getPartnerStatusStyle = (platform, isPreferred) => {
+    if (isPreferred) {
+      return 'bg-yellow-500 text-slate-800 border-yellow-500';
+    }
+    switch (platform.partnerStatus) {
+      case 'solution_partner':
+        return 'bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 border-blue-300 dark:border-blue-600';
+      default:
+        return 'bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-600';
+    }
+  };
+
   return (
     <>
       <section id="services" className="py-20 bg-white dark:bg-slate-900 transition-colors duration-200">
@@ -376,12 +511,15 @@ const Services = () => {
                   <div className="bg-yellow-500 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                     <SafeIcon icon={service.icon} className="w-8 h-8 text-slate-800" />
                   </div>
+
                   <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-4 group-hover:text-yellow-600 dark:group-hover:text-yellow-400 transition-colors duration-300">
                     {service.title}
                   </h3>
+
                   <p className="text-slate-600 dark:text-slate-300 mb-6 leading-relaxed flex-1 text-sm transition-colors duration-200">
                     {service.description}
                   </p>
+
                   <div className="mb-6">
                     <ul className="space-y-2">
                       {service.features.map((feature, featureIndex) => (
@@ -393,10 +531,12 @@ const Services = () => {
                     </ul>
                   </div>
                 </div>
+
                 <div className="p-8 pt-0">
+                  {/* Single Learn More Button - Opens modal for detailed view */}
                   <button
                     onClick={() => openServiceModal(service)}
-                    className="w-full bg-slate-800 dark:bg-slate-700 text-white px-6 py-3 rounded-xl font-semibold hover:bg-yellow-500 hover:text-slate-800 dark:hover:bg-yellow-500 dark:hover:text-slate-800 focus:bg-yellow-500 focus:text-slate-800 transition-all duration-300 flex items-center justify-center transform hover:-translate-y-1"
+                    className="w-full bg-yellow-500 text-slate-800 px-6 py-3 rounded-xl font-semibold hover:bg-yellow-400 focus:bg-yellow-400 transition-all duration-300 flex items-center justify-center transform hover:-translate-y-1"
                   >
                     Learn More
                     <SafeIcon icon={FiArrowRight} className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
@@ -432,7 +572,7 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Service Modal */}
+      {/* Service Modal - Keep existing functionality */}
       {selectedService && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" role="dialog" aria-modal="true" aria-labelledby="service-modal-title">
           <motion.div
@@ -473,30 +613,44 @@ const Services = () => {
                 </div>
               </div>
 
-              {/* Tech Stack for AI Voice Agents with favicons - LIGHTER DARK THEME */}
+              {/* Tech Stack for AI Voice Agents with clickable links */}
               {selectedService.detailedContent.techStack && (
                 <div className="mb-6 p-4 bg-yellow-50 dark:bg-yellow-100/10 rounded-xl transition-colors duration-200">
                   <h4 className="text-lg font-semibold text-slate-800 dark:text-yellow-200 mb-3 flex items-center transition-colors duration-200">
                     <SafeIcon icon={FiAward} className="w-5 h-5 mr-2 text-yellow-500" />
                     Powered by Industry Leaders
                   </h4>
-                  <div className="flex flex-wrap gap-3">
+                  <div className="grid grid-cols-2 gap-3">
                     {selectedService.detailedContent.techStack.map((tech, index) => (
-                      <span key={index} className="bg-white dark:bg-yellow-200/20 px-4 py-2 rounded-lg font-medium text-slate-700 dark:text-yellow-100 border border-yellow-200 dark:border-yellow-300/30 transition-colors duration-200 flex items-center">
+                      <a
+                        key={index}
+                        href={tech.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-white dark:bg-yellow-200/20 px-4 py-2 rounded-lg font-medium text-slate-700 dark:text-yellow-100 border border-yellow-200 dark:border-yellow-300/30 transition-all duration-200 flex items-center hover:bg-yellow-100 dark:hover:bg-yellow-200/30 hover:border-yellow-300 dark:hover:border-yellow-300/50 hover:scale-105 hover:shadow-md group cursor-pointer"
+                        aria-label={`Visit ${tech.name} website (opens in new tab)`}
+                      >
                         <img
                           src={tech.favicon}
                           alt={`${tech.name} logo`}
                           className="w-4 h-4 mr-2 flex-shrink-0"
                           onError={(e) => { e.target.style.display = 'none'; }}
                         />
-                        {tech.name}
-                      </span>
+                        <span className="group-hover:text-slate-800 dark:group-hover:text-yellow-50 transition-colors duration-200">
+                          {tech.name}
+                        </span>
+                        <SafeIcon icon={FiExternalLink} className="w-3 h-3 ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-slate-500 dark:text-yellow-300" aria-hidden="true" />
+                      </a>
                     ))}
                   </div>
+                  <p className="text-xs text-slate-500 dark:text-yellow-200/80 mt-3 transition-colors duration-200">
+                    <SafeIcon icon={FiExternalLink} className="w-3 h-3 mr-1 inline" aria-hidden="true" />
+                    Click any partner to learn more about their platform
+                  </p>
                 </div>
               )}
 
-              {/* Chatbot Platforms for AI Chatbots with favicons - LIGHTER DARK THEME */}
+              {/* Chatbot Platforms for AI Chatbots with favicons */}
               {selectedService.detailedContent.chatbotPlatforms && (
                 <div className="mb-6 p-4 bg-yellow-50 dark:bg-yellow-100/10 rounded-xl transition-colors duration-200">
                   <h4 className="text-lg font-semibold text-slate-800 dark:text-yellow-200 mb-3 flex items-center transition-colors duration-200">
@@ -526,7 +680,7 @@ const Services = () => {
                 </div>
               )}
 
-              {/* Social Media Platforms for Social Media AI with favicons - LIGHTER DARK THEME */}
+              {/* Social Media Platforms for Social Media AI with favicons */}
               {selectedService.detailedContent.socialPlatforms && (
                 <div className="mb-6 p-4 bg-yellow-50 dark:bg-yellow-100/10 rounded-xl transition-colors duration-200">
                   <h4 className="text-lg font-semibold text-slate-800 dark:text-yellow-200 mb-3 flex items-center transition-colors duration-200">
@@ -556,29 +710,44 @@ const Services = () => {
                 </div>
               )}
 
-              {/* Automation Platforms for API Integrations and Business Automation with favicons - LIGHTER DARK THEME */}
+              {/* Automation Platforms for API Integrations and Business Automation with improved layout */}
               {selectedService.detailedContent.automationPlatforms && (
                 <div className="mb-6 p-4 bg-yellow-50 dark:bg-yellow-100/10 rounded-xl transition-colors duration-200">
                   <h4 className="text-lg font-semibold text-slate-800 dark:text-yellow-200 mb-3 flex items-center transition-colors duration-200">
                     <SafeIcon icon={FiZap} className="w-5 h-5 mr-2 text-yellow-500" />
                     Automation Platforms
                   </h4>
-                  <div className="flex flex-wrap gap-3">
-                    {selectedService.detailedContent.automationPlatforms.map((platform, index) => (
-                      <span key={index} className={`px-4 py-2 rounded-lg font-medium border transition-colors duration-200 flex items-center ${
-                        platform.name === selectedService.detailedContent.preferredPlatform
-                          ? 'bg-yellow-500 text-slate-800 border-yellow-500'
-                          : 'bg-white dark:bg-yellow-200/20 text-slate-700 dark:text-yellow-100 border-yellow-200 dark:border-yellow-300/30'
-                      }`}>
-                        <img
-                          src={platform.favicon}
-                          alt={`${platform.name} logo`}
-                          className="w-4 h-4 mr-2 flex-shrink-0"
-                          onError={(e) => { e.target.style.display = 'none'; }}
-                        />
-                        {platform.name === selectedService.detailedContent.preferredPlatform ? `${platform.name} (Preferred)` : platform.name}
-                      </span>
-                    ))}
+                  <div className="grid grid-cols-2 gap-3">
+                    {selectedService.detailedContent.automationPlatforms.map((platform, index) => {
+                      const isPreferred = platform.name === selectedService.detailedContent.preferredPlatform;
+                      return (
+                        <a
+                          key={index}
+                          href={platform.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`px-4 py-3 rounded-lg font-medium border transition-all duration-200 flex items-center hover:scale-105 hover:shadow-md group cursor-pointer min-h-[60px] ${getPartnerStatusStyle(platform, isPreferred)}`}
+                          aria-label={`Visit ${platform.name} website (opens in new tab)`}
+                        >
+                          <img
+                            src={platform.favicon}
+                            alt={`${platform.name} logo`}
+                            className="w-5 h-5 mr-3 flex-shrink-0"
+                            onError={(e) => { e.target.style.display = 'none'; }}
+                          />
+                          <div className="flex-1 min-w-0">
+                            <span className="group-hover:opacity-90 transition-opacity duration-200 block truncate">
+                              {getPartnerStatusText(platform)}
+                            </span>
+                          </div>
+                          <SafeIcon icon={FiExternalLink} className="w-4 h-4 ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex-shrink-0" aria-hidden="true" />
+                        </a>
+                      );
+                    })}
+                  </div>
+                  <div className="mt-3 text-xs text-slate-500 dark:text-yellow-200/80 transition-colors duration-200">
+                    <SafeIcon icon={FiExternalLink} className="w-3 h-3 mr-1 inline" aria-hidden="true" />
+                    Click any platform to learn more • Solution Partner indicates certified expertise
                   </div>
                 </div>
               )}
@@ -603,6 +772,7 @@ const Services = () => {
                     ))}
                   </ul>
                 </div>
+
                 <div>
                   <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-4 transition-colors duration-200">
                     How It Works
@@ -639,8 +809,14 @@ const Services = () => {
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
-                  onClick={openCalModal}
+                  onClick={() => navigate(`/${selectedService.slug}`)}
                   className="flex-1 bg-yellow-500 text-slate-800 px-8 py-4 rounded-xl font-semibold hover:bg-yellow-400 transition-all duration-200 flex items-center justify-center"
+                >
+                  View Full Details
+                </button>
+                <button
+                  onClick={openCalModal}
+                  className="flex-1 bg-slate-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-slate-500 transition-all duration-200 flex items-center justify-center"
                 >
                   <SafeIcon icon={FiCalendar} className="w-5 h-5 mr-2" />
                   Book a Meeting

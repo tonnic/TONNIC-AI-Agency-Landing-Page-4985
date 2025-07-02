@@ -8,6 +8,15 @@ import CookiePolicy from './components/CookiePolicy';
 import NotFound from './components/NotFound';
 import AccessibilityPanel from './components/AccessibilityPanel';
 import ChatbotEmbed from './components/ChatbotEmbed';
+
+// Service Pages
+import AIVoiceAgents from './components/services/AIVoiceAgents';
+import AIChatbots from './components/services/AIChatbots';
+import WebsiteDesign from './components/services/WebsiteDesign';
+import SocialMediaAI from './components/services/SocialMediaAI';
+import APIIntegrations from './components/services/APIIntegrations';
+import BusinessAutomation from './components/services/BusinessAutomation';
+
 import './App.css';
 
 // Global accessibility state management
@@ -20,6 +29,7 @@ class AccessibilityManager {
 
     // Load saved settings
     this.loadSettings();
+
     // Apply initial settings
     this.applySettings();
   }
@@ -82,7 +92,6 @@ class AccessibilityManager {
     style.id = 'accessibility-high-contrast';
     style.textContent = `
       /* PROPERLY WORKING HIGH CONTRAST SYSTEM - FINAL FIX */
-      
       /* Remove shadows and complex styling for clarity */
       html.high-contrast * {
         box-shadow: none !important;
@@ -90,7 +99,6 @@ class AccessibilityManager {
       }
 
       /* LIGHT MODE HIGH CONTRAST - Force ALL backgrounds to be WHITE or very light */
-      
       /* Force all dark backgrounds to be WHITE in light mode */
       html.high-contrast:not(.dark) .bg-slate-800,
       html.high-contrast:not(.dark) .bg-slate-900,
@@ -101,7 +109,7 @@ class AccessibilityManager {
         color: #000000 !important;
         border: 2px solid #000000 !important;
       }
-      
+
       /* Force gradient backgrounds to solid white in light mode */
       html.high-contrast:not(.dark) .bg-gradient-to-br,
       html.high-contrast:not(.dark) .bg-gradient-to-r,
@@ -113,7 +121,7 @@ class AccessibilityManager {
         color: #000000 !important;
         border: 2px solid #000000 !important;
       }
-      
+
       /* Fix the specific "Ready to Transform" section */
       html.high-contrast:not(.dark) .from-yellow-500,
       html.high-contrast:not(.dark) .to-yellow-400,
@@ -141,7 +149,6 @@ class AccessibilityManager {
       }
 
       /* DARK MODE HIGH CONTRAST - Opposite logic */
-      
       html.high-contrast.dark .bg-white,
       html.high-contrast.dark .bg-slate-50,
       html.high-contrast.dark .bg-slate-100,
@@ -150,7 +157,7 @@ class AccessibilityManager {
         color: #ffffff !important;
         border: 2px solid #ffffff !important;
       }
-      
+
       html.high-contrast.dark .text-slate-600,
       html.high-contrast.dark .text-slate-500,
       html.high-contrast.dark .text-slate-400,
@@ -169,7 +176,7 @@ class AccessibilityManager {
       html.high-contrast .dark\\:text-white {
         color: #ffffff !important;
       }
-      
+
       html.high-contrast .dark\\:bg-slate-800,
       html.high-contrast .dark\\:bg-slate-900,
       html.high-contrast .dark\\:bg-slate-700 {
@@ -187,7 +194,7 @@ class AccessibilityManager {
       html.high-contrast:not(.dark) .border-transparent {
         border-color: #000000 !important; /* Black borders on light backgrounds */
       }
-      
+
       html.high-contrast.dark .border-slate-600,
       html.high-contrast.dark .border-slate-700,
       html.high-contrast.dark .border-slate-400,
@@ -203,28 +210,28 @@ class AccessibilityManager {
         font-weight: 700 !important;
         border-width: 3px !important;
       }
-      
+
       /* Light mode buttons - FORCE white background */
       html.high-contrast:not(.dark) button {
         background-color: #ffffff !important;
         color: #000000 !important;
         border-color: #000000 !important;
       }
-      
+
       html.high-contrast:not(.dark) button:hover,
       html.high-contrast:not(.dark) button:focus {
         background-color: #000000 !important;
         color: #ffffff !important;
         border-color: #000000 !important;
       }
-      
+
       /* Dark mode buttons */
       html.high-contrast.dark button {
         background-color: #000000 !important;
         color: #ffffff !important;
         border-color: #ffffff !important;
       }
-      
+
       html.high-contrast.dark button:hover,
       html.high-contrast.dark button:focus {
         background-color: #ffffff !important;
@@ -239,7 +246,7 @@ class AccessibilityManager {
         color: #92400e !important; /* Dark yellow/brown on light backgrounds */
         font-weight: 700 !important;
       }
-      
+
       html.high-contrast.dark .text-yellow-400,
       html.high-contrast.dark .text-yellow-500,
       html.high-contrast .dark\\:text-yellow-400 {
@@ -259,12 +266,12 @@ class AccessibilityManager {
         text-decoration: underline !important;
         font-weight: 700 !important;
       }
-      
+
       html.high-contrast:not(.dark) a {
         color: #1d4ed8 !important; /* Blue links on light backgrounds */
         background-color: #ffffff !important;
       }
-      
+
       html.high-contrast.dark a {
         color: #60a5fa !important; /* Light blue links on dark backgrounds */
         background-color: #000000 !important;
@@ -277,7 +284,7 @@ class AccessibilityManager {
         border-width: 3px !important;
         font-weight: 700 !important;
       }
-      
+
       /* Light mode forms */
       html.high-contrast:not(.dark) input,
       html.high-contrast:not(.dark) textarea,
@@ -286,7 +293,7 @@ class AccessibilityManager {
         border-color: #000000 !important;
         color: #000000 !important;
       }
-      
+
       /* Dark mode forms */
       html.high-contrast.dark input,
       html.high-contrast.dark textarea,
@@ -302,7 +309,7 @@ class AccessibilityManager {
       html.high-contrast .rounded-xl {
         border-width: 3px !important;
       }
-      
+
       /* Force ALL rounded elements to have proper backgrounds in light mode */
       html.high-contrast:not(.dark) .rounded-2xl,
       html.high-contrast:not(.dark) .rounded-3xl,
@@ -311,7 +318,7 @@ class AccessibilityManager {
         border-color: #000000 !important;
         color: #000000 !important;
       }
-      
+
       html.high-contrast.dark .rounded-2xl,
       html.high-contrast.dark .rounded-3xl,
       html.high-contrast.dark .rounded-xl {
@@ -326,13 +333,13 @@ class AccessibilityManager {
         background-gradient: none !important;
         transition-duration: 0.1s !important;
       }
-      
+
       /* Force simple backgrounds everywhere in light mode */
       html.high-contrast:not(.dark) * {
         background-color: #ffffff !important;
         color: #000000 !important;
       }
-      
+
       /* Exception for truly dark sections that should stay dark in light mode */
       html.high-contrast:not(.dark) .bg-slate-800,
       html.high-contrast:not(.dark) .bg-slate-900,
@@ -342,7 +349,6 @@ class AccessibilityManager {
         border: 3px solid #000000 !important;
       }
     `;
-    
     document.head.appendChild(style);
     console.log('HIGH CONTRAST ENABLED - Final fix applied');
   }
@@ -357,7 +363,6 @@ class AccessibilityManager {
     if (existingStyle) {
       existingStyle.remove();
     }
-
     console.log('HIGH CONTRAST DISABLED - CSS removed');
   }
 
@@ -379,7 +384,7 @@ class AccessibilityManager {
         scroll-behavior: auto !important;
         transform: none !important;
       }
-      
+
       /* Disable Framer Motion specifically */
       [data-framer-motion] {
         animation: none !important;
@@ -409,22 +414,18 @@ class AccessibilityManager {
 
   toggleHighContrast() {
     this.highContrast = !this.highContrast;
-    
     if (this.highContrast) {
       this.enableHighContrast();
     } else {
       this.disableHighContrast();
     }
-
     localStorage.setItem('highContrast', this.highContrast.toString());
     this.notifyListeners();
-    
     console.log('High contrast toggled:', this.highContrast);
   }
 
   toggleReducedMotion() {
     this.reducedMotion = !this.reducedMotion;
-    
     if (this.reducedMotion) {
       document.documentElement.classList.add('reduce-motion');
       document.body.classList.add('reduce-motion');
@@ -434,7 +435,6 @@ class AccessibilityManager {
       document.body.classList.remove('reduce-motion');
       this.removeReducedMotionCSS();
     }
-
     localStorage.setItem('reducedMotion', this.reducedMotion.toString());
     this.notifyListeners();
     console.log('Reduced motion toggled:', this.reducedMotion);
@@ -491,7 +491,7 @@ const URLRedirectHandler = () => {
   useEffect(() => {
     const currentPath = window.location.pathname.toLowerCase();
     const currentHash = window.location.hash;
-    
+
     console.log('App loaded - Current path:', currentPath);
     console.log('App loaded - Current hash:', currentHash);
 
@@ -547,6 +547,7 @@ const KeyboardShortcuts = () => {
         const currentSize = accessibilityManager.fontSize;
         accessibilityManager.setFontSize(currentSize + 10);
       }
+
       if ((event.ctrlKey || event.metaKey) && event.key === '-') {
         event.preventDefault();
         const currentSize = accessibilityManager.fontSize;
@@ -573,6 +574,14 @@ function App() {
             <Routes>
               {/* Main landing page */}
               <Route path="/" element={<LandingPage />} />
+              
+              {/* Service Pages */}
+              <Route path="/aivoiceagents" element={<AIVoiceAgents />} />
+              <Route path="/aichatbots" element={<AIChatbots />} />
+              <Route path="/websitedesign" element={<WebsiteDesign />} />
+              <Route path="/socialmediaai" element={<SocialMediaAI />} />
+              <Route path="/apiintegrations" element={<APIIntegrations />} />
+              <Route path="/businessautomation" element={<BusinessAutomation />} />
               
               {/* Privacy Policy Routes */}
               <Route path="/privacy" element={<PrivacyPolicy />} />

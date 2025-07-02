@@ -3,16 +3,20 @@ import { motion } from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 
-const { FiMail, FiPhone, FiCalendar, FiX, FiMic, FiUser, FiMessageSquare, FiSend, FiCheck, FiAlertCircle } = FiIcons;
+const { FiMail, FiPhone, FiCalendar, FiX, FiMic, FiUser, FiMessageSquare, FiSend, FiCheck, FiAlertCircle, FiLinkedin, FiGlobe, FiBuilding } = FiIcons;
 
 const Contact = () => {
   const [showCalModal, setShowCalModal] = useState(false);
   const [formData, setFormData] = useState({
+    // Personal Info
     name: '',
     email: '',
-    company: '',
     phone: '',
-    service: '',
+    linkedin: '',
+    // Company Info
+    company: '',
+    website: '',
+    service: 'General Inquiry', // Default value
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -54,7 +58,10 @@ const Contact = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -64,12 +71,17 @@ const Contact = () => {
 
     try {
       const webhookUrl = 'https://api1.tonnic.ai/webhook/6af91990-0957-4380-a771-3609fe8cb4d6';
+      
       const payload = {
+        // Personal Info
         name: formData.name,
         email: formData.email,
+        phone: formData.phone,
+        linkedin: formData.linkedin || '',
+        // Company Info
         company: formData.company || '',
-        phone: formData.phone || '',
-        service: formData.service || 'General Inquiry',
+        website: formData.website || '',
+        service: formData.service,
         message: formData.message,
         timestamp: new Date().toISOString(),
         source: 'website_contact_form'
@@ -99,9 +111,11 @@ const Contact = () => {
         setFormData({
           name: '',
           email: '',
-          company: '',
           phone: '',
-          service: '',
+          linkedin: '',
+          company: '',
+          website: '',
+          service: 'General Inquiry', // Reset to default
           message: ''
         });
       }, 5000);
@@ -115,13 +129,13 @@ const Contact = () => {
   };
 
   const services = [
+    'General Inquiry',
     'AI Voice Agents',
-    'AI Chatbots', 
+    'AI Chatbots',
     'Website Design & Hosting',
     'Social Media AI',
     'API Integrations',
-    'Business Automation',
-    'General Inquiry'
+    'Business Automation'
   ];
 
   return (
@@ -181,98 +195,158 @@ const Contact = () => {
                     </motion.div>
                   )}
 
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-200">
-                          Full Name *
-                        </label>
-                        <div className="relative">
-                          <SafeIcon icon={FiUser} className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500" />
-                          <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            required
-                            value={formData.name}
-                            onChange={handleInputChange}
-                            className="w-full pl-10 pr-4 py-3 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-colors duration-200"
-                            placeholder="John Doe"
-                          />
-                        </div>
-                      </div>
-                      <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-200">
-                          Email Address *
-                        </label>
-                        <div className="relative">
-                          <SafeIcon icon={FiMail} className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500" />
-                          <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            required
-                            value={formData.email}
-                            onChange={handleInputChange}
-                            className="w-full pl-10 pr-4 py-3 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-colors duration-200"
-                            placeholder="john@company.com"
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="company" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-200">
-                          Company Name
-                        </label>
-                        <input
-                          type="text"
-                          id="company"
-                          name="company"
-                          value={formData.company}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-colors duration-200"
-                          placeholder="Your Company"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="phone" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-200">
-                          Phone Number
-                        </label>
-                        <div className="relative">
-                          <SafeIcon icon={FiPhone} className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500" />
-                          <input
-                            type="tel"
-                            id="phone"
-                            name="phone"
-                            value={formData.phone}
-                            onChange={handleInputChange}
-                            className="w-full pl-10 pr-4 py-3 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-colors duration-200"
-                            placeholder="(555) 123-4567"
-                          />
-                        </div>
-                      </div>
-                    </div>
-
+                  <form onSubmit={handleSubmit} className="space-y-8">
+                    {/* Personal Information Section */}
                     <div>
-                      <label htmlFor="service" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-200">
-                        Service Interest
-                      </label>
-                      <select
-                        id="service"
-                        name="service"
-                        value={formData.service}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-colors duration-200"
-                      >
-                        <option value="">Select a service</option>
-                        {services.map((service, index) => (
-                          <option key={index} value={service}>{service}</option>
-                        ))}
-                      </select>
+                      <h4 className="text-lg font-semibold text-slate-800 dark:text-white mb-4 flex items-center transition-colors duration-200">
+                        <SafeIcon icon={FiUser} className="w-5 h-5 mr-2 text-yellow-500" />
+                        Personal Information
+                      </h4>
+                      <div className="space-y-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <label htmlFor="name" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-200">
+                              Full Name *
+                            </label>
+                            <div className="relative">
+                              <SafeIcon icon={FiUser} className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500" />
+                              <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                required
+                                value={formData.name}
+                                onChange={handleInputChange}
+                                className="w-full pl-10 pr-4 py-3 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-colors duration-200"
+                                placeholder="John Doe"
+                              />
+                            </div>
+                          </div>
+                          <div>
+                            <label htmlFor="email" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-200">
+                              Email Address *
+                            </label>
+                            <div className="relative">
+                              <SafeIcon icon={FiMail} className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500" />
+                              <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                required
+                                value={formData.email}
+                                onChange={handleInputChange}
+                                className="w-full pl-10 pr-4 py-3 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-colors duration-200"
+                                placeholder="john@company.com"
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <label htmlFor="phone" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-200">
+                              Phone Number *
+                            </label>
+                            <div className="relative">
+                              <SafeIcon icon={FiPhone} className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500" />
+                              <input
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                required
+                                value={formData.phone}
+                                onChange={handleInputChange}
+                                className="w-full pl-10 pr-4 py-3 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-colors duration-200"
+                                placeholder="(555) 123-4567"
+                              />
+                            </div>
+                          </div>
+                          <div>
+                            <label htmlFor="linkedin" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-200">
+                              LinkedIn Profile
+                            </label>
+                            <div className="relative">
+                              <SafeIcon icon={FiLinkedin} className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500" />
+                              <input
+                                type="url"
+                                id="linkedin"
+                                name="linkedin"
+                                value={formData.linkedin}
+                                onChange={handleInputChange}
+                                className="w-full pl-10 pr-4 py-3 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-colors duration-200"
+                                placeholder="linkedin.com/in/yourprofile"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
 
+                    {/* Company Information Section */}
+                    <div>
+                      <h4 className="text-lg font-semibold text-slate-800 dark:text-white mb-4 flex items-center transition-colors duration-200">
+                        <SafeIcon icon={FiBuilding} className="w-5 h-5 mr-2 text-yellow-500" />
+                        Company Information
+                      </h4>
+                      <div className="space-y-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <label htmlFor="company" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-200">
+                              Company Name
+                            </label>
+                            <div className="relative">
+                              <SafeIcon icon={FiBuilding} className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500" />
+                              <input
+                                type="text"
+                                id="company"
+                                name="company"
+                                value={formData.company}
+                                onChange={handleInputChange}
+                                className="w-full pl-10 pr-4 py-3 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-colors duration-200"
+                                placeholder="Your Company"
+                              />
+                            </div>
+                          </div>
+                          <div>
+                            <label htmlFor="website" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-200">
+                              Company Website
+                            </label>
+                            <div className="relative">
+                              <SafeIcon icon={FiGlobe} className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500" />
+                              <input
+                                type="url"
+                                id="website"
+                                name="website"
+                                value={formData.website}
+                                onChange={handleInputChange}
+                                className="w-full pl-10 pr-4 py-3 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-colors duration-200"
+                                placeholder="https://yourcompany.com"
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        <div>
+                          <label htmlFor="service" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-200">
+                            Service Interest *
+                          </label>
+                          <select
+                            id="service"
+                            name="service"
+                            required
+                            value={formData.service}
+                            onChange={handleInputChange}
+                            className="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-colors duration-200"
+                          >
+                            {services.map((service, index) => (
+                              <option key={index} value={service}>{service}</option>
+                            ))}
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Message Section */}
                     <div>
                       <label htmlFor="message" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-200">
                         Message *
@@ -311,7 +385,10 @@ const Contact = () => {
               <div className="mt-6 p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-xl transition-colors duration-200">
                 <p className="text-sm text-slate-600 dark:text-slate-300 transition-colors duration-200">
                   <strong>Note:</strong> For immediate assistance, call our AI Voice Agent at{' '}
-                  <a href="tel:+18882925513" className="text-yellow-600 dark:text-yellow-400 hover:text-yellow-700 dark:hover:text-yellow-300 underline focus:ring-2 focus:ring-yellow-500 focus:ring-offset-1 dark:focus:ring-offset-slate-800 rounded transition-colors duration-200">
+                  <a
+                    href="tel:+18882925513"
+                    className="text-yellow-600 dark:text-yellow-400 hover:text-yellow-700 dark:hover:text-yellow-300 underline focus:ring-2 focus:ring-yellow-500 focus:ring-offset-1 dark:focus:ring-offset-slate-800 rounded transition-colors duration-200"
+                  >
                     1-888-292-5513
                   </a>
                   {' '}who can answer questions and connect you with our team.
@@ -367,6 +444,7 @@ const Contact = () => {
                     </p>
                   </div>
                 </div>
+
                 <div className="flex items-center space-x-4">
                   <div className="bg-yellow-500 w-12 h-12 rounded-xl flex items-center justify-center">
                     <SafeIcon icon={FiMail} className="w-6 h-6 text-slate-800" aria-hidden="true" />
@@ -431,7 +509,7 @@ const Contact = () => {
             </button>
             <div className="p-6 border-b border-slate-200 dark:border-slate-700 transition-colors duration-200">
               <h3 id="cal-modal-title" className="text-2xl font-bold text-slate-800 dark:text-white transition-colors duration-200">Book a Meeting</h3>
-              <p className="text-slate-600 dark:text-slate-300 mt-2 transition-colors duration-200">Schedule a 30-minute consultation with our AI experts</p>
+              <p className="text-slate-600 dark:text-slate-300 mt-2 transition-colors duration-200">Schedule a 30-minute consultation with our AI experts to discuss your business needs</p>
             </div>
             <div className="h-[600px]">
               <iframe
@@ -441,6 +519,7 @@ const Contact = () => {
                 frameBorder="0"
                 title="Book a meeting with TONNIC"
                 className="rounded-b-2xl"
+                loading="lazy"
               ></iframe>
             </div>
           </motion.div>

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 
-const { FiLinkedin, FiMail, FiMic } = FiIcons;
+const { FiLinkedin, FiMic } = FiIcons;
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -38,10 +38,6 @@ const Footer = () => {
       // Navigate to home page
       navigate('/');
     }
-  };
-
-  const scrollToContact = () => {
-    scrollToSection('contact');
   };
 
   return (
@@ -81,13 +77,6 @@ const Footer = () => {
               >
                 <SafeIcon icon={FiLinkedin} className="w-5 h-5" aria-hidden="true" />
               </a>
-              <button
-                onClick={scrollToContact}
-                className="bg-slate-800 dark:bg-slate-900 p-3 rounded-xl hover:bg-yellow-500 hover:text-slate-800 focus:bg-yellow-500 focus:text-slate-800 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black transition-colors duration-200"
-                aria-label="Go to contact form"
-              >
-                <SafeIcon icon={FiMail} className="w-5 h-5" aria-hidden="true" />
-              </button>
             </div>
           </div>
 
@@ -132,65 +121,112 @@ const Footer = () => {
             </nav>
           </div>
 
-          {/* Contact Info */}
+          {/* Services Links - FOR SEO */}
           <div>
-            <h3 className="text-lg font-semibold mb-6">Contact Info</h3>
-            <ul className="space-y-4">
-              <li className="flex items-start space-x-3">
-                <SafeIcon icon={FiMic} className="w-4 h-4 text-yellow-500 mt-1 flex-shrink-0" aria-hidden="true" />
-                <div>
-                  <div className="text-slate-200 font-medium text-sm">AI Voice Agent</div>
-                  <a
-                    href="tel:+18882925513"
-                    className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200"
-                    aria-label="Call our AI Voice Agent at 1-888-292-5513"
+            <h3 className="text-lg font-semibold mb-6">Our Services</h3>
+            <nav aria-label="Service links">
+              <ul className="space-y-3">
+                <li>
+                  <button
+                    onClick={() => navigate('/aivoiceagents')}
+                    className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200 text-left"
                   >
-                    1-888-292-5513
-                  </a>
-                  <div className="text-slate-400 text-xs mt-1">Available 24/7</div>
-                </div>
-              </li>
-              <li className="flex items-center space-x-3">
-                <SafeIcon icon={FiMail} className="w-4 h-4 text-yellow-500" aria-hidden="true" />
-                <button
-                  onClick={scrollToContact}
-                  className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200 text-left"
-                  aria-label="Go to contact form"
-                >
-                  Contact Form
-                </button>
-              </li>
-            </ul>
+                    AI Voice Agents
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => navigate('/aichatbots')}
+                    className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200 text-left"
+                  >
+                    AI Chatbots
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => navigate('/websitedesign')}
+                    className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200 text-left"
+                  >
+                    Website Design
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => navigate('/socialmediaai')}
+                    className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200 text-left"
+                  >
+                    Social Media AI
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => navigate('/apiintegrations')}
+                    className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200 text-left"
+                  >
+                    API Integrations
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => navigate('/businessautomation')}
+                    className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200 text-left"
+                  >
+                    Business Automation
+                  </button>
+                </li>
+              </ul>
+            </nav>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-slate-800 dark:border-slate-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <div className="text-slate-400 text-sm mb-4 md:mb-0">
-            © 2024 TONNIC AI Agency. All rights reserved.
-          </div>
-          <nav aria-label="Legal links">
-            <div className="flex space-x-6 text-sm">
-              <button
-                onClick={() => navigate('/privacy')}
-                className="text-slate-400 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200"
-              >
-                Privacy Policy
-              </button>
-              <button
-                onClick={() => navigate('/terms')}
-                className="text-slate-400 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200"
-              >
-                Terms of Service
-              </button>
-              <button
-                onClick={() => navigate('/cookies')}
-                className="text-slate-400 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200"
-              >
-                Cookie Policy
-              </button>
+        {/* Contact Info - Simplified without booking section */}
+        <div className="border-t border-slate-800 dark:border-slate-800 mt-12 pt-8">
+          <div className="mb-8">
+            <h3 className="text-lg font-semibold mb-4">Contact Info</h3>
+            <div className="flex items-start space-x-3">
+              <SafeIcon icon={FiMic} className="w-4 h-4 text-yellow-500 mt-1 flex-shrink-0" aria-hidden="true" />
+              <div>
+                <div className="text-slate-200 font-medium text-sm">AI Voice Agent</div>
+                <a
+                  href="tel:+18882925513"
+                  className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200"
+                  aria-label="Call our AI Voice Agent at 1-888-292-5513"
+                >
+                  1-888-292-5513
+                </a>
+                <div className="text-slate-400 text-xs mt-1">Available 24/7</div>
+              </div>
             </div>
-          </nav>
+          </div>
+
+          {/* Bottom Bar */}
+          <div className="flex flex-col md:flex-row justify-between items-center border-t border-slate-800 dark:border-slate-800 pt-8">
+            <div className="text-slate-400 text-sm mb-4 md:mb-0">
+              © 2024 TONNIC AI Agency. All rights reserved.
+            </div>
+            <nav aria-label="Legal links">
+              <div className="flex space-x-6 text-sm">
+                <button
+                  onClick={() => navigate('/privacy')}
+                  className="text-slate-400 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200"
+                >
+                  Privacy Policy
+                </button>
+                <button
+                  onClick={() => navigate('/terms')}
+                  className="text-slate-400 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200"
+                >
+                  Terms of Service
+                </button>
+                <button
+                  onClick={() => navigate('/cookies')}
+                  className="text-slate-400 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200"
+                >
+                  Cookie Policy
+                </button>
+              </div>
+            </nav>
+          </div>
         </div>
       </div>
     </footer>
