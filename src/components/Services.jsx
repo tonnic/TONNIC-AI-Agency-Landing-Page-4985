@@ -572,7 +572,7 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Service Modal - Keep existing functionality */}
+      {/* Service Modal - Simplified with only Book Meeting and Close buttons */}
       {selectedService && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" role="dialog" aria-modal="true" aria-labelledby="service-modal-title">
           <motion.div
@@ -807,16 +807,11 @@ const Services = () => {
                 </div>
               </div>
 
+              {/* Simplified Modal Actions - Only Book Meeting (yellow) and Close */}
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
-                  onClick={() => navigate(`/${selectedService.slug}`)}
-                  className="flex-1 bg-yellow-500 text-slate-800 px-8 py-4 rounded-xl font-semibold hover:bg-yellow-400 transition-all duration-200 flex items-center justify-center"
-                >
-                  View Full Details
-                </button>
-                <button
                   onClick={openCalModal}
-                  className="flex-1 bg-slate-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-slate-500 transition-all duration-200 flex items-center justify-center"
+                  className="flex-1 bg-yellow-500 text-slate-800 px-8 py-4 rounded-xl font-semibold hover:bg-yellow-400 transition-all duration-200 flex items-center justify-center"
                 >
                   <SafeIcon icon={FiCalendar} className="w-5 h-5 mr-2" />
                   Book a Meeting
