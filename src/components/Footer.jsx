@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import {useNavigate, useLocation} from 'react-router-dom';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 
-const { FiLinkedin, FiMic } = FiIcons;
+const {FiLinkedin, FiMic} = FiIcons;
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ const Footer = () => {
       // We're on home page, just scroll
       const element = document.getElementById(sectionId);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+        element.scrollIntoView({behavior: 'smooth'});
       }
     } else {
       // We're on a different page, navigate to home first
@@ -24,7 +24,7 @@ const Footer = () => {
       setTimeout(() => {
         const element = document.getElementById(sectionId);
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
+          element.scrollIntoView({behavior: 'smooth'});
         }
       }, 100);
     }
@@ -33,11 +33,20 @@ const Footer = () => {
   const scrollToTop = () => {
     if (location.pathname === '/') {
       // We're on home page, just scroll to top
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({top: 0, behavior: 'smooth'});
     } else {
       // Navigate to home page
       navigate('/');
     }
+  };
+
+  // Fixed navigation functions for service pages that scroll to top
+  const navigateToServicePage = (path) => {
+    navigate(path);
+    // Scroll to top after navigation
+    setTimeout(() => {
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    }, 50);
   };
 
   // Fixed navigation functions that scroll to top
@@ -45,7 +54,7 @@ const Footer = () => {
     navigate('/privacy');
     // Scroll to top after navigation
     setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({top: 0, behavior: 'smooth'});
     }, 50);
   };
 
@@ -53,7 +62,7 @@ const Footer = () => {
     navigate('/terms');
     // Scroll to top after navigation
     setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({top: 0, behavior: 'smooth'});
     }, 50);
   };
 
@@ -61,7 +70,7 @@ const Footer = () => {
     navigate('/cookies');
     // Scroll to top after navigation
     setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({top: 0, behavior: 'smooth'});
     }, 50);
   };
 
@@ -71,35 +80,17 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="lg:col-span-2">
-            <button
-              onClick={scrollToTop}
-              className="flex items-center mb-6 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded"
-              aria-label="Go to top of page"
-            >
+            <button onClick={scrollToTop} className="flex items-center mb-6 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded" aria-label="Go to top of page" >
               {/* Light mode logo - normal logo with dark text */}
-              <img
-                src="https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750776734784-tonnic%20ai%20agency.png"
-                alt="TONNIC AI Agency"
-                className="h-12 w-auto hover:opacity-80 transition-opacity duration-200 dark:hidden"
-              />
+              <img src="https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750776734784-tonnic%20ai%20agency.png" alt="TONNIC AI Agency" className="h-12 w-auto hover:opacity-80 transition-opacity duration-200 dark:hidden" />
               {/* Dark mode logo - light logo */}
-              <img
-                src="https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750770446524-TONNICLogo%20-%20Light.png"
-                alt="TONNIC AI Agency"
-                className="h-12 w-auto hover:opacity-80 transition-opacity duration-200 hidden dark:block"
-              />
+              <img src="https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750770446524-TONNICLogo%20-%20Light.png" alt="TONNIC AI Agency" className="h-12 w-auto hover:opacity-80 transition-opacity duration-200 hidden dark:block" />
             </button>
             <p className="text-slate-300 mb-6 max-w-md leading-relaxed">
               Transforming businesses with intelligent AI solutions. From voice agents to automation, we help companies work smarter, not harder.
             </p>
             <div className="flex space-x-4">
-              <a
-                href="https://linkedin.com/company/tonnicagency"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-slate-800 dark:bg-slate-900 p-3 rounded-xl hover:bg-yellow-500 hover:text-slate-800 focus:bg-yellow-500 focus:text-slate-800 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black transition-colors duration-200"
-                aria-label="Visit our LinkedIn company page"
-              >
+              <a href="https://linkedin.com/company/tonnicagency" target="_blank" rel="noopener noreferrer" className="bg-slate-800 dark:bg-slate-900 p-3 rounded-xl hover:bg-yellow-500 hover:text-slate-800 focus:bg-yellow-500 focus:text-slate-800 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black transition-colors duration-200" aria-label="Visit our LinkedIn company page" >
                 <SafeIcon icon={FiLinkedin} className="w-5 h-5" aria-hidden="true" />
               </a>
             </div>
@@ -111,34 +102,22 @@ const Footer = () => {
             <nav aria-label="Footer navigation">
               <ul className="space-y-3">
                 <li>
-                  <button
-                    onClick={() => scrollToSection('services')}
-                    className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200"
-                  >
+                  <button onClick={() => scrollToSection('services')} className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200" >
                     Services
                   </button>
                 </li>
                 <li>
-                  <button
-                    onClick={() => scrollToSection('how-it-works')}
-                    className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200"
-                  >
+                  <button onClick={() => scrollToSection('how-it-works')} className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200" >
                     How It Works
                   </button>
                 </li>
                 <li>
-                  <button
-                    onClick={() => scrollToSection('about')}
-                    className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200"
-                  >
+                  <button onClick={() => scrollToSection('about')} className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200" >
                     About Us
                   </button>
                 </li>
                 <li>
-                  <button
-                    onClick={() => scrollToSection('contact')}
-                    className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200"
-                  >
+                  <button onClick={() => scrollToSection('contact')} className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200" >
                     Contact
                   </button>
                 </li>
@@ -152,50 +131,32 @@ const Footer = () => {
             <nav aria-label="Service links">
               <ul className="space-y-3">
                 <li>
-                  <button
-                    onClick={() => navigate('/aivoiceagents')}
-                    className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200 text-left"
-                  >
+                  <button onClick={() => navigateToServicePage('/aivoiceagents')} className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200 text-left" >
                     AI Voice Agents
                   </button>
                 </li>
                 <li>
-                  <button
-                    onClick={() => navigate('/aichatbots')}
-                    className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200 text-left"
-                  >
+                  <button onClick={() => navigateToServicePage('/aichatbots')} className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200 text-left" >
                     AI Chatbots
                   </button>
                 </li>
                 <li>
-                  <button
-                    onClick={() => navigate('/websitedesign')}
-                    className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200 text-left"
-                  >
+                  <button onClick={() => navigateToServicePage('/websitedesign')} className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200 text-left" >
                     Website Design
                   </button>
                 </li>
                 <li>
-                  <button
-                    onClick={() => navigate('/socialmediaai')}
-                    className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200 text-left"
-                  >
+                  <button onClick={() => navigateToServicePage('/socialmediaai')} className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200 text-left" >
                     Social Media AI
                   </button>
                 </li>
                 <li>
-                  <button
-                    onClick={() => navigate('/apiintegrations')}
-                    className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200 text-left"
-                  >
+                  <button onClick={() => navigateToServicePage('/apiintegrations')} className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200 text-left" >
                     API Integrations
                   </button>
                 </li>
                 <li>
-                  <button
-                    onClick={() => navigate('/businessautomation')}
-                    className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200 text-left"
-                  >
+                  <button onClick={() => navigateToServicePage('/businessautomation')} className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200 text-left" >
                     Business Automation
                   </button>
                 </li>
@@ -212,11 +173,7 @@ const Footer = () => {
               <SafeIcon icon={FiMic} className="w-4 h-4 text-yellow-500 mt-1 flex-shrink-0" aria-hidden="true" />
               <div>
                 <div className="text-slate-200 font-medium text-sm">AI Voice Agent</div>
-                <a
-                  href="tel:+18884422899"
-                  className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200"
-                  aria-label="Call our AI Voice Agent at 1-888-442-BUZZ"
-                >
+                <a href="tel:+18884422899" className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200" aria-label="Call our AI Voice Agent at 1-888-442-BUZZ" >
                   1-888-442-BUZZ
                 </a>
                 <div className="text-slate-400 text-xs mt-1">(1-888-442-2899) • Available 24/7</div>
@@ -231,22 +188,13 @@ const Footer = () => {
             </div>
             <nav aria-label="Legal links">
               <div className="flex space-x-6 text-sm">
-                <button
-                  onClick={navigateToPrivacy}
-                  className="text-slate-400 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200"
-                >
+                <button onClick={navigateToPrivacy} className="text-slate-400 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200" >
                   Privacy Policy
                 </button>
-                <button
-                  onClick={navigateToTerms}
-                  className="text-slate-400 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200"
-                >
+                <button onClick={navigateToTerms} className="text-slate-400 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200" >
                   Terms of Service
                 </button>
-                <button
-                  onClick={navigateToCookies}
-                  className="text-slate-400 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200"
-                >
+                <button onClick={navigateToCookies} className="text-slate-400 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200" >
                   Cookie Policy
                 </button>
               </div>
