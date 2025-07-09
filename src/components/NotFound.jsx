@@ -36,6 +36,7 @@ const NotFound = () => {
   return (
     <div className="min-h-screen bg-white dark:bg-slate-900">
       <Header />
+      
       <div className="pt-24 pb-16 bg-gradient-to-br from-slate-50 to-yellow-50 dark:from-slate-900 dark:to-slate-800 transition-colors duration-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -96,6 +97,7 @@ const NotFound = () => {
               <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 transition-colors duration-200">
                 Looking for something specific?
               </h3>
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                 <div className="space-y-4">
                   <h4 className="text-lg font-semibold text-slate-700 dark:text-slate-300 transition-colors duration-200">
@@ -128,6 +130,7 @@ const NotFound = () => {
                     </button>
                   </div>
                 </div>
+
                 <div className="space-y-4">
                   <h4 className="text-lg font-semibold text-slate-700 dark:text-slate-300 transition-colors duration-200">
                     Quick Links
@@ -168,12 +171,12 @@ const NotFound = () => {
                 </h4>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a
-                    href="tel:+18882925513"
+                    href="tel:+18884422899"
                     className="flex items-center justify-center space-x-2 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 focus:bg-slate-200 dark:focus:bg-slate-600 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800 p-3 rounded-xl transition-colors duration-200"
                   >
                     <SafeIcon icon={FiPhone} className="w-5 h-5 text-slate-600 dark:text-slate-300" />
                     <span className="text-slate-700 dark:text-slate-300 font-medium transition-colors duration-200">
-                      1-888-292-5513
+                      1-888-442-BUZZ
                     </span>
                   </a>
                   <button
@@ -191,6 +194,7 @@ const NotFound = () => {
           </motion.div>
         </div>
       </div>
+      
       <Footer />
     </div>
   );

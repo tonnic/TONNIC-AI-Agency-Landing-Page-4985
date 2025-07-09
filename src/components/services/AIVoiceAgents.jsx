@@ -38,30 +38,35 @@ const AIVoiceAgents = () => {
 
   const serviceData = {
     title: "AI Voice Agents",
-    subtitle: "Thoughtly Premier Partner - Advanced Voice AI Solutions",
+    subtitle: "Advanced Voice AI Solutions",
     description: "Transform your phone communications with advanced AI voice agents powered by industry-leading platforms including Retell, Vapi, ElevenLabs, and Thoughtly. As a Thoughtly Premier Partner, we deliver enterprise-grade voice solutions with natural, human-like conversations tailored to your specific industry and requirements.",
     techStack: [
       {
         name: "Retell",
         favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779529709-retellfavicon.png",
-        url: "https://dashboard.retellai.com/?ref=tonnic"
+        url: "https://dashboard.retellai.com/?ref=tonnic",
+        partnerStatus: "preferred"
       },
       {
         name: "Vapi",
         favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779532754-vapifavicon.png",
-        url: "https://vapi.ai/?aff=tonnic"
+        url: "https://vapi.ai/?aff=tonnic",
+        partnerStatus: "standard"
       },
       {
         name: "ElevenLabs",
         favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779535711-elevenlabsfavicon.png",
-        url: "https://try.elevenlabs.io/tonnic"
+        url: "https://try.elevenlabs.io/tonnic",
+        partnerStatus: "standard"
       },
       {
         name: "Thoughtly",
         favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779526113-thoughtlyfavicon.png",
-        url: "https://thoughtly.com/?ref=tonnic"
+        url: "https://thoughtly.com/?ref=tonnic",
+        partnerStatus: "solution_partner"
       }
     ],
+    preferredPlatform: "Retell",
     partnerBadge: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750734772981-partner-badge.png",
     benefits: [
       "24/7 Availability - Never miss a call or opportunity",
@@ -93,6 +98,32 @@ const AIVoiceAgents = () => {
     ]
   };
 
+  // Function to get partner status display text - FIXED
+  const getPartnerStatusText = (platform) => {
+    if (platform.name === serviceData.preferredPlatform) {
+      return `${platform.name} (Preferred)`;
+    }
+    switch (platform.partnerStatus) {
+      case 'solution_partner': 
+        return `${platform.name} (Solution Partner)`;
+      default: 
+        return platform.name;
+    }
+  };
+
+  // Function to get partner status styling - FIXED
+  const getPartnerStatusStyle = (platform) => {
+    if (platform.name === serviceData.preferredPlatform) {
+      return 'bg-yellow-500 text-slate-800 border-yellow-500';
+    }
+    switch (platform.partnerStatus) {
+      case 'solution_partner':
+        return 'bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 border-blue-300 dark:border-blue-600';
+      default:
+        return 'bg-white dark:bg-yellow-200/20 text-slate-700 dark:text-yellow-100 border-yellow-200 dark:border-yellow-300/30';
+    }
+  };
+
   const schemaData = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -121,33 +152,30 @@ const AIVoiceAgents = () => {
 
   return (
     <>
-      <SEOHead
-        title="AI Voice Agents - TONNIC AI Agency | 24/7 Intelligent Voice Solutions"
-        description="Transform your business with AI voice agents. 24/7 availability, natural conversations, and enterprise-grade solutions. Thoughtly Premier Partner with advanced voice AI technology."
-        keywords="AI voice agents, voice AI, customer service automation, Thoughtly partner, Retell, Vapi, ElevenLabs, business phone automation"
+      <SEOHead 
+        title="AI Voice Agents - TONNIC AI Agency | 24/7 Intelligent Voice Solutions" 
+        description="Transform your business with AI voice agents. 24/7 availability, natural conversations, and enterprise-grade solutions. Thoughtly Premier Partner with advanced voice AI technology." 
+        keywords="AI voice agents, voice AI, customer service automation, Thoughtly partner, Retell, Vapi, ElevenLabs, business phone automation" 
         canonicalUrl="https://tonnic.agency/#/aivoiceagents"
         schemaData={schemaData}
       />
-      
       <div className="min-h-screen bg-white dark:bg-slate-900">
         <Header />
-        
         <div className="pt-24 pb-16 bg-gradient-to-br from-slate-50 to-yellow-50 dark:from-slate-900 dark:to-slate-800 transition-colors duration-200">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              transition={{ duration: 0.8 }} 
               className="text-center mb-12"
             >
-              <button
-                onClick={() => navigate('/')}
+              <button 
+                onClick={() => navigate('/')} 
                 className="inline-flex items-center text-slate-600 dark:text-slate-300 hover:text-yellow-500 dark:hover:text-yellow-400 mb-6 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 rounded transition-colors duration-200"
               >
                 <SafeIcon icon={FiArrowLeft} className="w-4 h-4 mr-2" />
                 Back to Home
               </button>
-
               <div className="flex items-center justify-center mb-6">
                 <div className="bg-yellow-500 w-16 h-16 rounded-2xl flex items-center justify-center mr-4">
                   <SafeIcon icon={FiMic} className="w-8 h-8 text-slate-800" />
@@ -168,10 +196,10 @@ const AIVoiceAgents = () => {
               </div>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              transition={{ duration: 0.8, delay: 0.2 }} 
               className="bg-white dark:bg-slate-800 rounded-3xl p-8 md:p-12 shadow-lg dark:shadow-slate-700/20 transition-colors duration-200"
             >
               {/* Tech Stack */}
@@ -181,27 +209,29 @@ const AIVoiceAgents = () => {
                   Powered by Industry Leaders
                 </h2>
                 <div className="grid grid-cols-2 gap-4">
-                  {serviceData.techStack.map((tech, index) => (
-                    <a
-                      key={index}
-                      href={tech.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-white dark:bg-yellow-200/20 px-4 py-3 rounded-lg font-medium text-slate-700 dark:text-yellow-100 border border-yellow-200 dark:border-yellow-300/30 transition-all duration-200 flex items-center hover:bg-yellow-100 dark:hover:bg-yellow-200/30 hover:border-yellow-300 dark:hover:border-yellow-300/50 hover:scale-105 hover:shadow-md group cursor-pointer"
-                      aria-label={`Visit ${tech.name} website (opens in new tab)`}
-                    >
-                      <img
-                        src={tech.favicon}
-                        alt={`${tech.name} logo`}
-                        className="w-5 h-5 mr-3 flex-shrink-0"
-                        onError={(e) => { e.target.style.display = 'none'; }}
-                      />
-                      <span className="group-hover:text-slate-800 dark:group-hover:text-yellow-50 transition-colors duration-200">
-                        {tech.name}
-                      </span>
-                      <SafeIcon icon={FiExternalLink} className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-slate-500 dark:text-yellow-300" />
-                    </a>
-                  ))}
+                  {serviceData.techStack.map((tech, index) => {
+                    return (
+                      <a 
+                        key={index} 
+                        href={tech.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className={`px-4 py-3 rounded-lg font-medium border transition-all duration-200 flex items-center hover:bg-yellow-100 dark:hover:bg-yellow-200/30 hover:border-yellow-300 dark:hover:border-yellow-300/50 hover:scale-105 hover:shadow-md group cursor-pointer ${getPartnerStatusStyle(tech)}`}
+                        aria-label={`Visit ${tech.name} website (opens in new tab)`}
+                      >
+                        <img 
+                          src={tech.favicon} 
+                          alt={`${tech.name} logo`} 
+                          className="w-5 h-5 mr-3 flex-shrink-0" 
+                          onError={(e) => { e.target.style.display = 'none'; }}
+                        />
+                        <span className="group-hover:text-slate-800 dark:group-hover:text-yellow-50 transition-colors duration-200">
+                          {getPartnerStatusText(tech)}
+                        </span>
+                        <SafeIcon icon={FiExternalLink} className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-slate-500 dark:text-yellow-300" />
+                      </a>
+                    );
+                  })}
                 </div>
               </div>
 
@@ -261,14 +291,14 @@ const AIVoiceAgents = () => {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <button
-                  onClick={openCalModal}
+                <button 
+                  onClick={openCalModal} 
                   className="flex-1 bg-yellow-500 text-slate-800 px-8 py-4 rounded-xl font-semibold hover:bg-yellow-400 transition-all duration-200 flex items-center justify-center"
                 >
                   <SafeIcon icon={FiCalendar} className="w-5 h-5 mr-2" />
                   Book a Meeting
                 </button>
-                <button
+                <button 
                   onClick={() => navigate('/')}
                   className="flex-1 border-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 px-8 py-4 rounded-xl font-semibold hover:border-yellow-500 hover:text-yellow-600 dark:hover:border-yellow-400 dark:hover:text-yellow-400 transition-all duration-200"
                 >
@@ -278,22 +308,21 @@ const AIVoiceAgents = () => {
             </motion.div>
           </div>
         </div>
-
         <Footer />
       </div>
 
       {/* Cal.com Modal */}
       {showCalModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" role="dialog" aria-modal="true" aria-labelledby="cal-modal-title">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }} 
+            animate={{ opacity: 1, scale: 1 }} 
             exit={{ opacity: 0, scale: 0.9 }}
             className="bg-white dark:bg-slate-800 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden relative transition-colors duration-200"
           >
-            <button
-              onClick={closeCalModal}
-              className="absolute top-4 right-4 z-10 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 focus:bg-slate-200 dark:focus:bg-slate-600 focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800 p-2 rounded-full transition-colors duration-200"
+            <button 
+              onClick={closeCalModal} 
+              className="absolute top-4 right-4 z-10 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 focus:bg-slate-200 dark:focus:bg-slate-600 focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800 p-2 rounded-full transition-colors duration-200" 
               aria-label="Close booking modal"
             >
               <SafeIcon icon={FiX} className="w-6 h-6 text-slate-600 dark:text-slate-300" />
@@ -303,13 +332,13 @@ const AIVoiceAgents = () => {
               <p className="text-slate-600 dark:text-slate-300 mt-2 transition-colors duration-200">Schedule a 30-minute consultation to discuss your voice AI needs</p>
             </div>
             <div className="h-[600px]">
-              <iframe
-                src="https://cal.com/tonnic/30min"
-                width="100%"
-                height="100%"
-                frameBorder="0"
-                title="Book an AI Voice Agent consultation with TONNIC"
-                className="rounded-b-2xl"
+              <iframe 
+                src="https://cal.com/tonnic/30min" 
+                width="100%" 
+                height="100%" 
+                frameBorder="0" 
+                title="Book an AI Voice Agent consultation with TONNIC" 
+                className="rounded-b-2xl" 
                 loading="lazy"
               ></iframe>
             </div>

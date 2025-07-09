@@ -17,11 +17,14 @@ const Contact = () => {
     company: '',
     website: '',
     service: 'General Inquiry', // Default value
-    message: ''
+    message: '',
+    // Consent
+    optInConsent: false
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState(null);
+  const [webhookResponse, setWebhookResponse] = useState(null);
 
   // Listen for global ESC key events
   useEffect(() => {
@@ -57,21 +60,27 @@ const Contact = () => {
   };
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      [name]: type === 'checkbox' ? checked : value
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Check if consent is given
+    if (!formData.optInConsent) {
+      setSubmitError('You must provide consent to communications in order to submit this form.');
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitError(null);
 
     try {
       const webhookUrl = 'https://api1.tonnic.ai/webhook/6af91990-0957-4380-a771-3609fe8cb4d6';
-      
       const payload = {
         // Personal Info
         name: formData.name,
@@ -83,9 +92,15 @@ const Contact = () => {
         website: formData.website || '',
         service: formData.service,
         message: formData.message,
+        // Consent
+        opt_in_consent: formData.optInConsent,
+        consent_timestamp: new Date().toISOString(),
+        consent_text: "I consent to receive communications from TONNIC AI Agency via email, SMS, or phone calls regarding my inquiry and related services.",
         timestamp: new Date().toISOString(),
         source: 'website_contact_form'
       };
+
+      console.log('Submitting form with payload:', payload);
 
       const response = await fetch(webhookUrl, {
         method: 'POST',
@@ -98,16 +113,31 @@ const Contact = () => {
         body: JSON.stringify(payload)
       });
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+      console.log('Response status:', response.status);
+      console.log('Response headers:', response.headers);
+
+      // Try to parse response regardless of status
+      let responseData;
+      const responseText = await response.text();
+      console.log('Raw response text:', responseText);
+
+      try {
+        responseData = JSON.parse(responseText);
+        console.log('Parsed response data:', responseData);
+      } catch (parseError) {
+        console.log('Failed to parse JSON, using raw text as message');
+        responseData = { message: responseText };
       }
 
-      // Success
+      setWebhookResponse(responseData);
+
+      // Consider it successful if we got a response (even with error status)
       setIsSubmitted(true);
 
-      // Reset form after 5 seconds
+      // Reset form after 10 seconds to allow reading the response
       setTimeout(() => {
         setIsSubmitted(false);
+        setWebhookResponse(null);
         setFormData({
           name: '',
           email: '',
@@ -116,13 +146,14 @@ const Contact = () => {
           company: '',
           website: '',
           service: 'General Inquiry', // Reset to default
-          message: ''
+          message: '',
+          optInConsent: false
         });
-      }, 5000);
+      }, 10000);
 
     } catch (error) {
       console.error('Error submitting form:', error);
-      setSubmitError('There was an error sending your message. Please try again or call us directly at 1-888-292-5513.');
+      setSubmitError('There was an error sending your message. Please try again or call us directly at 1-888-442-BUZZ (1-888-442-2899).');
     } finally {
       setIsSubmitting(false);
     }
@@ -166,9 +197,12 @@ const Contact = () => {
               viewport={{ once: true }}
               className="bg-white dark:bg-slate-800 rounded-3xl p-8 transition-colors duration-200"
             >
-              <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 transition-colors duration-200">
+              <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-2 transition-colors duration-200">
                 Send us a message
               </h3>
+              <p className="text-slate-600 dark:text-slate-300 mb-6 transition-colors duration-200">
+                <em>(We'll have our AI call you right back!)</em>
+              </p>
 
               {isSubmitted ? (
                 <motion.div
@@ -179,8 +213,68 @@ const Contact = () => {
                   <div className="bg-green-100 dark:bg-green-900/30 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 transition-colors duration-200">
                     <SafeIcon icon={FiCheck} className="w-8 h-8 text-green-600 dark:text-green-400" />
                   </div>
-                  <h4 className="text-xl font-bold text-slate-800 dark:text-white mb-2 transition-colors duration-200">Message Sent Successfully!</h4>
-                  <p className="text-slate-600 dark:text-slate-300 transition-colors duration-200">Thank you for your inquiry. Our team will get back to you within 24 hours. For immediate assistance, please call 1-888-292-5513.</p>
+                  <h4 className="text-xl font-bold text-slate-800 dark:text-white mb-4 transition-colors duration-200">
+                    Message Sent Successfully!
+                  </h4>
+                  
+                  {/* Display webhook response */}
+                  {webhookResponse && (
+                    <div className="bg-yellow-50 dark:bg-yellow-900/20 rounded-xl p-4 mb-4 text-left transition-colors duration-200">
+                      <h5 className="font-semibold text-slate-800 dark:text-white mb-2 transition-colors duration-200">
+                        System Response:
+                      </h5>
+                      
+                      {/* Handle different response formats */}
+                      {typeof webhookResponse === 'string' ? (
+                        <p className="text-slate-700 dark:text-slate-300 transition-colors duration-200">
+                          {webhookResponse}
+                        </p>
+                      ) : (
+                        <div className="space-y-2">
+                          {webhookResponse.message && (
+                            <p className="text-slate-700 dark:text-slate-300 transition-colors duration-200">
+                              <strong>Message:</strong> {webhookResponse.message}
+                            </p>
+                          )}
+                          {webhookResponse.details && (
+                            <p className="text-slate-600 dark:text-slate-400 text-sm transition-colors duration-200">
+                              <strong>Details:</strong> {webhookResponse.details}
+                            </p>
+                          )}
+                          {webhookResponse.status && (
+                            <p className="text-slate-600 dark:text-slate-400 text-sm transition-colors duration-200">
+                              <strong>Status:</strong> {webhookResponse.status}
+                            </p>
+                          )}
+                          {webhookResponse.error && (
+                            <p className="text-red-600 dark:text-red-400 text-sm transition-colors duration-200">
+                              <strong>Error:</strong> {webhookResponse.error}
+                            </p>
+                          )}
+                          
+                          {/* Debug info - show all response fields */}
+                          <details className="mt-2">
+                            <summary className="text-xs text-slate-500 dark:text-slate-400 cursor-pointer">
+                              View full response (debug)
+                            </summary>
+                            <pre className="text-xs text-slate-500 dark:text-slate-400 mt-2 p-2 bg-slate-100 dark:bg-slate-700 rounded overflow-auto">
+                              {JSON.stringify(webhookResponse, null, 2)}
+                            </pre>
+                          </details>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-4 border-l-4 border-blue-500 transition-colors duration-200">
+                    <p className="text-blue-800 dark:text-blue-200 text-sm transition-colors duration-200">
+                      <strong>⚡ Next Steps:</strong> Our AI voice agent will automatically call you back within the next few minutes to discuss your inquiry. 
+                      If you miss the call, don't worry - you can also reach us directly at{' '}
+                      <a href="tel:+18884422899" className="underline hover:text-blue-600 dark:hover:text-blue-300">
+                        1-888-442-BUZZ (1-888-442-2899)
+                      </a>
+                    </p>
+                  </div>
                 </motion.div>
               ) : (
                 <>
@@ -366,9 +460,29 @@ const Contact = () => {
                       </div>
                     </div>
 
+                    {/* Consent Checkbox - Twilio Compliance */}
+                    <div className="bg-yellow-50 dark:bg-yellow-900/20 rounded-xl p-4 border-l-4 border-yellow-500 transition-colors duration-200">
+                      <div className="flex items-start">
+                        <input
+                          type="checkbox"
+                          id="optInConsent"
+                          name="optInConsent"
+                          required
+                          checked={formData.optInConsent}
+                          onChange={handleInputChange}
+                          className="mt-1 h-4 w-4 text-yellow-500 focus:ring-yellow-500 border-slate-300 rounded"
+                        />
+                        <label htmlFor="optInConsent" className="ml-3 text-sm text-slate-700 dark:text-slate-300 transition-colors duration-200">
+                          <span className="font-semibold text-slate-800 dark:text-white">Communication Consent Required *</span>
+                          <br />
+                          By submitting this form, I consent to receive communications from TONNIC AI Agency via email, SMS text messages, or phone calls regarding my inquiry and related AI services. I understand that message and data rates may apply, and I can opt out at any time by replying STOP to SMS messages or unsubscribing from emails.
+                        </label>
+                      </div>
+                    </div>
+
                     <button
                       type="submit"
-                      disabled={isSubmitting}
+                      disabled={isSubmitting || !formData.optInConsent}
                       className="w-full bg-yellow-500 text-slate-800 px-8 py-4 rounded-xl font-semibold hover:bg-yellow-400 focus:bg-yellow-400 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800 transition-all duration-200 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {isSubmitting ? (
@@ -386,16 +500,16 @@ const Contact = () => {
                 <p className="text-sm text-slate-600 dark:text-slate-300 transition-colors duration-200">
                   <strong>Note:</strong> For immediate assistance, call our AI Voice Agent at{' '}
                   <a
-                    href="tel:+18882925513"
+                    href="tel:+18884422899"
                     className="text-yellow-600 dark:text-yellow-400 hover:text-yellow-700 dark:hover:text-yellow-300 underline focus:ring-2 focus:ring-yellow-500 focus:ring-offset-1 dark:focus:ring-offset-slate-800 rounded transition-colors duration-200"
                   >
-                    1-888-292-5513
+                    1-888-442-BUZZ (1-888-442-2899)
                   </a>
                   {' '}who can answer questions and connect you with our team.
                 </p>
               </div>
 
-              {/* Alternative Contact Methods - Removed Direct Email */}
+              {/* Alternative Contact Methods */}
               <div className="mt-6 grid grid-cols-1 gap-4">
                 <button
                   onClick={openCalModal}
@@ -433,13 +547,16 @@ const Contact = () => {
                   <div>
                     <div className="text-white font-medium mb-1">AI Voice Agent</div>
                     <a
-                      href="tel:+18882925513"
+                      href="tel:+18884422899"
                       className="text-slate-300 hover:text-yellow-400 focus:text-yellow-400 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-950 rounded transition-colors duration-200 text-lg font-semibold"
-                      aria-label="Call our AI Voice Agent at 1-888-292-5513"
+                      aria-label="Call our AI Voice Agent at 1-888-442-BUZZ"
                     >
-                      1-888-292-5513
+                      1-888-442-BUZZ
                     </a>
-                    <p className="text-slate-400 text-sm mt-1">
+                    <div className="text-slate-400 text-sm mt-1">
+                      (1-888-442-2899)
+                    </div>
+                    <p className="text-slate-400 text-sm mt-2">
                       Talk to our AI assistant 24/7 - ask questions, get information, or request to speak with our team
                     </p>
                   </div>
@@ -452,7 +569,7 @@ const Contact = () => {
                   <div>
                     <div className="text-white font-medium">Contact Form</div>
                     <div className="text-slate-300">
-                      Use our contact form for detailed inquiries and project discussions
+                      Use our contact form for detailed inquiries and get an AI callback
                     </div>
                   </div>
                 </div>

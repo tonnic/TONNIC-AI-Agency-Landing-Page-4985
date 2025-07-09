@@ -6,7 +6,7 @@ import SafeIcon from '../common/SafeIcon';
 import DarkModeToggle from './DarkModeToggle';
 import useDarkMode from '../hooks/useDarkMode';
 
-const { FiMenu, FiX, FiCalendar } = FiIcons;
+const { FiMenu, FiX, FiCalendar, FiMail } = FiIcons;
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -62,10 +62,25 @@ const Header = () => {
     setIsMenuOpen(false);
   };
 
+  const scrollToContact = () => {
+    scrollToSection('contact');
+  };
+
   const openCalModal = () => {
-    // Create and dispatch a custom event to open the calendar modal
-    const event = new CustomEvent('openCalModal');
-    window.dispatchEvent(event);
+    // Check if we're on the home page
+    if (location.pathname === '/') {
+      // We're on home page, dispatch the event to open the calendar modal
+      const event = new CustomEvent('openCalModal');
+      window.dispatchEvent(event);
+    } else {
+      // We're on a different page, navigate to home and then try to open calendar
+      navigate('/');
+      // Wait for navigation to complete, then try to open calendar
+      setTimeout(() => {
+        const event = new CustomEvent('openCalModal');
+        window.dispatchEvent(event);
+      }, 100);
+    }
     setIsMenuOpen(false);
   };
 
@@ -80,13 +95,13 @@ const Header = () => {
             aria-label="TONNIC AI Agency - Go to home"
           >
             {/* Light mode logo - new transparent version */}
-            <img
+            <img 
               src="https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750776734784-tonnic%20ai%20agency.png"
               alt="TONNIC AI Agency"
               className="h-12 w-auto hover:opacity-80 transition-opacity duration-200 dark:hidden"
             />
             {/* Dark mode logo */}
-            <img
+            <img 
               src="https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750770446524-TONNICLogo%20-%20Light.png"
               alt="TONNIC AI Agency"
               className="h-12 w-auto hover:opacity-80 transition-opacity duration-200 hidden dark:block"
@@ -94,19 +109,21 @@ const Header = () => {
           </button>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8" role="navigation" aria-label="Main navigation">
+          <nav className="hidden lg:flex items-center space-x-6" role="navigation" aria-label="Main navigation">
             <button
               onClick={() => scrollToSection('services')}
               className="text-slate-600 dark:text-slate-300 hover:text-yellow-500 dark:hover:text-yellow-400 focus:text-yellow-500 dark:focus:text-yellow-400 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 rounded transition-colors duration-200"
             >
               Services
             </button>
+            
             <button
               onClick={() => scrollToSection('how-it-works')}
               className="text-slate-600 dark:text-slate-300 hover:text-yellow-500 dark:hover:text-yellow-400 focus:text-yellow-500 dark:focus:text-yellow-400 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 rounded transition-colors duration-200"
             >
               How It Works
             </button>
+            
             <button
               onClick={() => scrollToSection('about')}
               className="text-slate-600 dark:text-slate-300 hover:text-yellow-500 dark:hover:text-yellow-400 focus:text-yellow-500 dark:focus:text-yellow-400 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 rounded transition-colors duration-200"
@@ -117,6 +134,16 @@ const Header = () => {
             {/* Dark Mode Toggle */}
             <DarkModeToggle isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
 
+            {/* Contact Us Button */}
+            <button
+              onClick={scrollToContact}
+              className="border-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 px-4 py-2 rounded-full font-medium hover:border-yellow-500 hover:text-yellow-600 dark:hover:border-yellow-400 dark:hover:text-yellow-400 focus:border-yellow-500 focus:text-yellow-600 dark:focus:border-yellow-400 dark:focus:text-yellow-400 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 transition-colors duration-200 flex items-center"
+            >
+              <SafeIcon icon={FiMail} className="w-4 h-4 mr-2" />
+              Contact Us
+            </button>
+
+            {/* Book Free Consultation Button - FIXED */}
             <button
               onClick={openCalModal}
               className="bg-yellow-500 text-slate-800 px-6 py-2 rounded-full font-medium hover:bg-yellow-400 focus:bg-yellow-400 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 transition-colors duration-200 flex items-center"
@@ -127,7 +154,7 @@ const Header = () => {
           </nav>
 
           {/* Mobile Menu Button and Dark Mode Toggle */}
-          <div className="md:hidden flex items-center space-x-2">
+          <div className="lg:hidden flex items-center space-x-2">
             <DarkModeToggle isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -141,43 +168,65 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* IMPROVED Mobile Navigation */}
         {isMenuOpen && (
           <motion.div
             id="mobile-menu"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="md:hidden py-4 border-t border-gray-200 dark:border-slate-700 transition-colors duration-200"
+            className="lg:hidden py-6 border-t border-gray-200 dark:border-slate-700 transition-colors duration-200"
             role="navigation"
             aria-label="Mobile navigation"
           >
-            <div className="flex flex-col space-y-4">
-              <button
-                onClick={() => scrollToSection('services')}
-                className="text-left text-slate-600 dark:text-slate-300 hover:text-yellow-500 dark:hover:text-yellow-400 focus:text-yellow-500 dark:focus:text-yellow-400 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 rounded transition-colors duration-200"
-              >
-                Services
-              </button>
-              <button
-                onClick={() => scrollToSection('how-it-works')}
-                className="text-left text-slate-600 dark:text-slate-300 hover:text-yellow-500 dark:hover:text-yellow-400 focus:text-yellow-500 dark:focus:text-yellow-400 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 rounded transition-colors duration-200"
-              >
-                How It Works
-              </button>
-              <button
-                onClick={() => scrollToSection('about')}
-                className="text-left text-slate-600 dark:text-slate-300 hover:text-yellow-500 dark:hover:text-yellow-400 focus:text-yellow-500 dark:focus:text-yellow-400 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 rounded transition-colors duration-200"
-              >
-                About
-              </button>
-              <button
-                onClick={openCalModal}
-                className="text-left bg-yellow-500 text-slate-800 px-6 py-2 rounded-full font-medium hover:bg-yellow-400 focus:bg-yellow-400 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 transition-colors duration-200 w-fit flex items-center"
-              >
-                <SafeIcon icon={FiCalendar} className="w-4 h-4 mr-2" />
-                Book Free Consultation
-              </button>
+            <div className="space-y-4">
+              {/* Navigation Links */}
+              <div className="space-y-3">
+                <button
+                  onClick={() => scrollToSection('services')}
+                  className="block w-full text-left text-slate-600 dark:text-slate-300 hover:text-yellow-500 dark:hover:text-yellow-400 focus:text-yellow-500 dark:focus:text-yellow-400 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 rounded px-3 py-2 text-base font-medium transition-colors duration-200"
+                >
+                  Services
+                </button>
+                
+                <button
+                  onClick={() => scrollToSection('how-it-works')}
+                  className="block w-full text-left text-slate-600 dark:text-slate-300 hover:text-yellow-500 dark:hover:text-yellow-400 focus:text-yellow-500 dark:focus:text-yellow-400 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 rounded px-3 py-2 text-base font-medium transition-colors duration-200"
+                >
+                  How It Works
+                </button>
+                
+                <button
+                  onClick={() => scrollToSection('about')}
+                  className="block w-full text-left text-slate-600 dark:text-slate-300 hover:text-yellow-500 dark:hover:text-yellow-400 focus:text-yellow-500 dark:focus:text-yellow-400 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 rounded px-3 py-2 text-base font-medium transition-colors duration-200"
+                >
+                  About
+                </button>
+              </div>
+
+              {/* Divider */}
+              <div className="border-t border-gray-200 dark:border-slate-700 my-4"></div>
+
+              {/* Action Buttons - Stacked with proper spacing */}
+              <div className="space-y-3">
+                {/* Mobile Contact Us Button */}
+                <button
+                  onClick={scrollToContact}
+                  className="w-full border-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 px-4 py-3 rounded-xl font-medium hover:border-yellow-500 hover:text-yellow-600 dark:hover:border-yellow-400 dark:hover:text-yellow-400 focus:border-yellow-500 focus:text-yellow-600 dark:focus:border-yellow-400 dark:focus:text-yellow-400 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 transition-colors duration-200 flex items-center justify-center"
+                >
+                  <SafeIcon icon={FiMail} className="w-5 h-5 mr-2" />
+                  Contact Us
+                </button>
+
+                {/* Mobile Book Free Consultation Button - FIXED */}
+                <button
+                  onClick={openCalModal}
+                  className="w-full bg-yellow-500 text-slate-800 px-6 py-3 rounded-xl font-medium hover:bg-yellow-400 focus:bg-yellow-400 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 transition-colors duration-200 flex items-center justify-center"
+                >
+                  <SafeIcon icon={FiCalendar} className="w-5 h-5 mr-2" />
+                  Book Free Consultation
+                </button>
+              </div>
             </div>
           </motion.div>
         )}

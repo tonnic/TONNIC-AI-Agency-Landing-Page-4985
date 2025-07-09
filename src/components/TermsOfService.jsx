@@ -1,12 +1,26 @@
 import React from 'react';
-import {motion} from 'framer-motion';
-import {useNavigate} from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 import Header from './Header';
 import Footer from './Footer';
 
-const {FiArrowLeft, FiFileText, FiCheckCircle, FiAlertTriangle, FiShield, FiUsers, FiSettings} = FiIcons;
+const { 
+  FiArrowLeft, 
+  FiFileText, 
+  FiCheckCircle, 
+  FiAlertTriangle, 
+  FiShield, 
+  FiUsers, 
+  FiSettings, 
+  FiDollarSign, 
+  FiLock, 
+  FiEye, 
+  FiInfo, 
+  FiBookOpen, 
+  FiCpu
+} = FiIcons;
 
 const TermsOfService = () => {
   const navigate = useNavigate();
@@ -17,9 +31,9 @@ const TermsOfService = () => {
       <div className="pt-24 pb-16 bg-gradient-to-br from-slate-50 to-yellow-50 dark:from-slate-900 dark:to-slate-800 transition-colors duration-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{opacity: 0, y: 30}}
-            animate={{opacity: 1, y: 0}}
-            transition={{duration: 0.8}}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
             className="text-center mb-12"
           >
             <button
@@ -38,287 +52,471 @@ const TermsOfService = () => {
               </h1>
             </div>
             <p className="text-xl text-slate-600 dark:text-slate-300 transition-colors duration-200">
-              Please read these terms carefully before using our AI services.
+              Everything you need to know about working with us
             </p>
             <p className="text-sm text-slate-500 dark:text-slate-400 mt-2 transition-colors duration-200">
               Last updated: February 2025
             </p>
           </motion.div>
 
+          {/* Introduction Box */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="bg-yellow-50 dark:bg-yellow-900/20 rounded-xl p-6 mb-10 border-l-4 border-yellow-500 transition-colors duration-200"
+          >
+            <h2 className="text-xl font-bold text-slate-800 dark:text-yellow-400 mb-4 flex items-center">
+              <SafeIcon icon={FiInfo} className="w-5 h-5 mr-2 text-yellow-500" />
+              Welcome to TONNIC AI Agency
+            </h2>
+            <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+              This page explains how we work with our clients, what you can expect from us, and what we need from you to create a successful partnership. These terms are designed to create clarity and set expectations, not to burden you with legal jargon.
+            </p>
+          </motion.div>
+
           <motion.div
-            initial={{opacity: 0, y: 30}}
-            animate={{opacity: 1, y: 0}}
-            transition={{duration: 0.8, delay: 0.2}}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             className="bg-white dark:bg-slate-800 rounded-3xl p-8 md:p-12 shadow-lg dark:shadow-slate-700/20 transition-colors duration-200"
           >
             <div className="prose prose-slate dark:prose-invert max-w-none">
               
-              <h2 className="flex items-center text-2xl font-bold text-slate-800 dark:text-white mb-6">
-                <SafeIcon icon={FiCheckCircle} className="w-6 h-6 mr-3 text-yellow-500" />
-                Acceptance of Terms
-              </h2>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-8">
-                By accessing and using TONNIC AI Agency's services, you accept and agree to be bound by the terms and provisions of this agreement. If you do not agree to abide by these terms, please do not use our services.
-              </p>
-
-              <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">Service Description</h2>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
-                TONNIC AI Agency provides artificial intelligence solutions including but not limited to:
-              </p>
-              <div className="space-y-3 mb-8">
-                <ul className="space-y-3">
-                  <li className="flex items-start">
-                    <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2"></div>
-                    <span className="text-slate-600 dark:text-slate-400">AI Voice Agents for customer service and business communications</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2"></div>
-                    <span className="text-slate-600 dark:text-slate-400">AI Chatbots for lead generation and customer support</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2"></div>
-                    <span className="text-slate-600 dark:text-slate-400">Website design and development services</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2"></div>
-                    <span className="text-slate-600 dark:text-slate-400">Business automation and API integrations</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2"></div>
-                    <span className="text-slate-600 dark:text-slate-400">Social media AI management</span>
-                  </li>
-                </ul>
-              </div>
-
-              <h2 className="flex items-center text-2xl font-bold text-slate-800 dark:text-white mb-6">
-                <SafeIcon icon={FiAlertTriangle} className="w-6 h-6 mr-3 text-red-500" />
-                Third-Party Service Dependencies
-              </h2>
-              <div className="bg-red-50 dark:bg-red-900/20 rounded-xl p-6 mb-8 border-l-4 border-red-500 transition-colors duration-200">
-                <h3 className="text-lg font-semibold text-red-800 dark:text-red-300 mb-4">Critical Service Notice</h3>
-                <p className="text-red-700 dark:text-red-300 mb-4 leading-relaxed">
-                  Our AI services rely on third-party platforms and APIs including but not limited to OpenAI, Anthropic, Google Cloud, Amazon Web Services, Thoughtly, Retell, Vapi, ElevenLabs, and other AI service providers. 
+              {/* SECTION 1: WORKING TOGETHER */}
+              <section id="working-together">
+                <h2 className="flex items-center text-2xl font-bold text-slate-800 dark:text-white mb-6">
+                  <SafeIcon icon={FiUsers} className="w-6 h-6 mr-3 text-yellow-500" />
+                  Working Together
+                </h2>
+                
+                <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                  A successful partnership requires clarity on both sides. Here's how we approach our client relationships:
                 </p>
-                <div className="space-y-3">
-                  <ul className="space-y-2">
+                
+                {/* Project Process */}
+                <div className="mb-8">
+                  <h3 className="text-xl font-semibold text-slate-800 dark:text-white mb-4 flex items-center">
+                    <SafeIcon icon={FiSettings} className="w-5 h-5 mr-2 text-yellow-500" />
+                    Our Project Process
+                  </h3>
+                  
+                  <div className="bg-slate-50 dark:bg-slate-700 rounded-xl p-6 mb-4">
+                    <ol className="space-y-4">
+                      <li className="flex items-start">
+                        <div className="bg-yellow-500 text-slate-800 w-6 h-6 rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-0.5">1</div>
+                        <div>
+                          <span className="font-semibold text-slate-800 dark:text-white">Discovery & Scoping</span>
+                          <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                            We start with a clear definition of what we'll build, including deliverables, timelines, and pricing. This becomes our shared roadmap.
+                          </p>
+                        </div>
+                      </li>
+                      
+                      <li className="flex items-start">
+                        <div className="bg-yellow-500 text-slate-800 w-6 h-6 rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-0.5">2</div>
+                        <div>
+                          <span className="font-semibold text-slate-800 dark:text-white">Development & Integration</span>
+                          <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                            We build your solution according to the agreed scope, keeping you updated throughout the process.
+                          </p>
+                        </div>
+                      </li>
+                      
+                      <li className="flex items-start">
+                        <div className="bg-yellow-500 text-slate-800 w-6 h-6 rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-0.5">3</div>
+                        <div>
+                          <span className="font-semibold text-slate-800 dark:text-white">Testing & Refinement</span>
+                          <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                            We test thoroughly and make adjustments to ensure everything works as expected.
+                          </p>
+                        </div>
+                      </li>
+                      
+                      <li className="flex items-start">
+                        <div className="bg-yellow-500 text-slate-800 w-6 h-6 rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-0.5">4</div>
+                        <div>
+                          <span className="font-semibold text-slate-800 dark:text-white">Launch & Support</span>
+                          <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                            We deploy your solution and provide ongoing support and optimization.
+                          </p>
+                        </div>
+                      </li>
+                    </ol>
+                  </div>
+                  
+                  <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500 mb-6">
+                    <p className="text-green-800 dark:text-green-300 text-sm">
+                      <strong>Change Requests:</strong> Need something beyond the original scope? No problem! We handle changes through a simple, transparent process. We'll discuss the impact on timeline and budget before proceeding.
+                    </p>
+                  </div>
+                </div>
+                
+                {/* Payment & Refunds */}
+                <div className="mb-8">
+                  <h3 className="text-xl font-semibold text-slate-800 dark:text-white mb-4 flex items-center">
+                    <SafeIcon icon={FiDollarSign} className="w-5 h-5 mr-2 text-yellow-500" />
+                    Payment & Refund Policy
+                  </h3>
+                  
+                  <div className="bg-slate-50 dark:bg-slate-700 rounded-xl p-6 mb-4">
+                    <p className="text-slate-600 dark:text-slate-400 mb-4">
+                      We believe in transparent pricing and fair policies:
+                    </p>
+                    
+                    <ul className="space-y-3">
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2"></div>
+                        <span className="text-slate-600 dark:text-slate-400"><strong>Custom Work:</strong> Our services are tailored specifically to your business. Because we begin investing our time and expertise immediately, all sales are final and non-refundable.</span>
+                      </li>
+                      
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2"></div>
+                        <span className="text-slate-600 dark:text-slate-400"><strong>Payment Terms:</strong> We'll agree on payment milestones in advance, typically with a deposit to start work and remaining payments tied to project milestones.</span>
+                      </li>
+                      
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2"></div>
+                        <span className="text-slate-600 dark:text-slate-400"><strong>Third-Party Costs:</strong> Subscriptions to platforms like Thoughtly, n8n, NocoDB, Zapier, Make, or other third-party services are typically paid directly by you and remain under your control.</span>
+                      </li>
+                    </ul>
+                  </div>
+                  
+                  <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                    <p className="text-purple-800 dark:text-purple-300 text-sm">
+                      <strong>Why No Refunds?</strong> Unlike physical products, custom professional services begin consuming our resources immediately. We invest in understanding your business, planning solutions, and dedicating our team's expertise to your project from day one.
+                    </p>
+                  </div>
+                </div>
+                
+                {/* Roles & Responsibilities */}
+                <div className="mb-8">
+                  <h3 className="text-xl font-semibold text-slate-800 dark:text-white mb-4 flex items-center">
+                    <SafeIcon icon={FiCheckCircle} className="w-5 h-5 mr-2 text-yellow-500" />
+                    Our Roles & Responsibilities
+                  </h3>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+                    <div className="bg-slate-50 dark:bg-slate-700 p-5 rounded-xl">
+                      <h4 className="font-semibold text-slate-800 dark:text-white mb-3 border-b border-slate-200 dark:border-slate-600 pb-2">What We'll Do</h4>
+                      <ul className="space-y-2">
+                        <li className="flex items-start text-sm">
+                          <div className="w-2 h-2 bg-green-500 rounded-full mr-2 mt-1.5"></div>
+                          <span className="text-slate-600 dark:text-slate-400">Design and build solutions that meet your business needs</span>
+                        </li>
+                        <li className="flex items-start text-sm">
+                          <div className="w-2 h-2 bg-green-500 rounded-full mr-2 mt-1.5"></div>
+                          <span className="text-slate-600 dark:text-slate-400">Implement according to agreed specifications and timelines</span>
+                        </li>
+                        <li className="flex items-start text-sm">
+                          <div className="w-2 h-2 bg-green-500 rounded-full mr-2 mt-1.5"></div>
+                          <span className="text-slate-600 dark:text-slate-400">Provide guidance on best practices and platform selection</span>
+                        </li>
+                        <li className="flex items-start text-sm">
+                          <div className="w-2 h-2 bg-green-500 rounded-full mr-2 mt-1.5"></div>
+                          <span className="text-slate-600 dark:text-slate-400">Troubleshoot issues within our implementation</span>
+                        </li>
+                        <li className="flex items-start text-sm">
+                          <div className="w-2 h-2 bg-green-500 rounded-full mr-2 mt-1.5"></div>
+                          <span className="text-slate-600 dark:text-slate-400">Assist with third-party platform challenges to the best of our ability</span>
+                        </li>
+                        <li className="flex items-start text-sm">
+                          <div className="w-2 h-2 bg-green-500 rounded-full mr-2 mt-1.5"></div>
+                          <span className="text-slate-600 dark:text-slate-400">Recommend workarounds for platform limitations where possible</span>
+                        </li>
+                      </ul>
+                    </div>
+                    
+                    <div className="bg-slate-50 dark:bg-slate-700 p-5 rounded-xl">
+                      <h4 className="font-semibold text-slate-800 dark:text-white mb-3 border-b border-slate-200 dark:border-slate-600 pb-2">What We Need From You</h4>
+                      <ul className="space-y-2">
+                        <li className="flex items-start text-sm">
+                          <div className="w-2 h-2 bg-yellow-500 rounded-full mr-2 mt-1.5"></div>
+                          <span className="text-slate-600 dark:text-slate-400">Timely communication and feedback throughout the project</span>
+                        </li>
+                        <li className="flex items-start text-sm">
+                          <div className="w-2 h-2 bg-yellow-500 rounded-full mr-2 mt-1.5"></div>
+                          <span className="text-slate-600 dark:text-slate-400">Accurate, complete data for AI training and system setup</span>
+                        </li>
+                        <li className="flex items-start text-sm">
+                          <div className="w-2 h-2 bg-yellow-500 rounded-full mr-2 mt-1.5"></div>
+                          <span className="text-slate-600 dark:text-slate-400">Management of your third-party platform subscriptions and appropriate plan selection</span>
+                        </li>
+                        <li className="flex items-start text-sm">
+                          <div className="w-2 h-2 bg-yellow-500 rounded-full mr-2 mt-1.5"></div>
+                          <span className="text-slate-600 dark:text-slate-400">Compliance with relevant laws and regulations</span>
+                        </li>
+                        <li className="flex items-start text-sm">
+                          <div className="w-2 h-2 bg-yellow-500 rounded-full mr-2 mt-1.5"></div>
+                          <span className="text-slate-600 dark:text-slate-400">Prompt payment according to agreed terms</span>
+                        </li>
+                        <li className="flex items-start text-sm">
+                          <div className="w-2 h-2 bg-yellow-500 rounded-full mr-2 mt-1.5"></div>
+                          <span className="text-slate-600 dark:text-slate-400">Understanding of third-party platform limitations and constraints</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Third-Party Services and Limitations */}
+                <section id="third-party-services">
+                  <h3 className="text-xl font-semibold text-slate-800 dark:text-white mb-4 flex items-center">
+                    <SafeIcon icon={FiCpu} className="w-5 h-5 mr-2 text-yellow-500" />
+                    Third-Party Services & Limitations
+                  </h3>
+                  
+                  <div className="bg-red-50 dark:bg-red-900/20 p-6 rounded-xl mb-6 border-l-4 border-red-500">
+                    <h4 className="font-semibold text-red-800 dark:text-red-300 mb-3">Important: Client Responsibility for Service Plans</h4>
+                    <p className="text-red-700 dark:text-red-300 text-sm mb-4">
+                      Our solutions often rely on third-party platforms like NocoDB, n8n, Zapier, Make, and other services that have their own subscription plans, usage limits, and rate limitations. It is your responsibility to:
+                    </p>
+                    <ul className="space-y-3">
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-red-500 rounded-full mr-3 mt-2"></div>
+                        <span className="text-red-700 dark:text-red-300 text-sm"><strong>Select Appropriate Plans:</strong> Choose subscription tiers that align with your expected usage volume and feature requirements.</span>
+                      </li>
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-red-500 rounded-full mr-3 mt-2"></div>
+                        <span className="text-red-700 dark:text-red-300 text-sm"><strong>Monitor Usage:</strong> Regularly monitor your usage to prevent unexpected service disruptions or additional charges.</span>
+                      </li>
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-red-500 rounded-full mr-3 mt-2"></div>
+                        <span className="text-red-700 dark:text-red-300 text-sm"><strong>Understand Limitations:</strong> Be aware of platform-specific constraints like API rate limits, memory usage, storage limits, and concurrent operations.</span>
+                      </li>
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-red-500 rounded-full mr-3 mt-2"></div>
+                        <span className="text-red-700 dark:text-red-300 text-sm"><strong>Upgrade When Necessary:</strong> Be prepared to upgrade plans as your usage grows to maintain service quality.</span>
+                      </li>
+                    </ul>
+                  </div>
+                  
+                  <div className="bg-slate-50 dark:bg-slate-700 rounded-xl p-6 mb-4">
+                    <h4 className="font-semibold text-slate-800 dark:text-white mb-3 border-b border-slate-200 dark:border-slate-600 pb-2">Common Third-Party Limitations</h4>
+                    <p className="text-slate-600 dark:text-slate-400 mb-4">
+                      Different platforms have different constraints that may affect your solution:
+                    </p>
+                    
+                    <div className="space-y-4">
+                      <div className="border-l-4 border-yellow-500 pl-4">
+                        <h5 className="font-semibold text-slate-700 dark:text-slate-300 mb-1">API Rate Limits</h5>
+                        <p className="text-sm text-slate-600 dark:text-slate-400">
+                          Services like NocoDB (5 API calls/second) or other platforms impose limits on how frequently API requests can be made. When these limits are reached, operations may be delayed or fail.
+                        </p>
+                      </div>
+                      
+                      <div className="border-l-4 border-yellow-500 pl-4">
+                        <h5 className="font-semibold text-slate-700 dark:text-slate-300 mb-1">Memory & Resource Constraints</h5>
+                        <p className="text-sm text-slate-600 dark:text-slate-400">
+                          Automation platforms like n8n hold workflows in memory. Complex workflows with wait states or long operations may consume significant resources, potentially exceeding plan limits on cloud-hosted instances.
+                        </p>
+                      </div>
+                      
+                      <div className="border-l-4 border-yellow-500 pl-4">
+                        <h5 className="font-semibold text-slate-700 dark:text-slate-300 mb-1">Operations Quotas</h5>
+                        <p className="text-sm text-slate-600 dark:text-slate-400">
+                          Zapier, Make, and similar platforms limit operations per month. High-volume workflows may quickly consume these quotas, requiring plan upgrades.
+                        </p>
+                      </div>
+                      
+                      <div className="border-l-4 border-yellow-500 pl-4">
+                        <h5 className="font-semibold text-slate-700 dark:text-slate-300 mb-1">Execution Time Limits</h5>
+                        <p className="text-sm text-slate-600 dark:text-slate-400">
+                          Some platforms impose maximum execution times for workflows, which may affect complex processes with multiple steps or external dependencies.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-amber-50 dark:bg-amber-900/20 p-6 rounded-xl mb-6">
+                    <h4 className="font-semibold text-amber-800 dark:text-amber-300 mb-3">Our Approach to Platform Limitations</h4>
+                    <p className="text-amber-700 dark:text-amber-300 text-sm mb-4">
+                      While we can't change third-party platform limitations, here's how we work with them:
+                    </p>
+                    
+                    <ul className="space-y-3">
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-amber-500 rounded-full mr-3 mt-2"></div>
+                        <span className="text-amber-700 dark:text-amber-300 text-sm"><strong>Workaround Implementation:</strong> When possible, we'll design workarounds like implementing wait timers or batch processing to manage rate limits.</span>
+                      </li>
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-amber-500 rounded-full mr-3 mt-2"></div>
+                        <span className="text-amber-700 dark:text-amber-300 text-sm"><strong>Architectural Optimization:</strong> We'll architect solutions to minimize resource usage and optimize for your chosen plan's constraints.</span>
+                      </li>
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-amber-500 rounded-full mr-3 mt-2"></div>
+                        <span className="text-amber-700 dark:text-amber-300 text-sm"><strong>Plan Recommendations:</strong> We'll recommend appropriate service plans based on your expected usage and requirements.</span>
+                      </li>
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-amber-500 rounded-full mr-3 mt-2"></div>
+                        <span className="text-amber-700 dark:text-amber-300 text-sm"><strong>Technical Limitations Transparency:</strong> We'll clearly communicate when we encounter platform limitations that cannot be circumvented and discuss alternative approaches.</span>
+                      </li>
+                    </ul>
+                    
+                    <div className="bg-amber-100 dark:bg-amber-900/40 p-3 rounded-lg mt-4">
+                      <p className="text-amber-800 dark:text-amber-200 text-sm font-medium">
+                        <strong>Important Note:</strong> Some platform limitations (like NocoDB's API rate limits) cannot be fully mitigated if the platform doesn't provide API access to check or wait for rate limit status. In these cases, we'll implement best-effort solutions, but you should be aware of the inherent limitations.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                    <p className="text-blue-800 dark:text-blue-300 text-sm">
+                      <strong>Our Commitment:</strong> We'll work with you to make the most of your chosen platforms within their constraints. If limitations become problematic, we'll help you evaluate alternative solutions or plan upgrades to better meet your needs.
+                    </p>
+                  </div>
+                </section>
+                
+                {/* AI Expectations */}
+                <div className="mb-8 mt-8">
+                  <h3 className="text-xl font-semibold text-slate-800 dark:text-white mb-4 flex items-center">
+                    <SafeIcon icon={FiAlertTriangle} className="w-5 h-5 mr-2 text-yellow-500" />
+                    Setting AI Expectations
+                  </h3>
+                  
+                  <div className="bg-slate-50 dark:bg-slate-700 rounded-xl p-6">
+                    <p className="text-slate-600 dark:text-slate-400 mb-4">
+                      Artificial Intelligence is powerful but has natural limitations:
+                    </p>
+                    
+                    <ul className="space-y-3">
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2"></div>
+                        <span className="text-slate-600 dark:text-slate-400"><strong>Continuous Learning:</strong> AI systems improve over time but may occasionally produce unexpected or imperfect results.</span>
+                      </li>
+                      
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2"></div>
+                        <span className="text-slate-600 dark:text-slate-400"><strong>Data Dependency:</strong> AI quality depends significantly on the data provided. More accurate and comprehensive data typically leads to better performance.</span>
+                      </li>
+                      
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2"></div>
+                        <span className="text-slate-600 dark:text-slate-400"><strong>Ongoing Optimization:</strong> AI systems benefit from regular monitoring and refinement based on real-world performance.</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </section>
+              
+              {/* SECTION 2: DATA SECURITY */}
+              <section id="data-security">
+                <h2 className="flex items-center text-2xl font-bold text-slate-800 dark:text-white mb-6 pt-4 border-t border-slate-200 dark:border-slate-700">
+                  <SafeIcon icon={FiLock} className="w-6 h-6 mr-3 text-yellow-500" />
+                  Data Security & Privacy
+                </h2>
+                
+                <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                  We take the security and privacy of your data seriously:
+                </p>
+                
+                <div className="bg-slate-50 dark:bg-slate-700 rounded-xl p-6 mb-6">
+                  <ul className="space-y-4">
                     <li className="flex items-start">
-                      <div className="w-2 h-2 bg-red-500 rounded-full mr-3 mt-2"></div>
-                      <span className="text-red-700 dark:text-red-300"><strong>Service Interruptions:</strong> We are not liable for service outages, downtime, or performance issues caused by third-party providers</span>
+                      <div className="bg-green-500 text-white w-6 h-6 rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-0.5">
+                        <SafeIcon icon={FiLock} className="w-3 h-3" />
+                      </div>
+                      <div>
+                        <span className="font-semibold text-slate-800 dark:text-white">Encryption & Security</span>
+                        <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                          We implement industry-standard encryption and security measures to protect your data during transmission and storage.
+                        </p>
+                      </div>
                     </li>
+                    
                     <li className="flex items-start">
-                      <div className="w-2 h-2 bg-red-500 rounded-full mr-3 mt-2"></div>
-                      <span className="text-red-700 dark:text-red-300"><strong>API Limitations:</strong> Third-party rate limits, policy changes, or service restrictions may affect our service delivery</span>
+                      <div className="bg-green-500 text-white w-6 h-6 rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-0.5">
+                        <SafeIcon icon={FiEye} className="w-3 h-3" />
+                      </div>
+                      <div>
+                        <span className="font-semibold text-slate-800 dark:text-white">Privacy Practices</span>
+                        <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                          We only collect and use data necessary for providing our services. For complete details, please review our <a href="/privacy" className="text-yellow-600 dark:text-yellow-400 hover:underline">Privacy Policy</a>.
+                        </p>
+                      </div>
                     </li>
+                    
                     <li className="flex items-start">
-                      <div className="w-2 h-2 bg-red-500 rounded-full mr-3 mt-2"></div>
-                      <span className="text-red-700 dark:text-red-300"><strong>Data Processing:</strong> Your data may be processed by third-party AI providers under their respective terms and privacy policies</span>
-                    </li>
-                    <li className="flex items-start">
-                      <div className="w-2 h-2 bg-red-500 rounded-full mr-3 mt-2"></div>
-                      <span className="text-red-700 dark:text-red-300"><strong>Force Majeure:</strong> We are not responsible for failures due to circumstances beyond our control, including third-party service disruptions</span>
+                      <div className="bg-green-500 text-white w-6 h-6 rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-0.5">
+                        <SafeIcon icon={FiShield} className="w-3 h-3" />
+                      </div>
+                      <div>
+                        <span className="font-semibold text-slate-800 dark:text-white">Data Handling</span>
+                        <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                          We maintain appropriate data retention policies and secure deletion practices. We don't sell your data to third parties.
+                        </p>
+                      </div>
                     </li>
                   </ul>
                 </div>
-              </div>
-
-              <h2 className="flex items-center text-2xl font-bold text-slate-800 dark:text-white mb-6">
-                <SafeIcon icon={FiShield} className="w-6 h-6 mr-3 text-yellow-500" />
-                Client Compliance Responsibilities
-              </h2>
-              <div className="bg-orange-50 dark:bg-orange-900/20 rounded-xl p-6 mb-8 border-l-4 border-orange-500 transition-colors duration-200">
-                <h3 className="text-lg font-semibold text-orange-800 dark:text-orange-300 mb-4">Legal and Regulatory Compliance</h3>
-                <p className="text-orange-700 dark:text-orange-300 mb-4 leading-relaxed">
-                  You are solely responsible for ensuring your use of our AI services complies with all applicable laws, regulations, and industry standards:
-                </p>
-                <div className="space-y-3">
-                  <ul className="space-y-2">
-                    <li className="flex items-start">
-                      <div className="w-2 h-2 bg-orange-500 rounded-full mr-3 mt-2"></div>
-                      <span className="text-orange-700 dark:text-orange-300"><strong>Outbound Communications:</strong> You must obtain explicit consent before using AI services for outbound calls, SMS, or emails. Compliance with TCPA, CAN-SPAM, CASL, GDPR, and local regulations is your responsibility</span>
-                    </li>
-                    <li className="flex items-start">
-                      <div className="w-2 h-2 bg-orange-500 rounded-full mr-3 mt-2"></div>
-                      <span className="text-orange-700 dark:text-orange-300"><strong>Data Protection:</strong> You are responsible for compliance with privacy laws including GDPR, CCPA, PIPEDA, and other applicable data protection regulations</span>
-                    </li>
-                    <li className="flex items-start">
-                      <div className="w-2 h-2 bg-orange-500 rounded-full mr-3 mt-2"></div>
-                      <span className="text-orange-700 dark:text-orange-300"><strong>Industry Regulations:</strong> Healthcare (HIPAA), financial services (SOX, PCI DSS), and other industry-specific compliance requirements are your responsibility</span>
-                    </li>
-                    <li className="flex items-start">
-                      <div className="w-2 h-2 bg-orange-500 rounded-full mr-3 mt-2"></div>
-                      <span className="text-orange-700 dark:text-orange-300"><strong>Recording Consent:</strong> You must obtain proper consent for call recording and voice data processing in jurisdictions where required</span>
-                    </li>
-                    <li className="flex items-start">
-                      <div className="w-2 h-2 bg-orange-500 rounded-full mr-3 mt-2"></div>
-                      <span className="text-orange-700 dark:text-orange-300"><strong>Do Not Call Lists:</strong> You must maintain and respect Do Not Call registries and opt-out requests</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">User Responsibilities & Acceptable Use</h2>
-              <div className="space-y-4 mb-8">
-                <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                  You are responsible for:
-                </p>
-                <ul className="space-y-3">
-                  <li className="flex items-start">
-                    <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2"></div>
-                    <span className="text-slate-600 dark:text-slate-400">Providing accurate and complete information for service setup</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2"></div>
-                    <span className="text-slate-600 dark:text-slate-400">Maintaining the security of your account credentials and access</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2"></div>
-                    <span className="text-slate-600 dark:text-slate-400">Using our services in compliance with all applicable laws and regulations</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2"></div>
-                    <span className="text-slate-600 dark:text-slate-400">Not using our AI services for illegal, harmful, or unethical purposes</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2"></div>
-                    <span className="text-slate-600 dark:text-slate-400">Obtaining proper consent for all data collection and communication activities</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2"></div>
-                    <span className="text-slate-600 dark:text-slate-400">Implementing appropriate safeguards for sensitive or regulated data</span>
-                  </li>
-                </ul>
-              </div>
-
-              <h2 className="flex items-center text-2xl font-bold text-slate-800 dark:text-white mb-6">
-                <SafeIcon icon={FiSettings} className="w-6 h-6 mr-3 text-yellow-500" />
-                Service Availability & Performance
-              </h2>
-              <div className="space-y-4 mb-8">
-                <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                  While we strive to provide reliable service, we cannot guarantee:
-                </p>
-                <ul className="space-y-3">
-                  <li className="flex items-start">
-                    <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2"></div>
-                    <span className="text-slate-600 dark:text-slate-400"><strong>100% Uptime:</strong> Service may be interrupted for maintenance, updates, or due to third-party provider issues</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2"></div>
-                    <span className="text-slate-600 dark:text-slate-400"><strong>AI Accuracy:</strong> AI responses are generated using machine learning and may not always be 100% accurate</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2"></div>
-                    <span className="text-slate-600 dark:text-slate-400"><strong>Third-Party Availability:</strong> Our services depend on external AI providers and infrastructure</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2"></div>
-                    <span className="text-slate-600 dark:text-slate-400"><strong>Performance Variations:</strong> Response times and quality may vary based on system load and complexity</span>
-                  </li>
-                </ul>
-                <p className="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">
-                  We will provide reasonable notice for planned maintenance and work to minimize service disruptions.
-                </p>
-              </div>
-
-              <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">Payment Terms</h2>
-              <div className="space-y-4 mb-8">
-                <ul className="space-y-3">
-                  <li className="flex items-start">
-                    <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2"></div>
-                    <span className="text-slate-600 dark:text-slate-400">Payment is due according to the agreed-upon terms in your service agreement</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2"></div>
-                    <span className="text-slate-600 dark:text-slate-400">Late payments may result in service suspension or termination</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2"></div>
-                    <span className="text-slate-600 dark:text-slate-400">Refunds are handled on a case-by-case basis and may be prorated</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2"></div>
-                    <span className="text-slate-600 dark:text-slate-400">You are responsible for any applicable taxes and third-party fees</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2"></div>
-                    <span className="text-slate-600 dark:text-slate-400">Additional usage beyond agreed limits may incur extra charges</span>
-                  </li>
-                </ul>
-              </div>
-
-              <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">Intellectual Property</h2>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-8">
-                All content, features, and functionality of our services are owned by TONNIC AI Agency and are protected by copyright, trademark, and other intellectual property laws. You may not reproduce, distribute, or create derivative works without our explicit written permission. You retain ownership of your data and content provided to our services.
-              </p>
-
-              <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">Limitation of Liability</h2>
-              <div className="bg-slate-50 dark:bg-slate-700 rounded-xl p-6 mb-8 transition-colors duration-200">
-                <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
-                  TONNIC AI Agency's liability is limited as follows:
-                </p>
-                <ul className="space-y-3">
-                  <li className="flex items-start">
-                    <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2"></div>
-                    <span className="text-slate-600 dark:text-slate-400"><strong>Direct Damages:</strong> Our total liability shall not exceed the amount paid by you for our services in the twelve months preceding the claim</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2"></div>
-                    <span className="text-slate-600 dark:text-slate-400"><strong>Indirect Damages:</strong> We are not liable for indirect, incidental, special, consequential, or punitive damages</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2"></div>
-                    <span className="text-slate-600 dark:text-slate-400"><strong>Third-Party Issues:</strong> We are not liable for damages caused by third-party service failures, data breaches, or policy changes</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2"></div>
-                    <span className="text-slate-600 dark:text-slate-400"><strong>Compliance Issues:</strong> We are not liable for regulatory fines, penalties, or legal issues arising from your use of our services</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2"></div>
-                    <span className="text-slate-600 dark:text-slate-400"><strong>AI Decisions:</strong> We are not liable for decisions made by AI systems or their consequences</span>
-                  </li>
-                </ul>
-              </div>
-
-              <h2 className="flex items-center text-2xl font-bold text-slate-800 dark:text-white mb-6">
-                <SafeIcon icon={FiUsers} className="w-6 h-6 mr-3 text-yellow-500" />
-                Indemnification
-              </h2>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-8">
-                You agree to indemnify and hold harmless TONNIC AI Agency from any claims, damages, losses, or expenses (including reasonable attorney fees) arising from: (1) your use of our services, (2) your violation of these terms, (3) your violation of applicable laws or regulations, (4) your failure to obtain proper consent for communications, (5) any compliance violations in your industry or jurisdiction, or (6) any third-party claims related to your use of our AI services.
-              </p>
-
-              <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">Termination</h2>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-8">
-                Either party may terminate the service agreement with appropriate notice as specified in your individual service contract. We may immediately suspend or terminate services for: (1) non-payment, (2) violation of these terms, (3) illegal or harmful use, (4) compliance violations, or (5) if required by third-party service providers. Upon termination, your access to our services will cease, any outstanding payments will become due immediately, and we may delete your data according to our data retention policies.
-              </p>
-
-              <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">Governing Law & Dispute Resolution</h2>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-8">
-                These terms are governed by Canadian law. Any disputes will be resolved through binding arbitration in Canada, except for claims related to intellectual property which may be pursued in court. You waive any right to participate in class action lawsuits.
-              </p>
-
-              <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">Changes to Terms</h2>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-8">
-                We may update these Terms of Service at any time. Material changes will be communicated via email or service notifications at least 30 days before taking effect. Continued use of our services after changes constitutes acceptance of the updated terms.
-              </p>
-
-              <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">Contact Information</h2>
-              <div className="bg-yellow-50 dark:bg-yellow-900/20 rounded-xl p-6 transition-colors duration-200">
-                <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
-                  For questions about these Terms of Service:
-                </p>
-                <div className="space-y-2">
-                  <p className="text-slate-700 dark:text-slate-300 font-semibold">TONNIC AI Agency</p>
-                  <p className="text-slate-600 dark:text-slate-400">
-                    Email: <a href="mailto:hello@tonnic.ai" className="text-yellow-500 hover:text-yellow-600 underline">hello@tonnic.ai</a>
+                
+                <div className="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500 mb-8">
+                  <p className="text-indigo-800 dark:text-indigo-300 text-sm">
+                    <strong>Voice Data Notice:</strong> When using our AI voice agent services, calls are recorded and processed for service delivery and quality assurance. By using these services, you consent to call recording and processing. For details, see our <a href="/privacy" className="text-indigo-600 dark:text-indigo-400 hover:underline">Privacy Policy</a>.
                   </p>
-                  <p className="text-slate-600 dark:text-slate-400">
-                    Phone: <a href="tel:+18882925513" className="text-yellow-500 hover:text-yellow-600 underline">1-888-292-5513</a>
-                  </p>
-                  <p className="text-slate-600 dark:text-slate-400">Website: https://tonnic.agency</p>
                 </div>
+              </section>
+              
+              {/* SECTION 3: LEGAL ESSENTIALS */}
+              <section>
+                <h2 className="flex items-center text-2xl font-bold text-slate-800 dark:text-white mb-6 pt-4 border-t border-slate-200 dark:border-slate-700">
+                  <SafeIcon icon={FiBookOpen} className="w-6 h-6 mr-3 text-yellow-500" />
+                  Legal Essentials
+                </h2>
+                
+                <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                  While we prefer plain language, certain legal provisions are necessary to protect both parties:
+                </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                  <div className="bg-slate-50 dark:bg-slate-700 p-5 rounded-xl">
+                    <h4 className="font-semibold text-slate-800 dark:text-white mb-3 border-b border-slate-200 dark:border-slate-600 pb-2">Intellectual Property</h4>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                      We retain ownership of our pre-existing tools, frameworks, and methodologies. You own your data and the custom solutions we create specifically for you.
+                    </p>
+                  </div>
+                  
+                  <div className="bg-slate-50 dark:bg-slate-700 p-5 rounded-xl">
+                    <h4 className="font-semibold text-slate-800 dark:text-white mb-3 border-b border-slate-200 dark:border-slate-600 pb-2">Limitation of Liability</h4>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                      Our liability is limited to the amount paid for our services. We're not liable for indirect or consequential damages, third-party service failures, or issues caused by inaccurate client data.
+                    </p>
+                  </div>
+                  
+                  <div className="bg-slate-50 dark:bg-slate-700 p-5 rounded-xl">
+                    <h4 className="font-semibold text-slate-800 dark:text-white mb-3 border-b border-slate-200 dark:border-slate-600 pb-2">Warranties</h4>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                      We warrant our services will be performed professionally and according to industry standards. However, we don't guarantee specific business outcomes or third-party platform performance.
+                    </p>
+                  </div>
+                  
+                  <div className="bg-slate-50 dark:bg-slate-700 p-5 rounded-xl">
+                    <h4 className="font-semibold text-slate-800 dark:text-white mb-3 border-b border-slate-200 dark:border-slate-600 pb-2">Governing Law</h4>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                      These terms are governed by Canadian law. Disputes will be resolved through arbitration in Canada, except for intellectual property claims which may go to court.
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="bg-slate-50 dark:bg-slate-700 p-5 rounded-xl mb-8">
+                  <h4 className="font-semibold text-slate-800 dark:text-white mb-3 border-b border-slate-200 dark:border-slate-600 pb-2">Changes to These Terms</h4>
+                  <p className="text-sm text-slate-600 dark:text-slate-400">
+                    We may update these terms occasionally. We'll notify you of significant changes 30 days before they take effect. Continued use of our services after changes indicates your acceptance of the updated terms.
+                  </p>
+                </div>
+              </section>
+              
+              {/* ACCEPTANCE */}
+              <div className="mt-12 p-6 bg-slate-50 dark:bg-slate-700 rounded-xl border-t-4 border-yellow-500">
+                <h3 className="text-lg font-semibold text-slate-800 dark:text-white mb-3">Acceptance of Terms</h3>
+                <p className="text-slate-600 dark:text-slate-400">
+                  By using TONNIC AI Agency's services, you accept and agree to these terms. If you have questions or concerns, please contact us before proceeding.
+                </p>
+                <p className="text-slate-500 dark:text-slate-400 text-sm mt-3">
+                  Last updated: February 2025
+                </p>
               </div>
+              
             </div>
           </motion.div>
         </div>

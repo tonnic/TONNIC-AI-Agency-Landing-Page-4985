@@ -66,7 +66,7 @@ const PrivacyPolicy = () => {
                 <SafeIcon icon={FiEye} className="w-6 h-6 mr-3 text-yellow-500" />
                 1. Information We Collect
               </h2>
-              
+
               <div className="space-y-6 mb-8">
                 <div className="bg-slate-50 dark:bg-slate-700 rounded-xl p-6 transition-colors duration-200">
                   <h3 className="text-lg font-semibold text-slate-700 dark:text-slate-300 mb-3 flex items-center">
@@ -93,7 +93,7 @@ const PrivacyPolicy = () => {
                   <ul className="space-y-2 text-red-700 dark:text-red-300">
                     <li className="flex items-start">
                       <div className="w-2 h-2 bg-red-500 rounded-full mr-3 mt-2"></div>
-                      <span><strong>Voice Recordings:</strong> When you call our AI voice agents at 1-888-292-5513 or interact with our voice services, ALL conversations are recorded and processed for service delivery, quality assurance, and AI training purposes</span>
+                      <span><strong>Voice Recordings:</strong> When you call our AI voice agents at 1-888-442-BUZZ (1-888-442-2899) or interact with our voice services, ALL conversations are recorded and processed for service delivery, quality assurance, and AI training purposes</span>
                     </li>
                     <li className="flex items-start">
                       <div className="w-2 h-2 bg-red-500 rounded-full mr-3 mt-2"></div>
@@ -152,7 +152,7 @@ const PrivacyPolicy = () => {
                 <SafeIcon icon={FiLock} className="w-6 h-6 mr-3 text-yellow-500" />
                 2. How We Use Your Information
               </h2>
-              
+
               <div className="space-y-4 mb-8">
                 <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-6 transition-colors duration-200">
                   <h3 className="text-lg font-semibold text-blue-800 dark:text-blue-300 mb-3 flex items-center">
@@ -207,7 +207,7 @@ const PrivacyPolicy = () => {
                 <SafeIcon icon={FiSettings} className="w-6 h-6 mr-3 text-yellow-500" />
                 3. AI Service Providers & Third-Party Sharing
               </h2>
-              
+
               <div className="space-y-4 mb-8">
                 <div className="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-6 border-l-4 border-purple-500 transition-colors duration-200">
                   <h3 className="text-lg font-semibold text-purple-800 dark:text-purple-300 mb-3">AI Platform Partners</h3>
@@ -257,7 +257,7 @@ const PrivacyPolicy = () => {
                 <SafeIcon icon={FiClock} className="w-6 h-6 mr-3 text-yellow-500" />
                 4. Data Retention & Storage
               </h2>
-              
+
               <div className="bg-orange-50 dark:bg-orange-900/20 rounded-xl p-6 mb-8 transition-colors duration-200">
                 <h3 className="text-lg font-semibold text-orange-800 dark:text-orange-300 mb-4">Voice Data Retention Schedule</h3>
                 <div className="space-y-3">
@@ -299,6 +299,7 @@ const PrivacyPolicy = () => {
                 <SafeIcon icon={FiGlobe} className="w-6 h-6 mr-3 text-yellow-500" />
                 5. Canadian Legal Basis (PIPEDA & CASL)
               </h2>
+
               <div className="bg-slate-50 dark:bg-slate-700 rounded-xl p-6 mb-8 transition-colors duration-200">
                 <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
                   Under PIPEDA, we collect, use, and disclose personal information with appropriate consent or as otherwise permitted by law:
@@ -323,6 +324,7 @@ const PrivacyPolicy = () => {
                 <SafeIcon icon={FiAlertTriangle} className="w-6 h-6 mr-3 text-yellow-500" />
                 6. Your Rights & Choices
               </h2>
+
               <div className="space-y-4 mb-8">
                 <div className="bg-green-50 dark:bg-green-900/20 rounded-xl p-6 transition-colors duration-200">
                   <h3 className="text-lg font-semibold text-green-800 dark:text-green-300 mb-3">Voice Data Rights</h3>
@@ -345,6 +347,7 @@ const PrivacyPolicy = () => {
                     </li>
                   </ul>
                 </div>
+
                 <ul className="space-y-3">
                   <li className="flex items-start">
                     <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2"></div>
@@ -387,7 +390,7 @@ const PrivacyPolicy = () => {
                     Email: <a href="mailto:hello@tonnic.ai" className="text-yellow-500 hover:text-yellow-600 underline">hello@tonnic.ai</a>
                   </p>
                   <p className="text-slate-600 dark:text-slate-400">
-                    Phone: <a href="tel:+18882925513" className="text-yellow-500 hover:text-yellow-600 underline">1-888-292-5513</a>
+                    Phone: <a href="tel:+18884422899" className="text-yellow-500 hover:text-yellow-600 underline">1-888-442-BUZZ (1-888-442-2899)</a>
                   </p>
                   <p className="text-slate-600 dark:text-slate-400">Website: https://tonnic.agency</p>
                 </div>

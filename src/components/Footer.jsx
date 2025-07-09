@@ -188,13 +188,13 @@ const Footer = () => {
               <div>
                 <div className="text-slate-200 font-medium text-sm">AI Voice Agent</div>
                 <a
-                  href="tel:+18882925513"
+                  href="tel:+18884422899"
                   className="text-slate-300 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200"
-                  aria-label="Call our AI Voice Agent at 1-888-292-5513"
+                  aria-label="Call our AI Voice Agent at 1-888-442-BUZZ"
                 >
-                  1-888-292-5513
+                  1-888-442-BUZZ
                 </a>
-                <div className="text-slate-400 text-xs mt-1">Available 24/7</div>
+                <div className="text-slate-400 text-xs mt-1">(1-888-442-2899) • Available 24/7</div>
               </div>
             </div>
           </div>
