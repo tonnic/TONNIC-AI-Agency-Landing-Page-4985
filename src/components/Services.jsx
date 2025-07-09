@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import {motion} from 'framer-motion';
+import {useNavigate} from 'react-router-dom';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 
-const { FiMic, FiMessageSquare, FiGlobe, FiShare2, FiLink, FiZap, FiX, FiCalendar, FiArrowRight, FiAward, FiExternalLink } = FiIcons;
+const {FiMic, FiMessageSquare, FiGlobe, FiShare2, FiLink, FiZap, FiX, FiCalendar, FiArrowRight, FiAward, FiExternalLink} = FiIcons;
 
 const Services = () => {
   const navigate = useNavigate();
@@ -16,6 +16,7 @@ const Services = () => {
     const handleOpenCalModal = () => {
       setShowCalModal(true);
     };
+
     window.addEventListener('openCalModal', handleOpenCalModal);
     return () => {
       window.removeEventListener('openCalModal', handleOpenCalModal);
@@ -37,6 +38,7 @@ const Services = () => {
         event.stopPropagation();
       }
     };
+
     document.addEventListener('globalEscape', handleGlobalEscape);
     return () => document.removeEventListener('globalEscape', handleGlobalEscape);
   }, [selectedService, showCalModal]);
@@ -50,7 +52,7 @@ const Services = () => {
       slug: "aivoiceagents",
       detailedContent: {
         title: "AI Voice Agents",
-        subtitle: "Advanced Voice AI Solutions",
+        subtitle: "Advanced Inbound/Outbound Voice AI Solutions",
         description: "Transform your phone communications with advanced AI voice agents powered by industry-leading platforms including Retell, Vapi, ElevenLabs, and Thoughtly. As a Thoughtly Premier Partner, we deliver enterprise-grade voice solutions with natural, human-like conversations tailored to your specific industry and requirements.",
         techStack: [
           {
@@ -491,10 +493,10 @@ const Services = () => {
       <section id="services" className="py-20 bg-white dark:bg-slate-900 transition-colors duration-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            initial={{opacity: 0, y: 30}}
+            whileInView={{opacity: 1, y: 0}}
+            transition={{duration: 0.8}}
+            viewport={{once: true}}
             className="text-center mb-16"
           >
             <h2 className="text-4xl font-bold text-slate-800 dark:text-white mb-4 transition-colors duration-200">
@@ -509,10 +511,10 @@ const Services = () => {
             {services.map((service, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
+                initial={{opacity: 0, y: 30}}
+                whileInView={{opacity: 1, y: 0}}
+                transition={{duration: 0.6, delay: index * 0.1}}
+                viewport={{once: true}}
                 className="bg-gradient-to-br from-slate-50 to-yellow-50 dark:from-slate-800 dark:to-slate-700 rounded-2xl hover:shadow-xl dark:hover:shadow-slate-700/20 transition-all duration-300 border border-slate-200 dark:border-slate-600 hover:border-yellow-300 dark:hover:border-yellow-500 group overflow-hidden h-full flex flex-col"
               >
                 <div className="p-8 flex-1 flex flex-col">
@@ -555,10 +557,10 @@ const Services = () => {
           </div>
 
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
+            initial={{opacity: 0, y: 30}}
+            whileInView={{opacity: 1, y: 0}}
+            transition={{duration: 0.8, delay: 0.4}}
+            viewport={{once: true}}
             className="text-center mt-16"
           >
             <div className="bg-gradient-to-r from-yellow-500 to-yellow-400 rounded-3xl p-8 md:p-12">
@@ -584,9 +586,9 @@ const Services = () => {
       {selectedService && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" role="dialog" aria-modal="true" aria-labelledby="service-modal-title">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
+            initial={{opacity: 0, scale: 0.9}}
+            animate={{opacity: 1, scale: 1}}
+            exit={{opacity: 0, scale: 0.9}}
             className="bg-white dark:bg-slate-800 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative transition-colors duration-200"
           >
             <button
@@ -634,12 +636,7 @@ const Services = () => {
                         className={`px-4 py-2 rounded-lg font-medium text-slate-700 dark:text-yellow-100 border transition-all duration-200 flex items-center hover:bg-yellow-100 dark:hover:bg-yellow-200/30 hover:border-yellow-300 dark:hover:border-yellow-300/50 hover:scale-105 hover:shadow-md group cursor-pointer ${getPartnerStatusStyle(tech, selectedService.detailedContent.preferredPlatform)}`}
                         aria-label={`Visit ${tech.name} website (opens in new tab)`}
                       >
-                        <img
-                          src={tech.favicon}
-                          alt={`${tech.name} logo`}
-                          className="w-4 h-4 mr-2 flex-shrink-0"
-                          onError={(e) => { e.target.style.display = 'none'; }}
-                        />
+                        <img src={tech.favicon} alt={`${tech.name} logo`} className="w-4 h-4 mr-2 flex-shrink-0" onError={(e) => {e.target.style.display='none';}} />
                         <span className="group-hover:text-slate-800 dark:group-hover:text-yellow-50 transition-colors duration-200">
                           {getPartnerStatusText(tech, selectedService.detailedContent.preferredPlatform)}
                         </span>
@@ -665,12 +662,7 @@ const Services = () => {
                     {selectedService.detailedContent.chatbotPlatforms.map((platform, index) => (
                       <div key={index} className="bg-white dark:bg-yellow-200/20 px-4 py-3 rounded-lg border border-yellow-200 dark:border-yellow-300/30 transition-colors duration-200">
                         <div className="flex items-center mb-2">
-                          <img
-                            src={platform.favicon}
-                            alt={`${platform.name} logo`}
-                            className="w-5 h-5 mr-2 flex-shrink-0"
-                            onError={(e) => { e.target.style.display = 'none'; }}
-                          />
+                          <img src={platform.favicon} alt={`${platform.name} logo`} className="w-5 h-5 mr-2 flex-shrink-0" onError={(e) => {e.target.style.display='none';}} />
                           <span className="font-medium text-slate-700 dark:text-yellow-100 transition-colors duration-200">
                             {platform.name}
                           </span>
@@ -695,12 +687,7 @@ const Services = () => {
                     {selectedService.detailedContent.socialPlatforms.map((platform, index) => (
                       <div key={index} className="bg-white dark:bg-yellow-200/20 px-4 py-3 rounded-lg border border-yellow-200 dark:border-yellow-300/30 transition-colors duration-200">
                         <div className="flex items-center mb-2">
-                          <img
-                            src={platform.favicon}
-                            alt={`${platform.name} logo`}
-                            className="w-5 h-5 mr-2 flex-shrink-0"
-                            onError={(e) => { e.target.style.display = 'none'; }}
-                          />
+                          <img src={platform.favicon} alt={`${platform.name} logo`} className="w-5 h-5 mr-2 flex-shrink-0" onError={(e) => {e.target.style.display='none';}} />
                           <span className="font-medium text-slate-700 dark:text-yellow-100 transition-colors duration-200">
                             {platform.name}
                           </span>
@@ -732,12 +719,7 @@ const Services = () => {
                           className={`px-4 py-3 rounded-lg font-medium border transition-all duration-200 flex items-center hover:scale-105 hover:shadow-md group cursor-pointer min-h-[60px] ${getPartnerStatusStyle(platform, selectedService.detailedContent.preferredPlatform)}`}
                           aria-label={`Visit ${platform.name} website (opens in new tab)`}
                         >
-                          <img
-                            src={platform.favicon}
-                            alt={`${platform.name} logo`}
-                            className="w-5 h-5 mr-3 flex-shrink-0"
-                            onError={(e) => { e.target.style.display = 'none'; }}
-                          />
+                          <img src={platform.favicon} alt={`${platform.name} logo`} className="w-5 h-5 mr-3 flex-shrink-0" onError={(e) => {e.target.style.display='none';}} />
                           <div className="flex-1 min-w-0">
                             <span className="group-hover:opacity-90 transition-opacity duration-200 block truncate">
                               {getPartnerStatusText(platform, selectedService.detailedContent.preferredPlatform)}
@@ -835,9 +817,9 @@ const Services = () => {
       {showCalModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" role="dialog" aria-modal="true" aria-labelledby="cal-modal-title">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
+            initial={{opacity: 0, scale: 0.9}}
+            animate={{opacity: 1, scale: 1}}
+            exit={{opacity: 0, scale: 0.9}}
             className="bg-white dark:bg-slate-800 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden relative transition-colors duration-200"
           >
             <button
