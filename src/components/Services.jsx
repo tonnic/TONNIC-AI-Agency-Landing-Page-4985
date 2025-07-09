@@ -16,7 +16,6 @@ const Services = () => {
     const handleOpenCalModal = () => {
       setShowCalModal(true);
     };
-
     window.addEventListener('openCalModal', handleOpenCalModal);
     return () => {
       window.removeEventListener('openCalModal', handleOpenCalModal);
@@ -38,7 +37,6 @@ const Services = () => {
         event.stopPropagation();
       }
     };
-
     document.addEventListener('globalEscape', handleGlobalEscape);
     return () => document.removeEventListener('globalEscape', handleGlobalEscape);
   }, [selectedService, showCalModal]);
@@ -52,30 +50,35 @@ const Services = () => {
       slug: "aivoiceagents",
       detailedContent: {
         title: "AI Voice Agents",
-        subtitle: "Thoughtly Premier Partner - Advanced Voice AI Solutions",
+        subtitle: "Advanced Voice AI Solutions",
         description: "Transform your phone communications with advanced AI voice agents powered by industry-leading platforms including Retell, Vapi, ElevenLabs, and Thoughtly. As a Thoughtly Premier Partner, we deliver enterprise-grade voice solutions with natural, human-like conversations tailored to your specific industry and requirements.",
         techStack: [
           {
             name: "Retell",
             favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779529709-retellfavicon.png",
-            url: "https://dashboard.retellai.com/?ref=tonnic"
+            url: "https://dashboard.retellai.com/?ref=tonnic",
+            partnerStatus: "preferred"
           },
           {
             name: "Vapi",
             favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779532754-vapifavicon.png",
-            url: "https://vapi.ai/?aff=tonnic"
+            url: "https://vapi.ai/?aff=tonnic",
+            partnerStatus: "standard"
           },
           {
             name: "ElevenLabs",
             favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779535711-elevenlabsfavicon.png",
-            url: "https://try.elevenlabs.io/tonnic"
+            url: "https://try.elevenlabs.io/tonnic",
+            partnerStatus: "standard"
           },
           {
             name: "Thoughtly",
             favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779526113-thoughtlyfavicon.png",
-            url: "https://thoughtly.com/?ref=tonnic"
+            url: "https://thoughtly.com/?ref=tonnic",
+            partnerStatus: "premier_partner"
           }
         ],
+        preferredPlatform: "Retell",
         partnerBadge: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750734772981-partner-badge.png",
         benefits: [
           "24/7 Availability - Never miss a call or opportunity",
@@ -454,10 +457,13 @@ const Services = () => {
   };
 
   // Function to get partner status display text
-  const getPartnerStatusText = (platform) => {
+  const getPartnerStatusText = (platform, preferredPlatform) => {
+    if (platform.name === preferredPlatform) {
+      return `${platform.name} (Preferred)`;
+    }
     switch (platform.partnerStatus) {
-      case 'preferred':
-        return `${platform.name} (Preferred)`;
+      case 'premier_partner':
+        return `${platform.name} (Premier Partner)`;
       case 'solution_partner':
         return `${platform.name} (Solution Partner)`;
       default:
@@ -466,11 +472,13 @@ const Services = () => {
   };
 
   // Function to get partner status styling
-  const getPartnerStatusStyle = (platform, isPreferred) => {
-    if (isPreferred) {
+  const getPartnerStatusStyle = (platform, preferredPlatform) => {
+    if (platform.name === preferredPlatform) {
       return 'bg-yellow-500 text-slate-800 border-yellow-500';
     }
     switch (platform.partnerStatus) {
+      case 'premier_partner':
+        return 'bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 border-blue-300 dark:border-blue-600';
       case 'solution_partner':
         return 'bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 border-blue-300 dark:border-blue-600';
       default:
@@ -600,11 +608,7 @@ const Services = () => {
                       {selectedService.detailedContent.title}
                     </h2>
                     {selectedService.detailedContent.partnerBadge && (
-                      <img
-                        src={selectedService.detailedContent.partnerBadge}
-                        alt="Thoughtly Premier Partner"
-                        className="h-12 w-auto"
-                      />
+                      <img src={selectedService.detailedContent.partnerBadge} alt="Thoughtly Premier Partner" className="h-12 w-auto" />
                     )}
                   </div>
                   <p className="text-xl text-yellow-600 dark:text-yellow-400 font-semibold transition-colors duration-200">
@@ -627,7 +631,7 @@ const Services = () => {
                         href={tech.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-white dark:bg-yellow-200/20 px-4 py-2 rounded-lg font-medium text-slate-700 dark:text-yellow-100 border border-yellow-200 dark:border-yellow-300/30 transition-all duration-200 flex items-center hover:bg-yellow-100 dark:hover:bg-yellow-200/30 hover:border-yellow-300 dark:hover:border-yellow-300/50 hover:scale-105 hover:shadow-md group cursor-pointer"
+                        className={`px-4 py-2 rounded-lg font-medium text-slate-700 dark:text-yellow-100 border transition-all duration-200 flex items-center hover:bg-yellow-100 dark:hover:bg-yellow-200/30 hover:border-yellow-300 dark:hover:border-yellow-300/50 hover:scale-105 hover:shadow-md group cursor-pointer ${getPartnerStatusStyle(tech, selectedService.detailedContent.preferredPlatform)}`}
                         aria-label={`Visit ${tech.name} website (opens in new tab)`}
                       >
                         <img
@@ -637,7 +641,7 @@ const Services = () => {
                           onError={(e) => { e.target.style.display = 'none'; }}
                         />
                         <span className="group-hover:text-slate-800 dark:group-hover:text-yellow-50 transition-colors duration-200">
-                          {tech.name}
+                          {getPartnerStatusText(tech, selectedService.detailedContent.preferredPlatform)}
                         </span>
                         <SafeIcon icon={FiExternalLink} className="w-3 h-3 ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-slate-500 dark:text-yellow-300" aria-hidden="true" />
                       </a>
@@ -719,14 +723,13 @@ const Services = () => {
                   </h4>
                   <div className="grid grid-cols-2 gap-3">
                     {selectedService.detailedContent.automationPlatforms.map((platform, index) => {
-                      const isPreferred = platform.name === selectedService.detailedContent.preferredPlatform;
                       return (
                         <a
                           key={index}
                           href={platform.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className={`px-4 py-3 rounded-lg font-medium border transition-all duration-200 flex items-center hover:scale-105 hover:shadow-md group cursor-pointer min-h-[60px] ${getPartnerStatusStyle(platform, isPreferred)}`}
+                          className={`px-4 py-3 rounded-lg font-medium border transition-all duration-200 flex items-center hover:scale-105 hover:shadow-md group cursor-pointer min-h-[60px] ${getPartnerStatusStyle(platform, selectedService.detailedContent.preferredPlatform)}`}
                           aria-label={`Visit ${platform.name} website (opens in new tab)`}
                         >
                           <img
@@ -737,7 +740,7 @@ const Services = () => {
                           />
                           <div className="flex-1 min-w-0">
                             <span className="group-hover:opacity-90 transition-opacity duration-200 block truncate">
-                              {getPartnerStatusText(platform)}
+                              {getPartnerStatusText(platform, selectedService.detailedContent.preferredPlatform)}
                             </span>
                           </div>
                           <SafeIcon icon={FiExternalLink} className="w-4 h-4 ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex-shrink-0" aria-hidden="true" />

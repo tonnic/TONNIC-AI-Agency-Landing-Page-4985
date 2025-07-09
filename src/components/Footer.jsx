@@ -40,6 +40,31 @@ const Footer = () => {
     }
   };
 
+  // Fixed navigation functions that scroll to top
+  const navigateToPrivacy = () => {
+    navigate('/privacy');
+    // Scroll to top after navigation
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 50);
+  };
+
+  const navigateToTerms = () => {
+    navigate('/terms');
+    // Scroll to top after navigation
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 50);
+  };
+
+  const navigateToCookies = () => {
+    navigate('/cookies');
+    // Scroll to top after navigation
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 50);
+  };
+
   return (
     <footer className="bg-slate-900 dark:bg-black text-white py-16 transition-colors duration-200" role="contentinfo">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -207,19 +232,19 @@ const Footer = () => {
             <nav aria-label="Legal links">
               <div className="flex space-x-6 text-sm">
                 <button
-                  onClick={() => navigate('/privacy')}
+                  onClick={navigateToPrivacy}
                   className="text-slate-400 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200"
                 >
                   Privacy Policy
                 </button>
                 <button
-                  onClick={() => navigate('/terms')}
+                  onClick={navigateToTerms}
                   className="text-slate-400 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200"
                 >
                   Terms of Service
                 </button>
                 <button
-                  onClick={() => navigate('/cookies')}
+                  onClick={navigateToCookies}
                   className="text-slate-400 hover:text-yellow-500 focus:text-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-black rounded transition-colors duration-200"
                 >
                   Cookie Policy
