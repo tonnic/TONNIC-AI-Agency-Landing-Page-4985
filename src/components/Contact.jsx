@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, {useState, useEffect} from 'react';
+import {motion} from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 
-const { FiMail, FiPhone, FiCalendar, FiX, FiMic, FiUser, FiMessageSquare, FiSend, FiCheck, FiAlertCircle, FiLinkedin, FiGlobe, FiBuilding } = FiIcons;
+const {FiMail, FiPhone, FiCalendar, FiX, FiMic, FiUser, FiMessageSquare, FiSend, FiCheck, FiAlertCircle, FiLinkedin, FiGlobe, FiBuilding, FiHeadphones, FiUsers, FiZap, FiShield, FiCpu, FiTarget, FiTrendingUp} = FiIcons;
 
 const Contact = () => {
   const [showCalModal, setShowCalModal] = useState(false);
@@ -60,7 +60,7 @@ const Contact = () => {
   };
 
   const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target;
+    const {name, value, type, checked} = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: type === 'checkbox' ? checked : value
@@ -69,7 +69,7 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Check if consent is given
     if (!formData.optInConsent) {
       setSubmitError('You must provide consent to communications in order to submit this form.');
@@ -126,7 +126,7 @@ const Contact = () => {
         console.log('Parsed response data:', responseData);
       } catch (parseError) {
         console.log('Failed to parse JSON, using raw text as message');
-        responseData = { message: responseText };
+        responseData = {message: responseText};
       }
 
       setWebhookResponse(responseData);
@@ -174,10 +174,10 @@ const Contact = () => {
       <section id="contact" className="py-20 bg-slate-800 dark:bg-slate-950 transition-colors duration-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            initial={{opacity: 0, y: 30}}
+            whileInView={{opacity: 1, y: 0}}
+            transition={{duration: 0.8}}
+            viewport={{once: true}}
             className="text-center mb-16"
           >
             <h2 className="text-4xl font-bold text-white mb-4">
@@ -188,13 +188,14 @@ const Contact = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          {/* IMPROVED LAYOUT - Stacked on mobile, side-by-side on large screens with better balance */}
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-16">
             {/* Custom Contact Form */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
+              initial={{opacity: 0, x: -30}}
+              whileInView={{opacity: 1, x: 0}}
+              transition={{duration: 0.8}}
+              viewport={{once: true}}
               className="bg-white dark:bg-slate-800 rounded-3xl p-8 transition-colors duration-200"
             >
               <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-2 transition-colors duration-200">
@@ -206,8 +207,8 @@ const Contact = () => {
 
               {isSubmitted ? (
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
+                  initial={{opacity: 0, scale: 0.8}}
+                  animate={{opacity: 1, scale: 1}}
                   className="text-center py-8"
                 >
                   <div className="bg-green-100 dark:bg-green-900/30 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 transition-colors duration-200">
@@ -216,14 +217,13 @@ const Contact = () => {
                   <h4 className="text-xl font-bold text-slate-800 dark:text-white mb-4 transition-colors duration-200">
                     Message Sent Successfully!
                   </h4>
-                  
+
                   {/* Display webhook response */}
                   {webhookResponse && (
                     <div className="bg-yellow-50 dark:bg-yellow-900/20 rounded-xl p-4 mb-4 text-left transition-colors duration-200">
                       <h5 className="font-semibold text-slate-800 dark:text-white mb-2 transition-colors duration-200">
                         System Response:
                       </h5>
-                      
                       {/* Handle different response formats */}
                       {typeof webhookResponse === 'string' ? (
                         <p className="text-slate-700 dark:text-slate-300 transition-colors duration-200">
@@ -251,7 +251,6 @@ const Contact = () => {
                               <strong>Error:</strong> {webhookResponse.error}
                             </p>
                           )}
-                          
                           {/* Debug info - show all response fields */}
                           <details className="mt-2">
                             <summary className="text-xs text-slate-500 dark:text-slate-400 cursor-pointer">
@@ -268,8 +267,7 @@ const Contact = () => {
 
                   <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-4 border-l-4 border-blue-500 transition-colors duration-200">
                     <p className="text-blue-800 dark:text-blue-200 text-sm transition-colors duration-200">
-                      <strong>⚡ Next Steps:</strong> Our AI voice agent will automatically call you back within the next few minutes to discuss your inquiry. 
-                      If you miss the call, don't worry - you can also reach us directly at{' '}
+                      <strong>⚡ Next Steps:</strong> Our AI voice agent will automatically call you back within the next few minutes to discuss your inquiry. If you miss the call, don't worry - you can also reach us directly at{' '}
                       <a href="tel:+18884422899" className="underline hover:text-blue-600 dark:hover:text-blue-300">
                         1-888-442-BUZZ (1-888-442-2899)
                       </a>
@@ -280,8 +278,8 @@ const Contact = () => {
                 <>
                   {submitError && (
                     <motion.div
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
+                      initial={{opacity: 0, y: -10}}
+                      animate={{opacity: 1, y: 0}}
                       className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl flex items-start transition-colors duration-200"
                     >
                       <SafeIcon icon={FiAlertCircle} className="w-5 h-5 text-red-500 dark:text-red-400 mr-3 mt-0.5 flex-shrink-0" />
@@ -499,10 +497,7 @@ const Contact = () => {
               <div className="mt-6 p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-xl transition-colors duration-200">
                 <p className="text-sm text-slate-600 dark:text-slate-300 transition-colors duration-200">
                   <strong>Note:</strong> For immediate assistance, call our AI Voice Agent at{' '}
-                  <a
-                    href="tel:+18884422899"
-                    className="text-yellow-600 dark:text-yellow-400 hover:text-yellow-700 dark:hover:text-yellow-300 underline focus:ring-2 focus:ring-yellow-500 focus:ring-offset-1 dark:focus:ring-offset-slate-800 rounded transition-colors duration-200"
-                  >
+                  <a href="tel:+18884422899" className="text-yellow-600 dark:text-yellow-400 hover:text-yellow-700 dark:hover:text-yellow-300 underline focus:ring-2 focus:ring-yellow-500 focus:ring-offset-1 dark:focus:ring-offset-slate-800 rounded transition-colors duration-200">
                     1-888-442-BUZZ (1-888-442-2899)
                   </a>
                   {' '}who can answer questions and connect you with our team.
@@ -522,12 +517,12 @@ const Contact = () => {
               </div>
             </motion.div>
 
-            {/* Contact Info */}
+            {/* ENHANCED Contact Info & Additional Content */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
+              initial={{opacity: 0, x: 30}}
+              whileInView={{opacity: 1, x: 0}}
+              transition={{duration: 0.8}}
+              viewport={{once: true}}
               className="space-y-8"
             >
               <div>
@@ -539,6 +534,7 @@ const Contact = () => {
                 </p>
               </div>
 
+              {/* Contact Methods */}
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
                   <div className="bg-yellow-500 w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0">
@@ -546,11 +542,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <div className="text-white font-medium mb-1">AI Voice Agent</div>
-                    <a
-                      href="tel:+18884422899"
-                      className="text-slate-300 hover:text-yellow-400 focus:text-yellow-400 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-950 rounded transition-colors duration-200 text-lg font-semibold"
-                      aria-label="Call our AI Voice Agent at 1-888-442-BUZZ"
-                    >
+                    <a href="tel:+18884422899" className="text-slate-300 hover:text-yellow-400 focus:text-yellow-400 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-950 rounded transition-colors duration-200 text-lg font-semibold" aria-label="Call our AI Voice Agent at 1-888-442-BUZZ">
                       1-888-442-BUZZ
                     </a>
                     <div className="text-slate-400 text-sm mt-1">
@@ -576,7 +568,7 @@ const Contact = () => {
               </div>
 
               {/* Book a Meeting Button */}
-              <div className="pt-4">
+              <div>
                 <button
                   onClick={openCalModal}
                   className="w-full bg-slate-700 dark:bg-slate-800 text-white px-8 py-4 rounded-xl font-semibold hover:bg-slate-600 dark:hover:bg-slate-700 focus:bg-slate-600 dark:focus:bg-slate-700 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-950 transition-all duration-200 flex items-center justify-center border-2 border-yellow-500 hover:border-yellow-400 focus:border-yellow-400"
@@ -586,20 +578,177 @@ const Contact = () => {
                 </button>
               </div>
 
+              {/* What to Expect */}
               <div className="bg-slate-700 dark:bg-slate-800 rounded-2xl p-6 transition-colors duration-200">
-                <h4 className="text-white font-semibold mb-4">Why work with us?</h4>
+                <h4 className="text-white font-semibold mb-4 flex items-center">
+                  <SafeIcon icon={FiHeadphones} className="w-5 h-5 mr-2 text-yellow-500" />
+                  What to Expect
+                </h4>
                 <ul className="space-y-3 text-slate-300">
-                  <li className="flex items-center">
-                    <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3" aria-hidden="true"></div>
-                    Free consultation and needs assessment
+                  <li className="flex items-start">
+                    <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2" aria-hidden="true"></div>
+                    <div>
+                      <strong>Free Consultation:</strong> No-obligation discussion about your needs
+                    </div>
                   </li>
-                  <li className="flex items-center">
-                    <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3" aria-hidden="true"></div>
-                    Custom AI solutions tailored to your business
+                  <li className="flex items-start">
+                    <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2" aria-hidden="true"></div>
+                    <div>
+                      <strong>Custom Solution:</strong> Tailored AI recommendations for your business
+                    </div>
                   </li>
-                  <li className="flex items-center">
-                    <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3" aria-hidden="true"></div>
-                    Ongoing support and optimization
+                  <li className="flex items-start">
+                    <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2" aria-hidden="true"></div>
+                    <div>
+                      <strong>Clear Roadmap:</strong> Step-by-step implementation plan with timelines
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2" aria-hidden="true"></div>
+                    <div>
+                      <strong>Ongoing Support:</strong> Continuous optimization and assistance
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              {/* AI Technology Partners */}
+              <div className="bg-slate-700 dark:bg-slate-800 rounded-2xl p-6 transition-colors duration-200">
+                <h4 className="text-white font-semibold mb-4 flex items-center">
+                  <SafeIcon icon={FiCpu} className="w-5 h-5 mr-2 text-yellow-500" />
+                  Trusted AI Technology Partners
+                </h4>
+                <div className="space-y-3">
+                  <div className="flex items-center">
+                    <div className="w-1.5 h-1.5 bg-yellow-500 rounded-full mr-3"></div>
+                    <span className="text-slate-300 text-sm">Thoughtly (Premier Partner)</span>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-1.5 h-1.5 bg-yellow-500 rounded-full mr-3"></div>
+                    <span className="text-slate-300 text-sm">Retell (Voice AI Platform)</span>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-1.5 h-1.5 bg-yellow-500 rounded-full mr-3"></div>
+                    <span className="text-slate-300 text-sm">Vapi (Voice Infrastructure)</span>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-1.5 h-1.5 bg-yellow-500 rounded-full mr-3"></div>
+                    <span className="text-slate-300 text-sm">ElevenLabs (Voice Synthesis)</span>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-1.5 h-1.5 bg-yellow-500 rounded-full mr-3"></div>
+                    <span className="text-slate-300 text-sm">n8n (Automation Platform)</span>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-1.5 h-1.5 bg-yellow-500 rounded-full mr-3"></div>
+                    <span className="text-slate-300 text-sm">Zapier (Solution Partner)</span>
+                  </div>
+                </div>
+                <p className="text-slate-400 text-xs mt-4">
+                  We work with industry leaders to deliver cutting-edge AI solutions
+                </p>
+              </div>
+
+              {/* Our Approach */}
+              <div className="bg-slate-700 dark:bg-slate-800 rounded-2xl p-6 transition-colors duration-200">
+                <h4 className="text-white font-semibold mb-4 flex items-center">
+                  <SafeIcon icon={FiTarget} className="w-5 h-5 mr-2 text-yellow-500" />
+                  Our Approach
+                </h4>
+                <div className="space-y-4">
+                  <div className="border-l-4 border-yellow-500 pl-4">
+                    <h5 className="text-slate-200 font-medium text-sm">Business First</h5>
+                    <p className="text-slate-300 text-sm">
+                      We focus on solving your business challenges, not just implementing technology
+                    </p>
+                  </div>
+                  <div className="border-l-4 border-yellow-500 pl-4">
+                    <h5 className="text-slate-200 font-medium text-sm">Proven Technology</h5>
+                    <p className="text-slate-300 text-sm">
+                      We use established platforms and proven methodologies for reliable results
+                    </p>
+                  </div>
+                  <div className="border-l-4 border-yellow-500 pl-4">
+                    <h5 className="text-slate-200 font-medium text-sm">Transparent Process</h5>
+                    <p className="text-slate-300 text-sm">
+                      Clear communication, defined timelines, and no hidden surprises
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Industries We Serve */}
+              <div className="bg-slate-700 dark:bg-slate-800 rounded-2xl p-6 transition-colors duration-200">
+                <h4 className="text-white font-semibold mb-4 flex items-center">
+                  <SafeIcon icon={FiZap} className="w-5 h-5 mr-2 text-yellow-500" />
+                  Industries We Serve
+                </h4>
+                <div className="grid grid-cols-2 gap-3 text-slate-300 text-sm">
+                  <div className="flex items-center">
+                    <div className="w-1.5 h-1.5 bg-yellow-500 rounded-full mr-2"></div>
+                    Healthcare
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-1.5 h-1.5 bg-yellow-500 rounded-full mr-2"></div>
+                    Real Estate
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-1.5 h-1.5 bg-yellow-500 rounded-full mr-2"></div>
+                    E-commerce
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-1.5 h-1.5 bg-yellow-500 rounded-full mr-2"></div>
+                    Professional Services
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-1.5 h-1.5 bg-yellow-500 rounded-full mr-2"></div>
+                    SaaS & Tech
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-1.5 h-1.5 bg-yellow-500 rounded-full mr-2"></div>
+                    Manufacturing
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-1.5 h-1.5 bg-yellow-500 rounded-full mr-2"></div>
+                    Recruiting
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-1.5 h-1.5 bg-yellow-500 rounded-full mr-2"></div>
+                    Financial Services
+                  </div>
+                </div>
+              </div>
+
+              {/* Why Choose TONNIC */}
+              <div className="bg-slate-700 dark:bg-slate-800 rounded-2xl p-6 transition-colors duration-200">
+                <h4 className="text-white font-semibold mb-4 flex items-center">
+                  <SafeIcon icon={FiShield} className="w-5 h-5 mr-2 text-yellow-500" />
+                  Why Choose TONNIC
+                </h4>
+                <ul className="space-y-3 text-slate-300 text-sm">
+                  <li className="flex items-start">
+                    <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2"></div>
+                    <div>
+                      <strong>Premier Partnerships:</strong> Direct access to cutting-edge AI platforms
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2"></div>
+                    <div>
+                      <strong>Business Focus:</strong> We understand business operations, not just technology
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2"></div>
+                    <div>
+                      <strong>End-to-End Service:</strong> From strategy to implementation and support
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 mt-2"></div>
+                    <div>
+                      <strong>Proven Methods:</strong> Established processes and reliable technology stack
+                    </div>
                   </li>
                 </ul>
               </div>
@@ -612,9 +761,9 @@ const Contact = () => {
       {showCalModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" role="dialog" aria-modal="true" aria-labelledby="cal-modal-title">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
+            initial={{opacity: 0, scale: 0.9}}
+            animate={{opacity: 1, scale: 1}}
+            exit={{opacity: 0, scale: 0.9}}
             className="bg-white dark:bg-slate-800 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden relative transition-colors duration-200"
           >
             <button
