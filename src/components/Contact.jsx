@@ -9,7 +9,8 @@ const Contact = () => {
   const [showCalModal, setShowCalModal] = useState(false);
   const [formData, setFormData] = useState({
     // Personal Info
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     phone: '',
     linkedin: '',
@@ -59,6 +60,17 @@ const Contact = () => {
     setShowCalModal(false);
   };
 
+  // Scroll to contact form function
+  const scrollToContactForm = () => {
+    const contactFormElement = document.getElementById('contact-form');
+    if (contactFormElement) {
+      contactFormElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
   const handleInputChange = (e) => {
     const {name, value, type, checked} = e.target;
     setFormData(prev => ({
@@ -82,8 +94,10 @@ const Contact = () => {
     try {
       const webhookUrl = 'https://api1.tonnic.ai/webhook/6af91990-0957-4380-a771-3609fe8cb4d6';
       const payload = {
-        // Personal Info
-        name: formData.name,
+        // Personal Info - Combine first and last name for the API
+        name: `${formData.firstName} ${formData.lastName}`,
+        firstName: formData.firstName,
+        lastName: formData.lastName,
         email: formData.email,
         phone: formData.phone,
         linkedin: formData.linkedin || '',
@@ -139,7 +153,8 @@ const Contact = () => {
         setIsSubmitted(false);
         setWebhookResponse(null);
         setFormData({
-          name: '',
+          firstName: '',
+          lastName: '',
           email: '',
           phone: '',
           linkedin: '',
@@ -150,7 +165,6 @@ const Contact = () => {
           optInConsent: false
         });
       }, 10000);
-
     } catch (error) {
       console.error('Error submitting form:', error);
       setSubmitError('There was an error sending your message. Please try again or call us directly at 1-888-442-BUZZ (1-888-442-2899).');
@@ -197,6 +211,7 @@ const Contact = () => {
               transition={{duration: 0.8}}
               viewport={{once: true}}
               className="bg-white dark:bg-slate-800 rounded-3xl p-8 transition-colors duration-200"
+              id="contact-form"
             >
               <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-2 transition-colors duration-200">
                 Send us a message
@@ -268,7 +283,10 @@ const Contact = () => {
                   <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-4 border-l-4 border-blue-500 transition-colors duration-200">
                     <p className="text-blue-800 dark:text-blue-200 text-sm transition-colors duration-200">
                       <strong>⚡ Next Steps:</strong> Our AI voice agent will automatically call you back within the next few minutes to discuss your inquiry. If you miss the call, don't worry - you can also reach us directly at{' '}
-                      <a href="tel:+18884422899" className="underline hover:text-blue-600 dark:hover:text-blue-300">
+                      <a
+                        href="tel:+18884422899"
+                        className="underline hover:text-blue-600 dark:hover:text-blue-300"
+                      >
                         1-888-442-BUZZ (1-888-442-2899)
                       </a>
                     </p>
@@ -282,7 +300,10 @@ const Contact = () => {
                       animate={{opacity: 1, y: 0}}
                       className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl flex items-start transition-colors duration-200"
                     >
-                      <SafeIcon icon={FiAlertCircle} className="w-5 h-5 text-red-500 dark:text-red-400 mr-3 mt-0.5 flex-shrink-0" />
+                      <SafeIcon
+                        icon={FiAlertCircle}
+                        className="w-5 h-5 text-red-500 dark:text-red-400 mr-3 mt-0.5 flex-shrink-0"
+                      />
                       <p className="text-red-700 dark:text-red-300 text-sm transition-colors duration-200">{submitError}</p>
                     </motion.div>
                   )}
@@ -295,31 +316,62 @@ const Contact = () => {
                         Personal Information
                       </h4>
                       <div className="space-y-4">
+                        {/* First and Last Name Fields */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div>
-                            <label htmlFor="name" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-200">
-                              Full Name *
+                            <label htmlFor="firstName" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-200">
+                              First Name *
                             </label>
                             <div className="relative">
-                              <SafeIcon icon={FiUser} className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500" />
+                              <SafeIcon
+                                icon={FiUser}
+                                className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500"
+                              />
                               <input
                                 type="text"
-                                id="name"
-                                name="name"
+                                id="firstName"
+                                name="firstName"
                                 required
-                                value={formData.name}
+                                value={formData.firstName}
                                 onChange={handleInputChange}
                                 className="w-full pl-10 pr-4 py-3 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-colors duration-200"
-                                placeholder="John Doe"
+                                placeholder="John"
                               />
                             </div>
                           </div>
+                          <div>
+                            <label htmlFor="lastName" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-200">
+                              Last Name *
+                            </label>
+                            <div className="relative">
+                              <SafeIcon
+                                icon={FiUser}
+                                className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500"
+                              />
+                              <input
+                                type="text"
+                                id="lastName"
+                                name="lastName"
+                                required
+                                value={formData.lastName}
+                                onChange={handleInputChange}
+                                className="w-full pl-10 pr-4 py-3 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-colors duration-200"
+                                placeholder="Doe"
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div>
                             <label htmlFor="email" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-200">
                               Email Address *
                             </label>
                             <div className="relative">
-                              <SafeIcon icon={FiMail} className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500" />
+                              <SafeIcon
+                                icon={FiMail}
+                                className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500"
+                              />
                               <input
                                 type="email"
                                 id="email"
@@ -332,15 +384,15 @@ const Contact = () => {
                               />
                             </div>
                           </div>
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div>
                             <label htmlFor="phone" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-200">
                               Phone Number *
                             </label>
                             <div className="relative">
-                              <SafeIcon icon={FiPhone} className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500" />
+                              <SafeIcon
+                                icon={FiPhone}
+                                className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500"
+                              />
                               <input
                                 type="tel"
                                 id="phone"
@@ -353,22 +405,26 @@ const Contact = () => {
                               />
                             </div>
                           </div>
-                          <div>
-                            <label htmlFor="linkedin" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-200">
-                              LinkedIn Profile
-                            </label>
-                            <div className="relative">
-                              <SafeIcon icon={FiLinkedin} className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500" />
-                              <input
-                                type="url"
-                                id="linkedin"
-                                name="linkedin"
-                                value={formData.linkedin}
-                                onChange={handleInputChange}
-                                className="w-full pl-10 pr-4 py-3 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-colors duration-200"
-                                placeholder="linkedin.com/in/yourprofile"
-                              />
-                            </div>
+                        </div>
+
+                        <div>
+                          <label htmlFor="linkedin" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-200">
+                            LinkedIn Profile
+                          </label>
+                          <div className="relative">
+                            <SafeIcon
+                              icon={FiLinkedin}
+                              className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500"
+                            />
+                            <input
+                              type="url"
+                              id="linkedin"
+                              name="linkedin"
+                              value={formData.linkedin}
+                              onChange={handleInputChange}
+                              className="w-full pl-10 pr-4 py-3 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-colors duration-200"
+                              placeholder="linkedin.com/in/yourprofile"
+                            />
                           </div>
                         </div>
                       </div>
@@ -387,7 +443,10 @@ const Contact = () => {
                               Company Name *
                             </label>
                             <div className="relative">
-                              <SafeIcon icon={FiBuilding} className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500" />
+                              <SafeIcon
+                                icon={FiBuilding}
+                                className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500"
+                              />
                               <input
                                 type="text"
                                 id="company"
@@ -405,7 +464,10 @@ const Contact = () => {
                               Company Website
                             </label>
                             <div className="relative">
-                              <SafeIcon icon={FiGlobe} className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500" />
+                              <SafeIcon
+                                icon={FiGlobe}
+                                className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500"
+                              />
                               <input
                                 type="url"
                                 id="website"
@@ -445,7 +507,10 @@ const Contact = () => {
                         Message *
                       </label>
                       <div className="relative">
-                        <SafeIcon icon={FiMessageSquare} className="absolute left-3 top-3 w-5 h-5 text-slate-400 dark:text-slate-500" />
+                        <SafeIcon
+                          icon={FiMessageSquare}
+                          className="absolute left-3 top-3 w-5 h-5 text-slate-400 dark:text-slate-500"
+                        />
                         <textarea
                           id="message"
                           name="message"
@@ -498,7 +563,10 @@ const Contact = () => {
               <div className="mt-6 p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-xl transition-colors duration-200">
                 <p className="text-sm text-slate-600 dark:text-slate-300 transition-colors duration-200">
                   <strong>Note:</strong> For immediate assistance, call our AI Voice Agent at{' '}
-                  <a href="tel:+18884422899" className="text-yellow-600 dark:text-yellow-400 hover:text-yellow-700 dark:hover:text-yellow-300 underline focus:ring-2 focus:ring-yellow-500 focus:ring-offset-1 dark:focus:ring-offset-slate-800 rounded transition-colors duration-200">
+                  <a
+                    href="tel:+18884422899"
+                    className="text-yellow-600 dark:text-yellow-400 hover:text-yellow-700 dark:hover:text-yellow-300 underline focus:ring-2 focus:ring-yellow-500 focus:ring-offset-1 dark:focus:ring-offset-slate-800 rounded transition-colors duration-200"
+                  >
                     1-888-442-BUZZ (1-888-442-2899)
                   </a>
                   {' '}who can answer questions and connect you with our team.
@@ -543,7 +611,11 @@ const Contact = () => {
                   </div>
                   <div>
                     <div className="text-white font-medium mb-1">AI Voice Agent</div>
-                    <a href="tel:+18884422899" className="text-slate-300 hover:text-yellow-400 focus:text-yellow-400 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-950 rounded transition-colors duration-200 text-lg font-semibold" aria-label="Call our AI Voice Agent at 1-888-442-BUZZ">
+                    <a
+                      href="tel:+18884422899"
+                      className="text-slate-300 hover:text-yellow-400 focus:text-yellow-400 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-slate-950 rounded transition-colors duration-200 text-lg font-semibold"
+                      aria-label="Call our AI Voice Agent at 1-888-442-BUZZ"
+                    >
                       1-888-442-BUZZ
                     </a>
                     <div className="text-slate-400 text-sm mt-1">
@@ -561,9 +633,12 @@ const Contact = () => {
                   </div>
                   <div>
                     <div className="text-white font-medium">Contact Form</div>
-                    <div className="text-slate-300">
+                    <button 
+                      onClick={scrollToContactForm}
+                      className="text-slate-300 hover:text-yellow-400 focus:text-yellow-400 focus:outline-none focus:underline cursor-pointer"
+                    >
                       Use our contact form for detailed inquiries and get an AI callback
-                    </div>
+                    </button>
                   </div>
                 </div>
               </div>
