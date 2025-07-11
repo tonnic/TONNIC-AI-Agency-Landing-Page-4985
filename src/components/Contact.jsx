@@ -384,7 +384,7 @@ const Contact = () => {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div>
                             <label htmlFor="company" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-200">
-                              Company Name
+                              Company Name *
                             </label>
                             <div className="relative">
                               <SafeIcon icon={FiBuilding} className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500" />
@@ -392,6 +392,7 @@ const Contact = () => {
                                 type="text"
                                 id="company"
                                 name="company"
+                                required
                                 value={formData.company}
                                 onChange={handleInputChange}
                                 className="w-full pl-10 pr-4 py-3 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-colors duration-200"

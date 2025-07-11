@@ -53,35 +53,14 @@ const Services = () => {
       detailedContent: {
         title: "AI Voice Agents",
         subtitle: "Advanced Inbound/Outbound Voice AI Solutions",
-        description: "Transform your phone communications with advanced AI voice agents powered by industry-leading platforms including Retell, Vapi, ElevenLabs, and Thoughtly. As a Thoughtly Premier Partner, we deliver enterprise-grade voice solutions with natural, human-like conversations tailored to your specific industry and requirements.",
+        description: "Transform your phone communications with advanced AI voice agents powered by industry-leading platforms including Retell, Vapi, ElevenLabs, and Thoughtly. We deliver enterprise-grade voice solutions with natural, human-like conversations tailored to your specific industry and requirements.",
         techStack: [
-          {
-            name: "Retell",
-            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779529709-retellfavicon.png",
-            url: "https://dashboard.retellai.com/?ref=tonnic",
-            partnerStatus: "preferred"
-          },
-          {
-            name: "Vapi",
-            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779532754-vapifavicon.png",
-            url: "https://vapi.ai/?aff=tonnic",
-            partnerStatus: "standard"
-          },
-          {
-            name: "ElevenLabs",
-            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779535711-elevenlabsfavicon.png",
-            url: "https://try.elevenlabs.io/tonnic",
-            partnerStatus: "standard"
-          },
-          {
-            name: "Thoughtly",
-            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779526113-thoughtlyfavicon.png",
-            url: "https://thoughtly.com/?ref=tonnic",
-            partnerStatus: "premier_partner"
-          }
+          {name: "Retell", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779529709-retellfavicon.png", url: "https://dashboard.retellai.com/?ref=tonnic", partnerStatus: "preferred"},
+          {name: "Vapi", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779532754-vapifavicon.png", url: "https://vapi.ai/?aff=tonnic", partnerStatus: "standard"},
+          {name: "ElevenLabs", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779535711-elevenlabsfavicon.png", url: "https://try.elevenlabs.io/tonnic", partnerStatus: "standard"},
+          {name: "Thoughtly", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779526113-thoughtlyfavicon.png", url: "https://thoughtly.com/?ref=tonnic", partnerStatus: "premier_partner"}
         ],
         preferredPlatform: "Retell",
-        partnerBadge: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750734772981-partner-badge.png",
         benefits: [
           "24/7 Availability - Never miss a call or opportunity",
           "Consistent Service - Deliver the same high-quality experience every time",
@@ -89,7 +68,6 @@ const Services = () => {
           "Cost Effective - Reduce staffing costs by up to 70%",
           "Instant Response - Connect with customers immediately",
           "Multi-Language Support - Serve diverse customer bases",
-          "Premier Partnership - Access to latest Thoughtly features and priority support",
           "Advanced Voice Quality - Crystal-clear conversations with ElevenLabs AI voices"
         ],
         howItWorks: [
@@ -123,31 +101,11 @@ const Services = () => {
         subtitle: "Intelligent Conversations Across Every Platform",
         description: "Deploy sophisticated AI chatbots that engage customers across websites, Facebook, WhatsApp, Pinterest, Instagram, and more with contextual, personalized conversations that drive results. Integrated with n8n automation for seamless workflow connections.",
         chatbotPlatforms: [
-          {
-            name: "Facebook",
-            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780429350-facebookfavicon.png",
-            capabilities: "Messenger Integration"
-          },
-          {
-            name: "WhatsApp",
-            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780449215-whatsappfavicon.png",
-            capabilities: "Business API"
-          },
-          {
-            name: "Pinterest",
-            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780457500-pinterestfavicon.png",
-            capabilities: "Pin Interactions"
-          },
-          {
-            name: "Instagram",
-            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780487572-instagramfavicon.png",
-            capabilities: "DM Automation"
-          },
-          {
-            name: "Website",
-            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750776734784-tonnic%20ai%20agency.png",
-            capabilities: "Live Chat Widget"
-          }
+          {name: "Facebook", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780429350-facebookfavicon.png", capabilities: "Messenger Integration"},
+          {name: "WhatsApp", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780449215-whatsappfavicon.png", capabilities: "Business API"},
+          {name: "Pinterest", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780457500-pinterestfavicon.png", capabilities: "Pin Interactions"},
+          {name: "Instagram", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780487572-instagramfavicon.png", capabilities: "DM Automation"},
+          {name: "Website", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750776734784-tonnic%20ai%20agency.png", capabilities: "Live Chat Widget"}
         ],
         benefits: [
           "Multi-Platform Reach - Deploy on websites, Facebook, WhatsApp, Pinterest, Instagram",
@@ -232,41 +190,13 @@ const Services = () => {
         subtitle: "Automate Your Social Media Success Across All Platforms",
         description: "Transform your social media presence with AI-powered content creation and automated posting across Facebook, Instagram (posts & stories), LinkedIn (personal & company pages), X (Twitter), Pinterest, TikTok, and Google Business Profile. Create engaging, platform-optimized content that resonates with your audience and drives results.",
         socialPlatforms: [
-          {
-            name: "Facebook",
-            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780429350-facebookfavicon.png",
-            capabilities: "Posts, Images, Videos"
-          },
-          {
-            name: "Instagram",
-            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780487572-instagramfavicon.png",
-            capabilities: "Posts & Stories"
-          },
-          {
-            name: "LinkedIn",
-            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780083679-linkedinfavicon.png",
-            capabilities: "Personal & Company Pages"
-          },
-          {
-            name: "X (Twitter)",
-            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780080709-xfavicon.png",
-            capabilities: "Tweets, Threads"
-          },
-          {
-            name: "Pinterest",
-            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780457500-pinterestfavicon.png",
-            capabilities: "Pins & Boards"
-          },
-          {
-            name: "TikTok",
-            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780086756-tiktokfavicon.png",
-            capabilities: "Short-form Videos"
-          },
-          {
-            name: "Google Business",
-            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750781038097-googlebusinessfavicon.png",
-            capabilities: "Business Updates & Posts"
-          }
+          {name: "Facebook", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780429350-facebookfavicon.png", capabilities: "Posts, Images, Videos"},
+          {name: "Instagram", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780487572-instagramfavicon.png", capabilities: "Posts & Stories"},
+          {name: "LinkedIn", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780083679-linkedinfavicon.png", capabilities: "Personal & Company Pages"},
+          {name: "X (Twitter)", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780080709-xfavicon.png", capabilities: "Tweets, Threads"},
+          {name: "Pinterest", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780457500-pinterestfavicon.png", capabilities: "Pins & Boards"},
+          {name: "TikTok", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750780086756-tiktokfavicon.png", capabilities: "Short-form Videos"},
+          {name: "Google Business", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750781038097-googlebusinessfavicon.png", capabilities: "Business Updates & Posts"}
         ],
         benefits: [
           "Multi-Platform Reach - Automatically post to Facebook, Instagram, LinkedIn, X, Pinterest, TikTok, and Google Business",
@@ -312,30 +242,10 @@ const Services = () => {
         subtitle: "n8n Preferred - Connect Your Business Ecosystem",
         description: "Integrate all your business tools and systems with our robust API solutions for seamless data flow and workflow automation. We specialize in n8n as our preferred automation platform, while also supporting Zapier, Make, and Pabbly Connect to meet your specific integration needs.",
         automationPlatforms: [
-          {
-            name: "n8n",
-            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779813044-n8nfavicon.png",
-            url: "https://n8n.io/",
-            partnerStatus: "preferred"
-          },
-          {
-            name: "Zapier",
-            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779820203-zapierfavicon.png",
-            url: "https://zapier.com/",
-            partnerStatus: "solution_partner"
-          },
-          {
-            name: "Make",
-            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779815427-makefavicon.jpg",
-            url: "https://www.make.com/en/register?pc=tonnic",
-            partnerStatus: "standard"
-          },
-          {
-            name: "Pabbly Connect",
-            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779817990-pablyfavicon.png",
-            url: "https://www.pabbly.com/connect/",
-            partnerStatus: "standard"
-          }
+          {name: "n8n", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779813044-n8nfavicon.png", url: "https://n8n.io/", partnerStatus: "preferred"},
+          {name: "Zapier", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779820203-zapierfavicon.png", url: "https://zapier.com/", partnerStatus: "solution_partner"},
+          {name: "Make", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779815427-makefavicon.jpg", url: "https://www.make.com/en/register?pc=tonnic", partnerStatus: "standard"},
+          {name: "Pabbly Connect", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779817990-pablyfavicon.png", url: "https://www.pabbly.com/connect/", partnerStatus: "standard"}
         ],
         preferredPlatform: "n8n",
         benefits: [
@@ -380,30 +290,10 @@ const Services = () => {
         subtitle: "n8n Powered - Transform Your Business Operations",
         description: "Automate complex business processes including HR workflows, operations, and administrative tasks to increase efficiency, reduce costs, and improve accuracy across your organization. We leverage n8n as our preferred automation platform, complemented by Zapier, Make, and Pabbly Connect for comprehensive automation solutions.",
         automationPlatforms: [
-          {
-            name: "n8n",
-            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779813044-n8nfavicon.png",
-            url: "https://n8n.io/",
-            partnerStatus: "preferred"
-          },
-          {
-            name: "Zapier",
-            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779820203-zapierfavicon.png",
-            url: "https://zapier.com/",
-            partnerStatus: "solution_partner"
-          },
-          {
-            name: "Make",
-            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779815427-makefavicon.jpg",
-            url: "https://www.make.com/en/register?pc=tonnic",
-            partnerStatus: "standard"
-          },
-          {
-            name: "Pabbly Connect",
-            favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779817990-pablyfavicon.png",
-            url: "https://www.pabbly.com/connect/",
-            partnerStatus: "standard"
-          }
+          {name: "n8n", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779813044-n8nfavicon.png", url: "https://n8n.io/", partnerStatus: "preferred"},
+          {name: "Zapier", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779820203-zapierfavicon.png", url: "https://zapier.com/", partnerStatus: "solution_partner"},
+          {name: "Make", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779815427-makefavicon.jpg", url: "https://www.make.com/en/register?pc=tonnic", partnerStatus: "standard"},
+          {name: "Pabbly Connect", favicon: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1750779817990-pablyfavicon.png", url: "https://www.pabbly.com/connect/", partnerStatus: "standard"}
         ],
         preferredPlatform: "n8n",
         benefits: [
@@ -460,12 +350,13 @@ const Services = () => {
 
   // Function to get partner status display text
   const getPartnerStatusText = (platform, preferredPlatform) => {
-    if (platform.name === preferredPlatform) {
-      return `${platform.name} (Preferred)`;
+    if (platform.name === "Thoughtly" && platform.partnerStatus === "premier_partner") {
+      return `${platform.name} (Premier Partner)`;
     }
+    
     switch (platform.partnerStatus) {
-      case 'premier_partner':
-        return `${platform.name} (Premier Partner)`;
+      case 'preferred':
+        return `${platform.name} (Preferred)`;
       case 'solution_partner':
         return `${platform.name} (Solution Partner)`;
       default:
@@ -521,15 +412,12 @@ const Services = () => {
                   <div className="bg-yellow-500 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                     <SafeIcon icon={service.icon} className="w-8 h-8 text-slate-800" />
                   </div>
-
                   <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-4 group-hover:text-yellow-600 dark:group-hover:text-yellow-400 transition-colors duration-300">
                     {service.title}
                   </h3>
-
                   <p className="text-slate-600 dark:text-slate-300 mb-6 leading-relaxed flex-1 text-sm transition-colors duration-200">
                     {service.description}
                   </p>
-
                   <div className="mb-6">
                     <ul className="space-y-2">
                       {service.features.map((feature, featureIndex) => (
@@ -541,15 +429,13 @@ const Services = () => {
                     </ul>
                   </div>
                 </div>
-
                 <div className="p-8 pt-0">
                   {/* Single Learn More Button - Opens modal for detailed view */}
                   <button
                     onClick={() => openServiceModal(service)}
                     className="w-full bg-yellow-500 text-slate-800 px-6 py-3 rounded-xl font-semibold hover:bg-yellow-400 focus:bg-yellow-400 transition-all duration-300 flex items-center justify-center transform hover:-translate-y-1"
                   >
-                    Learn More
-                    <SafeIcon icon={FiArrowRight} className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                    Learn More <SafeIcon icon={FiArrowRight} className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
                   </button>
                 </div>
               </motion.div>
@@ -605,14 +491,9 @@ const Services = () => {
                   <SafeIcon icon={selectedService.icon} className="w-8 h-8 text-slate-800" />
                 </div>
                 <div className="flex-1">
-                  <div className="flex items-center mb-2">
-                    <h2 id="service-modal-title" className="text-3xl font-bold text-slate-800 dark:text-white mr-4 transition-colors duration-200">
-                      {selectedService.detailedContent.title}
-                    </h2>
-                    {selectedService.detailedContent.partnerBadge && (
-                      <img src={selectedService.detailedContent.partnerBadge} alt="Thoughtly Premier Partner" className="h-12 w-auto" />
-                    )}
-                  </div>
+                  <h2 id="service-modal-title" className="text-3xl font-bold text-slate-800 dark:text-white transition-colors duration-200">
+                    {selectedService.detailedContent.title}
+                  </h2>
                   <p className="text-xl text-yellow-600 dark:text-yellow-400 font-semibold transition-colors duration-200">
                     {selectedService.detailedContent.subtitle}
                   </p>
@@ -636,11 +517,20 @@ const Services = () => {
                         className={`px-4 py-2 rounded-lg font-medium text-slate-700 dark:text-yellow-100 border transition-all duration-200 flex items-center hover:bg-yellow-100 dark:hover:bg-yellow-200/30 hover:border-yellow-300 dark:hover:border-yellow-300/50 hover:scale-105 hover:shadow-md group cursor-pointer ${getPartnerStatusStyle(tech, selectedService.detailedContent.preferredPlatform)}`}
                         aria-label={`Visit ${tech.name} website (opens in new tab)`}
                       >
-                        <img src={tech.favicon} alt={`${tech.name} logo`} className="w-4 h-4 mr-2 flex-shrink-0" onError={(e) => {e.target.style.display='none';}} />
+                        <img
+                          src={tech.favicon}
+                          alt={`${tech.name} logo`}
+                          className="w-4 h-4 mr-2 flex-shrink-0"
+                          onError={(e) => { e.target.style.display = 'none'; }}
+                        />
                         <span className="group-hover:text-slate-800 dark:group-hover:text-yellow-50 transition-colors duration-200">
                           {getPartnerStatusText(tech, selectedService.detailedContent.preferredPlatform)}
                         </span>
-                        <SafeIcon icon={FiExternalLink} className="w-3 h-3 ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-slate-500 dark:text-yellow-300" aria-hidden="true" />
+                        <SafeIcon
+                          icon={FiExternalLink}
+                          className="w-3 h-3 ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-slate-500 dark:text-yellow-300"
+                          aria-hidden="true"
+                        />
                       </a>
                     ))}
                   </div>
@@ -662,7 +552,12 @@ const Services = () => {
                     {selectedService.detailedContent.chatbotPlatforms.map((platform, index) => (
                       <div key={index} className="bg-white dark:bg-yellow-200/20 px-4 py-3 rounded-lg border border-yellow-200 dark:border-yellow-300/30 transition-colors duration-200">
                         <div className="flex items-center mb-2">
-                          <img src={platform.favicon} alt={`${platform.name} logo`} className="w-5 h-5 mr-2 flex-shrink-0" onError={(e) => {e.target.style.display='none';}} />
+                          <img
+                            src={platform.favicon}
+                            alt={`${platform.name} logo`}
+                            className="w-5 h-5 mr-2 flex-shrink-0"
+                            onError={(e) => { e.target.style.display = 'none'; }}
+                          />
                           <span className="font-medium text-slate-700 dark:text-yellow-100 transition-colors duration-200">
                             {platform.name}
                           </span>
@@ -687,7 +582,12 @@ const Services = () => {
                     {selectedService.detailedContent.socialPlatforms.map((platform, index) => (
                       <div key={index} className="bg-white dark:bg-yellow-200/20 px-4 py-3 rounded-lg border border-yellow-200 dark:border-yellow-300/30 transition-colors duration-200">
                         <div className="flex items-center mb-2">
-                          <img src={platform.favicon} alt={`${platform.name} logo`} className="w-5 h-5 mr-2 flex-shrink-0" onError={(e) => {e.target.style.display='none';}} />
+                          <img
+                            src={platform.favicon}
+                            alt={`${platform.name} logo`}
+                            className="w-5 h-5 mr-2 flex-shrink-0"
+                            onError={(e) => { e.target.style.display = 'none'; }}
+                          />
                           <span className="font-medium text-slate-700 dark:text-yellow-100 transition-colors duration-200">
                             {platform.name}
                           </span>
@@ -719,13 +619,22 @@ const Services = () => {
                           className={`px-4 py-3 rounded-lg font-medium border transition-all duration-200 flex items-center hover:scale-105 hover:shadow-md group cursor-pointer min-h-[60px] ${getPartnerStatusStyle(platform, selectedService.detailedContent.preferredPlatform)}`}
                           aria-label={`Visit ${platform.name} website (opens in new tab)`}
                         >
-                          <img src={platform.favicon} alt={`${platform.name} logo`} className="w-5 h-5 mr-3 flex-shrink-0" onError={(e) => {e.target.style.display='none';}} />
+                          <img
+                            src={platform.favicon}
+                            alt={`${platform.name} logo`}
+                            className="w-5 h-5 mr-3 flex-shrink-0"
+                            onError={(e) => { e.target.style.display = 'none'; }}
+                          />
                           <div className="flex-1 min-w-0">
                             <span className="group-hover:opacity-90 transition-opacity duration-200 block truncate">
                               {getPartnerStatusText(platform, selectedService.detailedContent.preferredPlatform)}
                             </span>
                           </div>
-                          <SafeIcon icon={FiExternalLink} className="w-4 h-4 ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex-shrink-0" aria-hidden="true" />
+                          <SafeIcon
+                            icon={FiExternalLink}
+                            className="w-4 h-4 ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex-shrink-0"
+                            aria-hidden="true"
+                          />
                         </a>
                       );
                     })}
@@ -757,7 +666,6 @@ const Services = () => {
                     ))}
                   </ul>
                 </div>
-
                 <div>
                   <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-4 transition-colors duration-200">
                     How It Works
